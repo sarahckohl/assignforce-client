@@ -22,10 +22,10 @@ export class PtoService {
 
 
   formatDate(date: Date) {
-    let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + (d.getDate()),
+    const d = new Date(date),
       year = d.getFullYear();
+    let month = '' + (d.getMonth() + 1),
+      day = '' + (d.getDate());
     if (month.length < 2) {
       month = '0' + month;
     }
@@ -40,7 +40,7 @@ export class PtoService {
     startDate = this.formatDate(startDate);
     endDate = this.formatDate(endDate);
 
-    let resource = {
+    const resource = {
       'start': {
         'date': startDate.toString()
       },

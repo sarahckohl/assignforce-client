@@ -5,7 +5,7 @@ import {NotificationService} from '../services/notification.service';
 import {Building} from '../domain/building';
 import {GlobalSettings} from '../domain/global-settings';
 import {SettingsService} from '../services/global-settings.service';
-import {UserInfoService} from "../services/user-info.service";
+import {UserInfoService} from '../services/user-info.service';
 
 @Component({
   selector: 'app-settings',
@@ -57,7 +57,7 @@ export class SettingsComponent implements OnInit {
         this.selectedLocation = location.name;
         this.location = location;
         this.building = location.buildings;
-        let buildingOption = location.buildings.find(
+        const buildingOption = location.buildings.find(
           building => building.id === this.defaultBuilding);
         this.selectedBuilding = buildingOption.name;
       }, () => {
@@ -76,7 +76,7 @@ export class SettingsComponent implements OnInit {
     this.location = location;
     this.building = location.buildings;
     this.defaultLocation = location.id;
-    let filteredBuilding = (this.building.filter(building => building.active === true))[0];
+    const filteredBuilding = (this.building.filter(building => building.active === true))[0];
     this.selectedBuilding = filteredBuilding.name;
     this.defaultBuilding = filteredBuilding.id;
     // console.log(location.id + ' ' + this.defaultBuilding);
@@ -97,8 +97,8 @@ export class SettingsComponent implements OnInit {
 
   resetLocation() {
     this.defaultLocation = this.settings.defaultLocation;
-    this.building = this.location.buildings
-    let filteredBuilding = (this.building.filter(building => building.active === true))[0];
+    this.building = this.location.buildings;
+    const filteredBuilding = (this.building.filter(building => building.active === true))[0];
     this.selectedBuilding = filteredBuilding.name;
     this.defaultBuilding = filteredBuilding.id;
     // console.log(this.defaultLocation + ' ' + this.defaultBuilding);

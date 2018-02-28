@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
-      window.location.href = this.url.getUrl() + "/login";
+      window.location.href = this.url.getUrl() + '/login';
   }
 
 }

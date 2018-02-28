@@ -11,22 +11,20 @@ import {UserInfoService} from '../services/user-info.service';
 export class LoginSuccessComponent implements OnInit {
 
     constructor(private auth: AuthService,
-		private route: ActivatedRoute,
-		private router: Router,
-		private user: UserInfoService) { }
+        private route: ActivatedRoute,
+        private router: Router,
+        private user: UserInfoService) { }
 
     ngOnInit() {
-	this.route.queryParams.subscribe((params: Params) => {
+        this.route.queryParams.subscribe((params: Params) => {
             const token = params['token'];
             console.log(token);
-	    this.auth.setToken(token);
-	    this.user.loadUser().subscribe(data => {
-		this.user.setUser(data);
-		console.log(JSON.stringify(this.user.getUser()));
-		this.router.navigateByUrl('/overview')
-	    });
-	    
-	});
+            this.auth.setToken(token);
+            this.user.loadUser().subscribe(data => {
+                this.user.setUser(data);
+                console.log(JSON.stringify(this.user.getUser()));
+                this.router.navigateByUrl('/overview');
+            });
+        });
     }
-
 }

@@ -52,14 +52,14 @@ export class TrainerService {
   }
 
   authorize() {
-    this.showCalendar(); //For testing to make sure the Dialog is actually showing
-    //gapi.load('client:auth2', this.showCalendar());
+    this.showCalendar(); // For testing to make sure the Dialog is actually showing
+    // gapi.load('client:auth2', this.showCalendar());
 
   }
 
   showCalendar() {
     const dialogRef = this.dialog.open(CalendarDialogComponent, {
       // width: '450px',
-    })
+    });
   }
 }

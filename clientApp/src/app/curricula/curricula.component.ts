@@ -62,7 +62,7 @@ export class CurriculaComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = false;
-    if (this.userInfoService.getUser().role == 'VP of Technology') {
+    if (this.userInfoService.getUser().role === 'VP of Technology') {
       this.isAdmin = true;
     }
     /* grab curricula from server */
@@ -244,7 +244,7 @@ export class CurriculaComponent implements OnInit {
   templateUrl: 'curricula-curriculum-dialog.component.html',
   styleUrls: ['./curricula.component.css']
 })
-export class CurriculaCurriculumDialogComponent {
+export class CurriculaCurriculumDialogComponent implements OnInit {
 
   /* variables */
   curriculum: Curriculum = {
@@ -319,7 +319,7 @@ export class CurriculaCurriculumDialogComponent {
     // console.log(this.nameFormCtrl.value);
     // console.log(this.skillFormCtrl.value);
     // console.log(this.data.isCore);
-    let newCurr: Curriculum = {
+    const newCurr: Curriculum = {
       currId: null,
       name: this.nameFormCtrl.value,
       core: this.data.isCore,
@@ -351,7 +351,7 @@ export class CurriculaCurriculumDialogComponent {
     console.log(this.data.curriculum);
     console.log('New Skill List: ');
     console.log(this.skillFormCtrl.value);
-    let updatedCurr = this.data.curriculum;
+    const updatedCurr = this.data.curriculum;
     updatedCurr.name = this.nameFormCtrl.value;
     updatedCurr.skills = this.skillFormCtrl.value;
     console.log('Updated Curriculum: ');
@@ -388,7 +388,7 @@ export class CurriculaCreateSkillDialogComponent {
     active: true
   };
   skills: Skill[] = this.data;
-  found: boolean = false;
+  found = false;
 
   constructor(
     public dialogRef: MatDialogRef<CurriculaCreateSkillDialogComponent>,

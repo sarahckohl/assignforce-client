@@ -9,7 +9,7 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     if (this.auth.getToken()) {
-	return true; 
+      return true;
     }
       this.router.navigate(['']);
       return false;

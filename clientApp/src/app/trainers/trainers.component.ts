@@ -36,7 +36,7 @@ export class TrainersComponent implements OnInit {
 
   ngOnInit() {
     this.isManager = false;
-    if(this.userInfoService.getUser().role == "VP of Technology"){
+    if (this.userInfoService.getUser().role === 'VP of Technology') {
       this.isManager = true;
     }
 
@@ -45,16 +45,16 @@ export class TrainersComponent implements OnInit {
       () => this.showToast('Failed to fetch Credentials'));
   }
 
-  //Displays snackbar message notifications
+  // Displays snackbar message notifications
   showToast(message) {
     this.notificationService.openSnackBar(message);
   }
 
-  //Adds a trainer by popping up a dialog box
+  // Adds a trainer by popping up a dialog box
   addTrainer(): void {
     const trainer: Trainer = {
-	trainerId: null,
-	username: '',
+      trainerId: null,
+      username: '',
       firstName: '',
       lastName: '',
       skills: [],
@@ -89,7 +89,7 @@ export class TrainersComponent implements OnInit {
 
   }
 
-  //Gets all trainers and stores them in variable trainers
+  // Gets all trainers and stores them in variable trainers
   getAll() {
     this.trainerService.getAll()
       .subscribe(
@@ -108,7 +108,7 @@ export class TrainersComponent implements OnInit {
       );
   }
 
-  //After a change is made to trainers, clears trainers and retrieves the current from database
+  // After a change is made to trainers, clears trainers and retrieves the current from database
   rePullTrainers() {
     this.trainers = undefined;
     this.trainerService.getAll()
@@ -148,18 +148,18 @@ export class TrainersComponent implements OnInit {
 
   }
 
-  //Navigates to profile of the trainer clicked
+  // Navigates to profile of the trainer clicked
   goToTrainer(trainer: Trainer) {
     const id = trainer.trainerId;
     this.router.navigate(['/profile/' + id]);
   }
 
-  //Downloads a copy of the trainer's resume
+  // Downloads a copy of the trainer's resume
   grabS3Resume(trainer: Trainer) {
-    let filename = trainer.resume;
+    const filename = trainer.resume;
     event.stopPropagation();
 
-    //show toast if there is no resume for this trainer in the database
+    // show toast if there is no resume for this trainer in the database
     if (filename == null) {
       this.showToast(trainer.firstName + ' ' + trainer.lastName + ' does not have a resume uploaded');
       return;
@@ -171,17 +171,17 @@ export class TrainersComponent implements OnInit {
       region: 'us-east-1'
     });
 
-    //set the parameters needed to get an object from aws s3 bucket
+    // set the parameters needed to get an object from aws s3 bucket
     const params = {
       Bucket: this.creds.BucketName,
       Key: 'Resumes/' + trainer.trainerId + '_' + trainer.resume,
-      Expires: 60 //url expires in 60 seconds with signed urls
+      Expires: 60 // url expires in 60 seconds with signed urls
     };
 
-    //grabs a url to the object in the s3 bucket
+    // grabs a url to the object in the s3 bucket
     const url = bucket.getSignedUrl('getObject', params);
 
-    //this will create a link, set download and href, and invoke the click action on it
+    // this will create a link, set download and href, and invoke the click action on it
     // it will download the file
     const link = document.createElement('a');
     // link.download = "test.png";
@@ -195,7 +195,7 @@ export class TrainersComponent implements OnInit {
 
   }
 
-  //Sets the active trainer to inactive
+  // Sets the active trainer to inactive
   removeTrainer(trainer: Trainer) {
     trainer.active = false;
     this.trainerService.update(trainer)
@@ -209,7 +209,7 @@ export class TrainersComponent implements OnInit {
       );
   }
 
-  //Sets the inactive trainer to active
+  // Sets the inactive trainer to active
   activateTrainer(trainer: Trainer) {
     trainer.active = true;
     this.trainerService.update(trainer)
@@ -229,14 +229,14 @@ export class TrainersComponent implements OnInit {
       return;
     }
     let skillslist = '';
-    for(let i = 0; i < Skillz.length; i++){
+    for (let i = 0; i < Skillz.length; i++) {
       skillslist += Skillz[i].name;
-      if(i != Skillz.length-1){
-        skillslist += ', '
+      if (i !== Skillz.length - 1) {
+        skillslist += ', ';
       }
     }
     return skillslist;
-  };
+  }
 
   googleAuth() {
     // this.router.navigate(['api/v2/google/google']);
@@ -245,7 +245,7 @@ export class TrainersComponent implements OnInit {
 
 }
 
-//Used for the display of new Trainer dialog box
+// Used for the display of new Trainer dialog box
 @Component({
   selector: 'app-trainer-dialog',
   templateUrl: './trainer-dialog.component.html',

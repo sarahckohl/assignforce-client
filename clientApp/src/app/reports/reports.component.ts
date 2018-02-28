@@ -282,7 +282,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, AfterViewChecked
   }
   exportToCSV(evt, name) {
     evt.stopPropagation();
-    new Angular2Csv(this.skills.getElement(), name);
+    const errorbye = new Angular2Csv(this.skills.getElement(), name);
   }
   openMenu(evt) {
     evt.stopPropagation();
@@ -473,7 +473,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, AfterViewChecked
       this.newBatch.startDate = batch.startDate;
       this.newBatch.endDate = batch.hireDate;
       this.newBatch.trainer = '1';
-      this.newBatch.cotrainer = '1'
+      this.newBatch.cotrainer = '1';
       this.newBatch.curriculum = batch.batchType.currId;
       this.newBatch.batchLocation = this.defaultLocation;
       this.newBatch.batchStatus = {};
@@ -484,9 +484,9 @@ export class ReportsComponent implements OnInit, AfterViewInit, AfterViewChecked
             console.log('batch created sucessfully');
             this.showToast('batch created sucessfully');
             index = this.cardArr.indexOf(batch);
-            console.log(i)
+            console.log(i);
             if (i === 1) {
-              console.log('loading')
+              console.log('loading');
               this.removeCard(index);
             }
             if (multiple) {

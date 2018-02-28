@@ -52,7 +52,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   }
   exportToCSV(evt) {
     evt.stopPropagation();
-    new Angular2Csv(this.BatchData, 'batches');
+    const goodbyeerror = new Angular2Csv(this.BatchData, 'batches');
   }
 
   openMenu(evt) {
@@ -123,8 +123,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       }
     );
     this.curriculaService.getAll().subscribe(curriculaData => {
-      for (let batch of this.BatchData){
-        for (let curricula of curriculaData){
+      for (const batch of this.BatchData){
+        for (const curricula of curriculaData){
           if (batch.focus === curricula.currId) {
             batch.focusName = curricula.name;
           }
@@ -154,7 +154,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   }
 
   filterByTwoWeeksAhead() {
-    let days = 14 * 1000 * 3600 * 24;
+    const days = 14 * 1000 * 3600 * 24;
 
     this.filteredData = this.BatchData.filter(
       batch => ((batch.startDate.valueOf() - new Date().valueOf()) >= 0) &&

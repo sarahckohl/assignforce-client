@@ -43,8 +43,7 @@ export class MenuBarComponent implements OnInit {
         () => {
           this.router.navigateByUrl('');
         });
-	localStorage.clear();
-
+      localStorage.clear();
     }
   }
 }

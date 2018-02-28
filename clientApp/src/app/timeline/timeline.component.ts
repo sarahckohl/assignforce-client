@@ -101,20 +101,19 @@ export class TimelineComponent implements AfterViewInit, OnInit {
   }
 
   getAllBatches() {
-    let yAxisPosition = 0; //Sets the Y-axis
-    let name = [];
+    let yAxisPosition = 0; // Sets the Y-axis
     this.batchService.getAll().subscribe(batchData => {
       this.batches = batchData;
       for (const entry of this.batches) {
         this.trainerService.getById(entry.trainer).subscribe(trainerData => {
           this.trainer = trainerData;
-          this.trainerName = (this.trainer.firstName + " " + this.trainer.lastName);
+          this.trainerName = (this.trainer.firstName + ' ' + this.trainer.lastName);
           this.nameList.push(this.trainerName);
           console.log(this.nameList);
           this.chart.yAxis[0].update({
             categories: this.nameList
           });
-        })
+        });
         this.chart.addSeries(
           {
             name: entry.name,
@@ -132,7 +131,7 @@ export class TimelineComponent implements AfterViewInit, OnInit {
   }
 
   updateTimeline() {
-    console.log("UPDATEING TIMELINE")
+    console.log('UPDATEING TIMELINE');
     this.chart.xAxis[0].update({
       min: this.startDate.getTime(),
       max: this.endDate.getTime()
@@ -155,13 +154,13 @@ export class TimelineComponent implements AfterViewInit, OnInit {
       for (const entry of this.filteredBatches) {
         this.trainerService.getById(entry.trainer).subscribe(trainerData => {
           this.trainer = trainerData;
-          this.trainerName = (this.trainer.firstName + " " + this.trainer.lastName);
+          this.trainerName = (this.trainer.firstName + ' ' + this.trainer.lastName);
           this.nameList.push(this.trainerName);
           console.log(this.nameList);
           this.chart.yAxis[0].update({
             categories: this.nameList
           });
-        })
+        });
         this.chart.addSeries(
           {
             name: entry.name,
@@ -183,13 +182,13 @@ export class TimelineComponent implements AfterViewInit, OnInit {
       for (const entry of this.filteredBatches) {
         this.trainerService.getById(entry.trainer).subscribe(trainerData => {
           this.trainer = trainerData;
-          this.trainerName = (this.trainer.firstName + " " + this.trainer.lastName);
+          this.trainerName = (this.trainer.firstName + ' ' + this.trainer.lastName);
           this.nameList.push(this.trainerName);
           console.log(this.nameList);
           this.chart.yAxis[0].update({
             categories: this.nameList
           });
-        })
+        });
         this.chart.addSeries(
           {
             name: entry.name,
@@ -221,13 +220,13 @@ export class TimelineComponent implements AfterViewInit, OnInit {
       for (const entry of this.filteredBatches) {
         this.trainerService.getById(entry.trainer).subscribe(trainerData => {
           this.trainer = trainerData;
-          this.trainerName = (this.trainer.firstName + " " + this.trainer.lastName);
+          this.trainerName = (this.trainer.firstName + ' ' + this.trainer.lastName);
           this.nameList.push(this.trainerName);
           console.log(this.nameList);
           this.chart.yAxis[0].update({
             categories: this.nameList
           });
-        })
+        });
         this.chart.addSeries(
           {
             name: entry.name,
@@ -249,13 +248,13 @@ export class TimelineComponent implements AfterViewInit, OnInit {
       for (const entry of this.filteredBatches) {
         this.trainerService.getById(entry.trainer).subscribe(trainerData => {
           this.trainer = trainerData;
-          this.trainerName = (this.trainer.firstName + " " + this.trainer.lastName);
+          this.trainerName = (this.trainer.firstName + ' ' + this.trainer.lastName);
           this.nameList.push(this.trainerName);
           console.log(this.nameList);
           this.chart.yAxis[0].update({
             categories: this.nameList
           });
-        })
+        });
         this.chart.addSeries(
           {
             name: entry.name,

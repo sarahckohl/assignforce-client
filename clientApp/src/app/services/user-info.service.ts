@@ -15,7 +15,7 @@ export class UserInfoService {
     return this.http.get<User>(this.url.getUrl() + '/auth/userinfo');
   }
 
-  logout(): Observable<any>{
+  logout(): Observable<any> {
     return this.http.post(this.url.getUrl() + '/revokelogout', {});
   }
 
