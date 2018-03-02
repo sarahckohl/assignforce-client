@@ -33,6 +33,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   logout(link) {
+    console.log(link);
     if (link === 'LOGOUT') {
       this.userInfo.logout().subscribe(always => {
           this.router.navigateByUrl('');

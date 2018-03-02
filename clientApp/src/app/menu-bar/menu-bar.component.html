@@ -1,6 +1,6 @@
 
 
-<nav mat-tab-nav-bar style="overflow: auto;" *ngIf="userInfo.getUser().role !== 'VP of Technology'">
+<nav mat-tab-nav-bar style="overflow: auto;" *ngIf="userInfo.getUser()?.role !== 'VP of Technology'">
   <span fxFlex></span>
 
     <a mat-tab-link
@@ -8,14 +8,15 @@
        [routerLink]="link"
        routerLinkActive #rla="routerLinkActive"
        [active]="rla.isActive"
+       (click)="logout(link.toUpperCase())"
     style="text-decoration: none">
-      <div (click)="logout(link.toUpperCase())">
+      <div>
 	{{link.toUpperCase()}}
       </div>
     </a>
 </nav>
 
-<nav mat-tab-nav-bar style="overflow: auto;" *ngIf="userInfo.getUser().role === 'VP of Technology'">
+<nav mat-tab-nav-bar style="overflow: auto;" *ngIf="userInfo.getUser()?.role === 'VP of Technology'">
   <span fxFlex></span>
 
   <a mat-tab-link

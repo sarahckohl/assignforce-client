@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthTokenInterceptor} from './interceptors/authTokenInterceptor';
 import {MenuBarComponent} from './menu-bar/menu-bar.component';
 import {OverviewComponent} from './overview/overview.component';
@@ -32,7 +31,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TrainerService} from './services/trainer.service';
 import {SkillService} from './services/skill.service';
 import {S3CredentialService} from './services/s3-credential.service';
-import {AuthService} from './services/auth.service'
+import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import {UrlService} from './services/url.service';
 import {UserInfoService} from './services/user-info.service';
@@ -156,13 +155,7 @@ import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
     LocationService,
     BuildingService,
     RoomService,
-    SettingsService,
-
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
-      multi: true
-    }
+    SettingsService
   ],
   entryComponents: [
     TrainerDialogComponent,

@@ -58,7 +58,7 @@ export class CalendarDialogComponent {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result) {
-          if (result.startDate == null || result.endDate == null || result.startDate == '' || result.endDate == '') {
+          if (result.startDate === null || result.endDate === null || result.startDate === '' || result.endDate === '') {
             return;
           } else {
             this.ptoService.addPto(result, result.startDate, result.endDate);
