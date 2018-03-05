@@ -32,8 +32,7 @@ export class MenuBarComponent implements OnInit {
     this.notificationService.openSnackBar(msg);
   }
 
-  logout(link) {
-    console.log(link);
+  logout(link: string) {
     if (link === 'LOGOUT') {
       this.userInfo.logout().subscribe(always => {
           this.router.navigateByUrl('');
@@ -45,6 +44,10 @@ export class MenuBarComponent implements OnInit {
           this.router.navigateByUrl('');
         });
       localStorage.clear();
+    } else {
+      console.log(link.toLowerCase());
+      this.router.navigateByUrl('/' + link.toLowerCase());
+      console.log('I\'m breaking out of here');
     }
   }
 }

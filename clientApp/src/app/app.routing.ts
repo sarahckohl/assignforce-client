@@ -15,19 +15,14 @@ import {AuthGuardService} from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
-    pathMatch: 'full',
-  },
-  {
     path: 'loginsuccess',
     component: LoginSuccessComponent
-    },
+  },
   {
     path: 'overview',
     component: OverviewComponent,
     canActivate: [AuthGuardService],
-
+    pathMatch: 'full'
   },
   {
     path: 'batches',
@@ -53,6 +48,7 @@ const appRoutes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuardService],
+    pathMatch: 'full'
   },
   {
     path: 'profile/:id',
@@ -68,6 +64,11 @@ const appRoutes: Routes = [
     path: 'settings',
     component: SettingsComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full'
   }
 ];
 

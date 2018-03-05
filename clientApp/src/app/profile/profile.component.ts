@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
           },
           () => this.showToast('Could not fetch trainer.'));
     } else {
-      this.trainerService.getByFirstNameAndLastName(this.user.firstname, this.user.lastname)
+      this.trainerService.getById(this.user ? this.user.id : 0)
       // this.trainerService.getByFirstNameAndLastName('Test', 'Trainer')
         .subscribe(response => {
             this.trainer = response;
