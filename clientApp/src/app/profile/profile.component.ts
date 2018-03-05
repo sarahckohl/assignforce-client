@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
 
     // grab credentials for s3
     this.s3Service.getCreds().subscribe(response => this.creds = response,
-      () => this.showToast('Failed to fetch Credentials'));
+      () => this.showToast('Failed to fetch credentials'));
   }
 
   backClick() {
@@ -237,7 +237,7 @@ export class ProfileComponent implements OnInit {
     // update trainer
     this.trainerService.update(this.trainer).subscribe(() => {
       },
-      () => this.showToast('Failed saving Certification.'),
+      () => this.showToast('Failed saving certification.'),
       () => this.showToast('Certification has been saved.'));
 
     // create a aws s3 bucket

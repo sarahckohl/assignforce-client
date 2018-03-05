@@ -89,7 +89,7 @@ export class CurriculaComponent implements OnInit {
           }
           console.log(this.curricula);
         }, error => {
-          this.showToast('Failed to fetch Curricula');
+          this.showToast('Failed to fetch curricula');
         }
       );
   }
@@ -111,7 +111,7 @@ export class CurriculaComponent implements OnInit {
           }
           console.log(this.curricula);
         }, error => {
-          this.showToast('Failed to fetch Curricula');
+          this.showToast('Failed to fetch curricula');
         }
       );
   }
@@ -122,7 +122,7 @@ export class CurriculaComponent implements OnInit {
         this.skills = data;
         console.log(this.skills);
       }, error => {
-        this.showToast('Failed to fetch Skills');
+        this.showToast('Failed to fetch skills');
         }
       );
   }
@@ -339,7 +339,7 @@ export class CurriculaCurriculumDialogComponent implements OnInit {
         console.log(retData);
         this.showToast('Curriculum: ' + retData.name + ' Created.');
       }, error => {
-        this.showToast('Failed to create new Core.');
+        this.showToast('Failed to create new core.');
       });
 
     this.dialogRef.close(true);
@@ -361,7 +361,7 @@ export class CurriculaCurriculumDialogComponent implements OnInit {
         console.log(retData);
         this.showToast('Curriculum: ' + retData.name + ' Modified. ');
       }, error => {
-        this.showToast('Failed to edit Curriculum.');
+        this.showToast('Failed to edit curriculum.');
       });
     this.dialogRef.close(true);
   }
@@ -416,9 +416,9 @@ export class CurriculaCreateSkillDialogComponent {
     if (this.found === false) {
       this.skillService.create(this.newSkill)
         .subscribe(retData => {
-          this.showToast('Skill: ' + retData.name + ' Created. ');
+          this.showToast('Skill: ' + retData.name + ' created. ');
         }, error => {
-          this.showToast('Failed to create new Skill. ');
+          this.showToast('Failed to create new skill. ');
         });
       this.dialogRef.close(true);
     }
@@ -468,10 +468,10 @@ export class CurriculaRemovalDialogComponent {
         if (retData === null) {
           this.showToast('Curriculum Deleted.');
         } else {
-          this.showToast('Fail to delete Curriculum.');
+          this.showToast('Fail to delete curriculum.');
         }
       }, error => {
-        this.showToast('Fail to delete Curriculum. ');
+        this.showToast('Fail to delete curriculum. ');
       });
     this.dialogRef.close(true);
   }

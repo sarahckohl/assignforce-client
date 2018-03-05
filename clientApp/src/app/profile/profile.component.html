@@ -183,7 +183,7 @@ The second md-card/ng-show is for other users to look at other trainers profiles
 
       <mat-card-content *ngIf="trainer != undefined && skills != undefined">
         <div class="md-padding">
-          <h2 matSubheader>Current skills:</h2>
+          <h2 matSubheader>Current Skills:</h2>
           <mat-list>
             <button mat-button class="md-list-item" *ngFor="let skill of trainer.skillsObject | orderBy: 'name'">
               <mat-icon style="color: #FB8C00">stars</mat-icon>

@@ -72,7 +72,7 @@ export class LocationsComponent implements OnInit {
         }
       }, err => {
         console.log(err);
-        this.showToast('Failed to fetch Locations');
+        this.showToast('Failed to fetch locations');
       });
   }
   // getLocation(id: number) {
@@ -86,7 +86,7 @@ export class LocationsComponent implements OnInit {
           this.getAllLocations();
         }, err => {
         console.log(err);
-        this.showToast('Failed to add Location');
+        this.showToast('Failed to add location');
       });
   }
   updateLocation(location: Locations) {
@@ -96,7 +96,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to update Location');
+        this.showToast('Failed to update location');
       });
   }
   deleteLocation(location: Locations) {
@@ -106,7 +106,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to delete Location');
+        this.showToast('Failed to delete location');
       });
   }
   /* ===================== Building CRUD =======================*/
@@ -117,7 +117,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to add Building');
+        this.showToast('Failed to add building');
       });
   }
   updateBuilding(building: Building) {
@@ -127,7 +127,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to update Building');
+        this.showToast('Failed to update building');
       });
   }
   deleteBuilding(building: Building) {
@@ -137,7 +137,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to delete Building');
+        this.showToast('Failed to delete building');
       });
   }
   /* ===================== Room CRUD =======================*/
@@ -148,7 +148,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to add Room');
+        this.showToast('Failed to add room');
       });
   }
   updateRoom(room: Room) {
@@ -158,7 +158,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to update Room');
+        this.showToast('Failed to update room');
       });
   }
   deleteRoom(room: Room) {
@@ -168,7 +168,7 @@ export class LocationsComponent implements OnInit {
         this.getAllLocations();
       }, err => {
         console.log(err);
-        this.showToast('Failed to delete Room');
+        this.showToast('Failed to delete room');
       });
   }
   /* ===================== Dialog =======================*/

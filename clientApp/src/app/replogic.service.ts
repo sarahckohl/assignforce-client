@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Element} from './reports/Form- Months';
+import {Element} from './reports/Form-Months';
 import {Monthlist} from './reports/rep Interface';
 import {BatchService} from './services/batch.service';
 import {CurriculaService} from './services/curricula.service';
@@ -182,82 +182,82 @@ export class ReplogicService {
 
 
     this.ELEMENT_DATA = [
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
 
 
     ];
 
     this. Trainer_Element = [
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
-      {Ciriculam: '', January: 0, febuaray: 0, march: 0, april: 0, may: 0, june: 0,
+      {Curriculum: '', january: 0, february: 0, march: 0, april: 0, may: 0, june: 0,
        july: 0, august: 0, september: 0, october: 0, november: 0, december: 0},
 
 
@@ -284,7 +284,7 @@ export class ReplogicService {
               const test = true;
               for ( let x = 0 ; x < this.circula.length; x++) {
                 if ( this.circula[x].core) {
-                  this.ELEMENT_DATA[y].Ciriculam = this.circula[x].name;
+                  this.ELEMENT_DATA[y].Curriculum = this.circula[x].name;
                   y++;
                   for ( let z = 0 ; z < batch.length ; z++ ) {
                     if ( this.circula[x].currId === this.batch[z].curriculum ) {
@@ -294,11 +294,11 @@ export class ReplogicService {
                        switch (this.batch[td].endDate.getUTCMonth()) {
                           case 0:
                             count++;
-                            this.ELEMENT_DATA[mt].January = this.setting[0].reportIncomingGrads * count;
+                            this.ELEMENT_DATA[mt].january = this.setting[0].reportIncomingGrads * count;
                             break;
                           case 1:
                             count++;
-                            this.ELEMENT_DATA[mt].febuaray = this.setting[0].reportIncomingGrads * count;
+                            this.ELEMENT_DATA[mt].february = this.setting[0].reportIncomingGrads * count;
                             break;
                           case 2:
                             count++;
@@ -350,10 +350,10 @@ export class ReplogicService {
 
   getList() {
     for (let x = 0; x < this.ELEMENT_DATA.length; x++) {
-      this.months[x].name = this.ELEMENT_DATA[x].Ciriculam;
+      this.months[x].name = this.ELEMENT_DATA[x].Curriculum;
       this.months[x].data = [
-        this.ELEMENT_DATA[x].January,
-        this.ELEMENT_DATA[x].febuaray,
+        this.ELEMENT_DATA[x].january,
+        this.ELEMENT_DATA[x].february,
         this.ELEMENT_DATA[x].march,
         this.ELEMENT_DATA[x].april,
         this.ELEMENT_DATA[x].may,
@@ -390,7 +390,7 @@ export class ReplogicService {
             const test = true;
             for ( let x = 0; x < this.circula.length; x++) {
               if ( this.circula[x].core) {
-                this.Trainer_Element[y].Ciriculam = this.circula[x].name;
+                this.Trainer_Element[y].Curriculum = this.circula[x].name;
                 y++;
                 for ( let z = 0; z < batch.length; z++ ) {
                   if ( this.circula[x].currId === this.batch[z].curriculum ) {
@@ -412,14 +412,14 @@ export class ReplogicService {
                       if ( this.batch[z].endDate.getUTCMonth() === this.batch[td].endDate.getUTCMonth()
                        && this.batch[td].endDate.getUTCMonth() === 0) {
                         jan += 1;
-                        this.Trainer_Element[mt].January = this.setting[0].reportIncomingGrads * jan;
+                        this.Trainer_Element[mt].january = this.setting[0].reportIncomingGrads * jan;
                         console.log('shahak1');
-                        console.log(this.Trainer_Element[mt].January);
+                        console.log(this.Trainer_Element[mt].january);
                         console.log('shahak2');
                       }
                       if ( this.batch[z].endDate.getUTCMonth() === 1) {
                         feb += 1;
-                        this.Trainer_Element[mt].febuaray = this.setting[0].reportIncomingGrads * feb;
+                        this.Trainer_Element[mt].february = this.setting[0].reportIncomingGrads * feb;
                       }
                       if ( this.batch[z].endDate.getUTCMonth() === 2) {
                         march += 1;
@@ -470,10 +470,10 @@ export class ReplogicService {
 
   getTrainerList() {
     for (let x = 0 ; x < this.Trainer_Element.length; x++) {
-      this.gm[x].name = this.Trainer_Element[x].Ciriculam;
+      this.gm[x].name = this.Trainer_Element[x].Curriculum;
       this.gm[x].data = [
-        this.Trainer_Element[x].January,
-        this.Trainer_Element[x].febuaray,
+        this.Trainer_Element[x].january,
+        this.Trainer_Element[x].february,
         this.Trainer_Element[x].march,
         this.Trainer_Element[x].april,
         this.Trainer_Element[x].may,

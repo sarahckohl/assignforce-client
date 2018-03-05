@@ -162,7 +162,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   beginCreation(evt) {
     this.firstTabHeader = 'Create New Batch';
     this.creating = !this.creating;
-    this.showToast('Creating new Batch');
+    this.showToast('Creating New Batch');
     evt.stopPropagation();
   }
 
@@ -217,7 +217,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     this.curriculaService.getById(this.batch.curriculum).subscribe(data => {
       this.batch.curriculumName = data.name;
     }, err => {
-      console.log('failed to fetch curriculum name');
+      console.log('Failed to fetch curriculum name.');
     } );
   }
   initBatch() {

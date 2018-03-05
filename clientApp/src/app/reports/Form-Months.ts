@@ -1,7 +1,7 @@
 export interface Element {
-  Ciriculam: string;
-  January: number;
-  febuaray: number;
+  Curriculum: string;
+  january: number;
+  february: number;
   march: number;
   april: number;
   may: number;

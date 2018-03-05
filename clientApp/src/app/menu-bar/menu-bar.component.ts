@@ -45,9 +45,7 @@ export class MenuBarComponent implements OnInit {
         });
       localStorage.clear();
     } else {
-      console.log(link.toLowerCase());
       this.router.navigateByUrl('/' + link.toLowerCase());
-      console.log('I\'m breaking out of here');
     }
   }
 }

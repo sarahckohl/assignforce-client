@@ -113,7 +113,7 @@
               <mat-option [value]="building.id"
                           *ngIf="building.active === true"
                           (click)="getRooms()">
-                {{ building.name}}
+                {{ building.name }}
               </mat-option>
               </div>
             </mat-select>
@@ -180,7 +180,7 @@
 
           <!-- Trainer Column -->
           <ng-container matColumnDef="trainerName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Co Trainer </mat-header-cell>
             <mat-cell *matCellDef="let batch"> {{batch.trainerName}} / {{batch.cotrainerName}}</mat-cell>
           </ng-container>
 
