@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
-import { Batch } from '../../model/batch';
+import { Batch } from '../../model/Batch';
 
 // --------------------------------- HARD CODED ELEMENT DATA... SHOULD BE DELETED --------------------------------------
 
