@@ -1,11 +1,15 @@
 language: node_js
 node_js:
 - 8.9.4
+cache:
+  directories:
+    - clientApp/node_modules
 install:
 - npm install
 - npm i headless-chromium
-after_install:
+script:
 - cd clientApp
+before_deploy:
 - npm run lint -- --fix
 - npm run test:once
 deploy:
