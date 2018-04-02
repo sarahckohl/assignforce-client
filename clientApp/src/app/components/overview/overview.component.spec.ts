@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OverviewComponent } from './overview.component';
 import { AppMaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Batch } from '../../model/batch';
+import { Batch } from '../../model/Batch';
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
