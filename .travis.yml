@@ -7,7 +7,7 @@ install:
 after_install:
 - cd clientApp
 - npm run lint -- --fix
-# - npm run test: once
+- npm run test:once
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
