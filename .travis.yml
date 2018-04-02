@@ -10,7 +10,7 @@ install:
 script:
 - cd clientApp
 before_deploy:
-- npm run lint --
+- npm run lint -- --fix
 - npm run test:once
 deploy:
   provider: cloudfoundry
