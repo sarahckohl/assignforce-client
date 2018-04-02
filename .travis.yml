@@ -4,7 +4,7 @@ node_js:
 install:
 - npm install
 - npm i headless-chromium
-after install:
+after_install:
 - cd clientApp
 - npm run lint -- --fix
 # - npm run test: once
