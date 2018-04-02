@@ -6,7 +6,6 @@ cache:
     - clientApp/node_modules
 before_install:
 - cd clientApp
-- chmod +x deploy.sh
 addons:
   apt:
     sources:
