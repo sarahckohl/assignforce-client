@@ -8,7 +8,7 @@
     "build": "ng build",
     "test": "ng test --browsers=Chrome",
     "test:once": "ng test --single-run --browsers=ChromeHeadless",
-    "lint": "ng lint --fix",
+    "lint": "ng lint",
     "format:fix": "pretty-quick --staged",
     "precommit": "run-s format:fix lint test:once",
     "format:check":

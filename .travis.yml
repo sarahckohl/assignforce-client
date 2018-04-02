@@ -5,7 +5,8 @@ cache:
   directories:
     - clientApp/node_modules
 install:
-- npm install
+- npm 
+- npm install -g angular-cli
 - npm i headless-chromium
 script:
 - cd clientApp
