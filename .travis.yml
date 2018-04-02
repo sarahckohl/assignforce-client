@@ -1,12 +1,18 @@
 language: node_js
 node_js:
 - 8.9.4
+sudo: required
+dist: trusty
+before_script:
+- "sudo chown root /opt/google/chrome/chrome-sandbox"
+- "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
   directories:
     - clientApp/node_modules
 before_install:
 - cd clientApp
 addons:
+  chrome: stable
   apt:
     sources:
     - google-chrome
