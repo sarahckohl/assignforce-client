@@ -19,10 +19,6 @@ addons:
     - google-chrome-stable
 install:
 - npm install
-# - npm install -g @angular/cli
-# - npm i tslint
-- npm install chrome-remote-interface --save
-- npm install chrome-launcher --save
 - ng build
 before_deploy:
 - export CHROME_BIN=chromium-browser
