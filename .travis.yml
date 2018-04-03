@@ -23,7 +23,6 @@ scripts:
 - export CHROME_BIN=chromium-browser
 - npm run lint:ci
 - npm run test:ci -- --watch false --single-run true
-- ng build --prod
 deploy:
   skip_cleanup: true
   provider: cloudfoundry
