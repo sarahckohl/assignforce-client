@@ -2,6 +2,7 @@
 applications:
 - name: assignforce
   memory: 1024M
+  command: node server.js
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
 
 

@@ -1,8 +1,8 @@
 language: node_js
 node_js:
 - 8.9.4
-sudo: required
-dist: trusty
+# sudo: required
+# dist: trusty
 before_script:
 - "sudo chown root /opt/google/chrome/chrome-sandbox"
 - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
@@ -19,12 +19,11 @@ addons:
     - google-chrome-stable
 install:
 - npm install
-- ng build
+# - ng build --prod
 scripts:
 - export CHROME_BIN=chromium-browser
 - npm run lint:ci
 - npm run test:ci -- --watch false --single-run true
-- zip -r dist . -i ./dist
 deploy:
   skip_cleanup: true
   provider: cloudfoundry
