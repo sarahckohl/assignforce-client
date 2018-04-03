@@ -19,6 +19,7 @@ addons:
     - google-chrome-stable
 install:
 - npm install
+- ng build
 scripts:
 - export CHROME_BIN=chromium-browser
 - npm run lint:ci
