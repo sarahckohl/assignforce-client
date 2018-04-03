@@ -25,7 +25,9 @@ scripts:
 - npm run test:ci -- --watch false --single-run true
 - ng build --prod
 before_deploy:
-- zip -r dist . -i dist
+- zip -r dist clientApp/dist
+- mkdir -p dpl_cd_upload
+- mv dist.zip dpl_cd_upload/dist.zip
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
