@@ -2,8 +2,8 @@
 applications:
 - name: assignforce
   memory: 1024M
-  path: ./dpl_cd_upload/dist.zip
-  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
-  command: node server.js
+  path: dist
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack
+#  command: node server.js
 
 
