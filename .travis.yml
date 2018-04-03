@@ -12,17 +12,14 @@ cache:
 before_install:
 - cd clientApp
 addons:
-  chrome: stable
   apt:
     sources:
     - google-chrome
     packages:
     - google-chrome-stable
 install:
-- npm install
-- npm install -g @angular/cli
-- npm i tslint
-- ng build
+- npm run lint:ci
+- npm run test:ci
 before_deploy:
 - export CHROME_BIN=chromium-browser
 - npm run lint 
