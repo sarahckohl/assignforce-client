@@ -24,7 +24,6 @@ scripts:
 - npm run lint:ci
 - npm run test:ci -- --watch false --single-run true
 - ng build --prod
-- touch dist/Staticfile
 #before_deploy:
 # - cd dist
 # - zip -r latest *
