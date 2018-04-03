@@ -21,7 +21,6 @@ addons:
 install:
 - npm install
 - npm install -g @angular/cli
-- npm i headless-chromium
 - npm i tslint
 - ng build
 before_deploy:
