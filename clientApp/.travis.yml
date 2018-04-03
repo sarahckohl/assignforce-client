@@ -8,9 +8,7 @@ before_script:
 - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
   directories:
-  - clientApp/node_modules
-before_install:
-- cd clientApp
+  - node_modules
 addons:
   apt:
     sources:
