@@ -29,6 +29,7 @@ before_deploy:
 # - mkdir -p dpl_cd_upload
 # - mv dist.zip dpl_cd_upload/dist.zip
 deploy:
+  skip_cleanup: true
   provider: cloudfoundry
   api: https://api.run.pivotal.io
   username: pdawson2090@gmail.com
