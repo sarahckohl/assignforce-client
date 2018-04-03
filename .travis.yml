@@ -22,7 +22,7 @@ install:
 scripts:
 - export CHROME_BIN=chromium-browser
 - npm run lint:ci
-- npm run test:ci
+- npm run test:ci --single-run
 before_deploy:
 - ng build
 deploy:
