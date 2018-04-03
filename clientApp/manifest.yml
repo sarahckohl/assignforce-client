@@ -2,7 +2,7 @@
 applications:
 - name: assignforce
   memory: 1024M
-  path: ./
+  path: ./dist
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack
   command: null
 
