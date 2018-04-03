@@ -25,7 +25,7 @@ scripts:
 - npm run test:ci -- --watch false --single-run true
 - ng build --prod
 before_deploy:
-- zip -r latest dist
+- zip -r dist latest
 - mkdir -p dpl_cd_upload
 - mv latest.zip dpl_cd_upload/latest.zip
 deploy:
