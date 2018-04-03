@@ -4,6 +4,6 @@ applications:
   memory: 1024M
   path: ./
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack
-#  command: node server.js
+  command: null
 
 
