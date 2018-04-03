@@ -18,12 +18,14 @@ addons:
     packages:
     - google-chrome-stable
 install:
-- npm run lint:ci
-- npm run test:ci
+- npm install
+# - npm install -g @angular/cli
+# - npm i tslint
+- ng build
 before_deploy:
 - export CHROME_BIN=chromium-browser
-- npm run lint 
-- npm run test:once
+- npm run lint:ci
+- npm run test:ci
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
