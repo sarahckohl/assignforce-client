@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+// import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { Batch } from '../../model/Batch';
 
 // --------------------------------- HARD CODED ELEMENT DATA... SHOULD BE DELETED --------------------------------------
@@ -93,7 +93,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   exportToCSV(evt) {
     evt.stopPropagation();
     // this.csvService.download(this.dataSource, 'Batches');
-    const angular2Csv = new Angular2Csv(this.batchList, 'batches');
+    // const angular2Csv = new Angular2Csv(this.batchList, 'batches');
     this.isExported = true;
   }
 

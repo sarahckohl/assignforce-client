@@ -2,7 +2,8 @@
 applications:
 - name: assignforce
   memory: 1024M
-  command: npm start
-  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  command: null
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack
+  path: dist
 
 
