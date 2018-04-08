@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Skill } from '../../model/Skill';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
 import { Curriculum } from '../../model/Curriculum';
-import { FormControl, FormGroup } from '@angular/forms';
-import { SkillService } from '../../services/skill/skill.service';
-import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { Skill } from '../../model/Skill';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { Focus } from '../../model/Focus';
+import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
 
 @Component({
   selector: 'app-edit-focus',
@@ -13,25 +13,16 @@ import { SkillControllerService } from '../../services/api/skill-controller/skil
   styleUrls: ['./edit-focus.component.css']
 })
 export class EditFocusComponent implements OnInit {
-  focus: Curriculum;
+  focus: Focus;
 
   constructor(
     private dialogRef: MatDialogRef<EditFocusComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Curriculum,
     private skillControllerService: SkillControllerService,
-    private curriculaControllerService: CurriculumControllerService
+    private focusControllerService: FocusControllerService
   ) {}
 
-  skills: Skill[] = [
-    // { skillId: 1, name: 'Core JAVA', active: true },
-    // { skillId: 2, name: '.Net', active: true },
-    // { skillId: 3, name: 'Spring', active: true },
-    // { skillId: 4, name: 'REST', active: true },
-    // { skillId: 5, name: 'JUnit', active: true },
-    // { skillId: 6, name: 'MVC', active: true },
-    // { skillId: 7, name: 'SOAP', active: true },
-    // { skillId: 8, name: 'Pega', active: true }
-  ];
+  skills: Skill[] = [];
 
   selectedSkills: Skill[] = [];
 
@@ -55,8 +46,8 @@ export class EditFocusComponent implements OnInit {
   editFocus(): void {
     console.log('We are Editing a focus ' + this.data.name);
     this.focus.skills = this.selectedSkills;
-    this.curriculaControllerService.updateCurriculum(this.focus);
-    this.focus = new Curriculum(0, '', false, true, []);
+    this.focusControllerService.update(this.focus);
+    this.focus = new Focus(0, '', false, []);
     this.closeDialog();
   }
 }

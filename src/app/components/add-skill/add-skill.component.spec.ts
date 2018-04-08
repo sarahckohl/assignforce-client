@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AddSkillComponent } from './add-skill.component';
-import { MatDialogRef } from '@angular/material';
-import { AppMaterialModule } from '../../material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Skill } from '../../model/Skill';
 import { FormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppMaterialModule } from '../../material.module';
+import { Skill } from '../../model/Skill';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { AddSkillComponent } from './add-skill.component';
 
 describe('AddSkillComponent', () => {
   let component: AddSkillComponent;
@@ -53,5 +53,11 @@ describe('AddSkillComponent', () => {
   it('should contain a button labeled Add SKill', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.add-skill-button').textContent).toContain('Add Skill');
+  });
+
+  it('should create a new skill object when the new skill method is called', () => {
+    component.newSkill();
+    fixture.detectChanges();
+    expect(component.skill.name).toBe('');
   });
 });

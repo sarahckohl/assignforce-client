@@ -1,10 +1,12 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
-import { Location } from '../../model/Location';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import { Building } from '../../model/Building';
+import { Address } from '../../model/Address';
 import { Room } from '../../model/Room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
+import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 
 @Component({
   selector: 'app-location-delete-location-dialog',
@@ -52,8 +54,8 @@ export class LocationEditLocationDialogComponent {
 }
 
 // @Component({
-//   selector: 'app-location-add-building-dialog',
-//   templateUrl: './location-add-building-dialog.component.html'
+//   selector: 'app-address-add-building-dialog',
+//   templateUrl: './address-add-building-dialog.component.html'
 // })
 // export class LocationAddBuildingDialogComponent {
 //   constructor(
@@ -149,70 +151,14 @@ export class LocationEditRoomDialogComponent {
 })
 export class LocationsComponent implements OnInit {
   expanded: boolean[] = [];
-  locations = [
-    {
-      id: '13F',
-      name: 'Revature HQ',
-      city: 'Reaston',
-      state: 'VA',
-      buildings: [
-        {
-          name: 'Building 1',
-          rooms: [
-            {
-              name: 'Room 101'
-            },
-            {
-              name: 'Room 102'
-            }
-          ]
-        },
-        {
-          name: 'Building 2',
-          rooms: [
-            {
-              name: 'Room 201'
-            },
-            {
-              name: 'Room 202'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: '13E',
-      name: 'CUNY',
-      city: 'New York',
-      state: 'NY',
-      buildings: [
-        {
-          name: 'SPS',
-          rooms: [
-            {
-              name: 'Room 216'
-            },
-            {
-              name: 'Room 220'
-            }
-          ]
-        },
-        {
-          name: 'Queens College',
-          rooms: [
-            {
-              name: 'Room 301'
-            },
-            {
-              name: 'Room 302'
-            }
-          ]
-        }
-      ]
-    }
-  ];
+  locations = [];
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, public dialog: MatDialog) {
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog,
+    private locationService: AddressControllerService
+  ) {
     for (const location of this.locations) {
       this.expanded[location.id] = false;
     }
@@ -227,7 +173,14 @@ export class LocationsComponent implements OnInit {
     );
     iconRegistry.addSvgIcon('room', sanitizer.bypassSecurityTrustResourceUrl('assets/img/ic_business_black_48px.svg'));
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.locationService
+      .findAll()
+      .toPromise()
+      .then(response => {
+        this.locations = response;
+      });
+  }
   collapseAll(id: any) {
     this.expanded[id] = !this.expanded[id];
 
@@ -237,13 +190,13 @@ export class LocationsComponent implements OnInit {
       }
     }
   }
-  addLocation(location: Location) {
+  addLocation(location: Address) {
     // call service
   }
-  updateLocation(location: Location) {
+  updateLocation(location: Address) {
     // call service
   }
-  deleteLocation(location: Location) {
+  deleteLocation(location: Address) {
     // call service
   }
   openAddLocationDialog(evt): void {
@@ -269,7 +222,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openDeleteLocationDialog(evt, location: Location): void {
+  openDeleteLocationDialog(evt, location: Address): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationDeleteLocationDialogComponent, {
       width: '250px',
@@ -284,7 +237,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openEditLocationDialog(evt, location: Location): void {
+  openEditLocationDialog(evt, location: Address): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationEditLocationDialogComponent, {
       width: '450px',
@@ -299,7 +252,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openAddBuildingDialog(evt, location: Location): void {
+  openAddBuildingDialog(evt, location: Address): void {
     evt.stopPropagation();
     const building = {
       name: '',
@@ -316,12 +269,11 @@ export class LocationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        location.buildings.push(result);
         this.updateLocation(location);
       }
     });
   }
-  openDeleteBuildingDialog(evt, location: Location, building: Building): void {
+  openDeleteBuildingDialog(evt, location: Address, building: Building): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationDeleteBuildingDialogComponent, {
       width: '250px',
@@ -332,12 +284,11 @@ export class LocationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        location.buildings = location.buildings.filter(e => e !== result);
         this.updateLocation(location);
       }
     });
   }
-  openEditBuildingDialog(evt, location: Location, building: Building): void {
+  openEditBuildingDialog(evt, location: Address, building: Building): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationEditBuildingDialogComponent, {
       width: '450px',
@@ -352,7 +303,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openAddRoomDialog(evt, location: Location, building: Building): void {
+  openAddRoomDialog(evt, location: Address, building: Building): void {
     evt.stopPropagation();
     const room = {
       roomName: ''
@@ -372,7 +323,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openDeleteRoomDialog(evt, location: Location, building: Building, room: Room): void {
+  openDeleteRoomDialog(evt, location: Address, building: Building, room: Room): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationDeleteRoomDialogComponent, {
       width: '250px',
@@ -388,7 +339,7 @@ export class LocationsComponent implements OnInit {
       }
     });
   }
-  openEditRoomDialog(evt, location: Location, room: Room): void {
+  openEditRoomDialog(evt, location: Address, room: Room): void {
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationEditRoomDialogComponent, {
       width: '450px',

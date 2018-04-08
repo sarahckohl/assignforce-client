@@ -5,6 +5,8 @@ import { TrainersComponent } from '../trainers.component';
 import { Skill } from '../../../model/Skill';
 import { AppMaterialModule } from '../../../material.module';
 import { Trainer } from '../../../model/Trainer';
+import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
+import { Router } from '@angular/router';
 
 describe('TrainerItemComponent', () => {
   let component: TrainerItemComponent;
@@ -14,7 +16,8 @@ describe('TrainerItemComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [AppMaterialModule],
-        declarations: [TrainerItemComponent, TrainersComponent]
+        declarations: [TrainerItemComponent, TrainersComponent],
+        providers: [TrainerControllerService, { provide: Router }]
       }).compileComponents();
     })
   );
@@ -23,57 +26,48 @@ describe('TrainerItemComponent', () => {
     fixture = TestBed.createComponent(TrainerItemComponent);
     component = fixture.componentInstance;
     component.trainer = new Trainer(1, '', '', [], null, false, null, []);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   // test trainer deactivation
-  // it('should switch trainer to deactivated condition', () => {
-  //   const Skillz: Skill[] = [
-  //     {
-  //       skillId: 1,
-  //       name: 'Java',
-  //       active: true
-  //     }
-  //   ];
+  it('should switch trainer to deactivated condition', () => {
+    const Skillz: Skill[] = [
+      {
+        id: 1,
+        name: 'Java',
+        active: true
+      }
+    ];
 
-  //   const dummy = {
-  //     trainerId: 1,
-  //     firstName: 'James',
-  //     lastName: 'Smith',
-  //     skills: Skillz,
-  //     certifications: 'Certs',
-  //     active: true,
-  //     resume: 'Resume'
-  //   };
-
-  //   component.removeTrainer(dummy);
-  //   expect(dummy.active).toBe(false);
-  // });
+    //component.removeTrainer(dummy);
+    //expect(dummy.active).toBe(false);
+  });
 
   // test trainer reactivation
-  // it('should switch trainer to active condition', () => {
-  //   const Skillz: Skill[] = [
-  //     {
-  //       skillId: 1,
-  //       name: 'Java',
-  //       active: true
-  //     }
-  //   ];
+  it('should switch trainer to active condition', () => {
+    const Skillz: Skill[] = [
+      {
+        id: 1,
+        name: 'Java',
+        active: true
+      }
+    ];
 
-  //   const dummy = {
-  //     trainerId: 1,
-  //     firstName: 'James',
-  //     lastName: 'Smith',
-  //     skills: Skillz,
-  //     certifications: 'Certs',
-  //     active: true,
-  //     resume: 'Resume'
-  //   };
+    const dummy = {
+      trainerId: 1,
+      firstName: 'James',
+      lastName: 'Smith',
+      skills: Skillz,
+      certifications: 'Certs',
+      active: true,
+      resume: 'Resume',
+      unavailabilities: []
+    };
 
-  //   component.activateTrainer(dummy);
-  //   expect(dummy.active).toBe(true);
-  // });
+    //component.activateTrainer(dummy);
+    //expect(dummy.active).toBe(true);
+  });
 });

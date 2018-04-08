@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
 import { Trainer } from '../../../model/Trainer';
 import { Skill } from '../../../model/Skill';
-import { TrainerService } from '../../../services/trainer/trainer.service';
 
 @Component({
   selector: 'app-trainers-add',
@@ -10,34 +9,15 @@ import { TrainerService } from '../../../services/trainer/trainer.service';
   styleUrls: ['./trainers-add.component.css']
 })
 export class TrainersAddComponent implements OnInit {
-  Skillz: Skill[] = [
-    {
-      skillId: 1,
-      name: 'Java',
-      active: true
-    }
-  ];
+  Skillz: Skill[] = [];
 
-  trainer: Trainer = {
-    trainerId: 0,
-    firstName: '',
-    lastName: '',
-    skills: this.Skillz,
-    certifications: '',
-    active: true,
-    resume: '',
-    unavailabilities: []
-  };
+  trainer: Trainer;
 
   data = {
     trainer: this.trainer
   };
 
-  constructor(
-    public dialogRef: MatDialogRef<TrainersAddComponent>,
-    @Inject(MAT_DIALOG_DATA) public dataP: any,
-    private trainerService: TrainerService
-  ) {}
+  constructor(public dialogRef: MatDialogRef<TrainersAddComponent>, @Inject(MAT_DIALOG_DATA) public dataP: any) {}
 
   ngOnInit() {}
 
@@ -81,7 +61,7 @@ export class TrainersAddComponent implements OnInit {
 
       this.trainer.lastName = l;
 
-      this.trainerService.create(this.trainer).subscribe();
+      // this.trainerService.create(this.trainer).subscribe();
       console.log(this.trainer);
     }
   }

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CurriculumSkillsComponent } from './curriculum-skills.component';
-import { AppMaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Skill } from '../../model/Skill';
 import { Observable } from 'rxjs/Observable';
+
+import { AppMaterialModule } from '../../material.module';
+import { Skill } from '../../model/Skill';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { CurriculumSkillsComponent } from './curriculum-skills.component';
 
 describe('CurriculumSkillsComponent', () => {
   let component: CurriculumSkillsComponent;
@@ -58,11 +58,6 @@ describe('CurriculumSkillsComponent', () => {
   it('should contain a title named Skills', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('mat-panel-title').textContent).toContain('Skills');
-  });
-
-  it('should add a skill when the add skill function is called', () => {
-    fixture.detectChanges();
-    component.addSkill("This doesn't matter");
   });
 
   it('should have a remove button', () => {

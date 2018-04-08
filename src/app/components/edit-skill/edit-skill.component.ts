@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
 import { Skill } from '../../model/Skill';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 
@@ -25,10 +26,14 @@ export class EditSkillComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  newSkill(): void {
+    this.skill = new Skill(0, '', true);
+  }
+
   editSkill(): void {
     console.log('We are Editing a skill ' + this.data.name);
-    this.skillControllerService.updateSkillCaliber(this.skill);
-    this.skill = new Skill(0, '', true);
+    this.skillControllerService.update(this.skill);
+    this.newSkill();
     this.closeDialog();
   }
 }

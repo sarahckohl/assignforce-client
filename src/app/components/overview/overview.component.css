@@ -1,37 +1,20 @@
-.mat-paginator-active {
-  outline-color: orangered;
-  color: orangered;
-}
-
-.mat-expansion-panel {
-  background-color: #333;
-}
-
-.mat-expansion-panel-body {
-  background-color: white;
-}
-
-.mat-expansion-panel-header {
-  background-color: #333;
+/* ----------- OVERVIEW STYLES ----------- */
+#overviewDiv {
+  margin-top: 5%;
 }
 
 .mat-expansion-panel-header-title {
-  color: white;
-  font-weight: 600;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-.mat-expansion-panel-header-description {
-  color: white;
+[aria-disabled='true'].mat-expansion-panel-header {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
 }
-
-.fill-space {
-  flex: 1 1 auto;
-}
-
-.mat-icon {
-  margin: 4px;
-  color: white;
-}
+/* ----------- BUTTON ----------- */
 
 #download {
   position: relative;

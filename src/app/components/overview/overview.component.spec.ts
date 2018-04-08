@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { OverviewComponent } from './overview.component';
-import { AppMaterialModule } from '../../material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Batch } from '../../model/Batch';
-import { UrlService } from '../../services/url/url.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppMaterialModule } from '../../material.module';
+import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
+import { OverviewComponent } from './overview.component';
+import { UrlService } from '../../services/url/url.service';
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -15,7 +15,7 @@ describe('OverviewComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [AppMaterialModule, BrowserAnimationsModule, HttpClientTestingModule],
-        providers: [UrlService],
+        providers: [UrlService, BatchControllerService],
         declarations: [OverviewComponent]
       }).compileComponents();
     })

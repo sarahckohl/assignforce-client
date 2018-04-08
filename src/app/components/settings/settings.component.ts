@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
+
+import { Building } from '../../model/Building';
+import { Address } from '../../model/Address';
 import { Setting } from '../../model/Setting';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
-import { Location } from '../../model/Location';
-import { Building } from '../../model/Building';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -17,12 +19,12 @@ export class SettingsComponent implements OnInit {
     private buildingService: BuildingControllerService
   ) {}
 
-  setting: Setting = new Setting(0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '');
+  setting: Setting = new Setting(0, '', 0, 0, 0, 0, 0, 0, 0, null, null, '');
 
-  defaultLocation: Location;
+  defaultLocation: Address;
   defaultBuilding: Building;
 
-  locations: Location[];
+  locations: Address[];
   buildings: Building[];
 
   isLoading = false;
@@ -35,7 +37,7 @@ export class SettingsComponent implements OnInit {
 
   private loadLocations() {
     this.addressService
-      .getAllLocations()
+      .findAll()
       .toPromise()
       .then(locations => {
         this.locations = locations;
@@ -47,7 +49,7 @@ export class SettingsComponent implements OnInit {
 
   private loadBuildings() {
     this.buildingService
-      .retrieveAllBuildings()
+      .findAll()
       .toPromise()
       .then(buildings => {
         this.buildings = buildings;
@@ -62,33 +64,16 @@ export class SettingsComponent implements OnInit {
     console.log('loading setting data from service...');
     this.isLoading = true;
     this.settingService
-      .retrieveSetting(1)
+      .find(1)
       .toPromise()
       .then(setting => {
         console.log('retrieved setting data!');
         console.log(setting);
 
         this.setting = setting;
+        this.defaultBuilding = setting.defaultBuilding;
+        this.defaultLocation = setting.defaultLocation;
 
-        this.addressService
-          .getLocation(this.setting.defaultLocation)
-          .toPromise()
-          .then(location => {
-            this.defaultLocation = location;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
-        this.buildingService
-          .retrieveBuilding(this.setting.defaultBuilding)
-          .toPromise()
-          .then(building => {
-            this.defaultBuilding = building;
-          })
-          .catch(err => {
-            console.log(err);
-          });
         this.isLoading = false;
       })
       .catch(err => {
@@ -102,7 +87,7 @@ export class SettingsComponent implements OnInit {
     console.log('saving settings...');
     this.isLoading = true;
     this.settingService
-      .updateSetting(this.setting)
+      .update(this.setting)
       .toPromise()
       .then(setting => {
         console.log('save success');
