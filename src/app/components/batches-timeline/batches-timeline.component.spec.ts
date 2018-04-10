@@ -98,10 +98,10 @@ describe('BatchesTimelineComponent', () => {
   });
 
   it('should get a different color for each core curriculum', () => {
-    const jcolor = component.getColorForcurriculum(1);
-    const scolor = component.getColorForcurriculum(2);
-    const dcolor = component.getColorForcurriculum(3);
-    const ccolor = component.getColorForcurriculum(4);
+    const jcolor = component.getColorForcurriculum(13);
+    const scolor = component.getColorForcurriculum(14);
+    const dcolor = component.getColorForcurriculum(15);
+    const ccolor = component.getColorForcurriculum(16);
     expect(jcolor).not.toEqual(scolor);
     expect(jcolor).not.toEqual(dcolor);
     expect(jcolor).not.toEqual(ccolor);
