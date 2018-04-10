@@ -15,7 +15,6 @@ export class MenuBarComponent implements OnInit {
   tabs = ['overview', 'batches', 'locations', 'curricula', 'trainers', 'profile', 'reports', 'settings'];
 
   id = 'undefined';
-  loaded = false;
 
   check = true;
 
@@ -36,12 +35,6 @@ export class MenuBarComponent implements OnInit {
     });
   }
 
-  ngDoCheck() {
-    if (!this.loaded && localStorage.getItem('user-email')) {
-      this.loaded = true;
-    }
-  }
-
   selectTab(evt) {
     console.log(evt);
     if (this.id === 'undefined') {
@@ -49,12 +42,10 @@ export class MenuBarComponent implements OnInit {
         this.id = localStorage.getItem('user-email');
       }
     }
-    if (this.loaded) {
-      if (this.selectedTab === this.tabs.indexOf('profile')) {
-        this.router.navigate([`/profile/${this.id}`]);
-      } else {
-        this.router.navigate([this.tabs[evt.index]]);
-      }
+    if (this.selectedTab === this.tabs.indexOf('profile')) {
+      this.router.navigate([`/profile/${this.id}`]);
+    } else {
+      this.router.navigate([this.tabs[evt.index]]);
     }
   }
 }
