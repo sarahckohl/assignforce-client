@@ -770,6 +770,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // add each trainer and position to array
     const trainerposs = [];
     for (let i = 0; i < this.trainersOnThisPage; i++) {
+      if (!this.trainers) break;
       const trainer = this.trainers[this.actualTrainersPerPage * this.currentPage + i];
 
       // get trainer name

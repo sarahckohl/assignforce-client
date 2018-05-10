@@ -5,6 +5,7 @@
 
 export const environment = {
   production: true,
+  name: 'prod.in-mem-db',
   baseUrl: 'https://localhost:4200',
 
   appRoutes: {

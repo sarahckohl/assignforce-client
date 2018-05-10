@@ -7,7 +7,7 @@
     "prod": "ng build --prod",
     "dev": "ng serve -o --ssl",
     "dev:prod": "ng serve -o --ssl --environment=prod",
-    "dev:server": "ng serve -o --ssl --environment=local-server",
+    "dev:server": "echo don't forget to json-server && ng serve -o --ssl --environment=local-server",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test --browsers=Chrome --sourcemaps=false",
@@ -20,7 +20,8 @@
     "e2e": "cypress open",
     "e2e:run": "cypress run",
     "test:ci": "ng test --single-run --browsers=ChromeHeadless",
-    "lint:ci": "ng lint --fix"
+    "lint:ci": "ng lint --fix",
+    "json-server": "json-server --watch ./db.json"
   },
   "private": true,
   "dependencies": {
@@ -62,6 +63,7 @@
     "husky": "^0.14.3",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
+    "json-server": "^0.12.2",
     "karma": "~1.7.0",
     "karma-chrome-launcher": "~2.1.1",
     "karma-cli": "~1.0.1",

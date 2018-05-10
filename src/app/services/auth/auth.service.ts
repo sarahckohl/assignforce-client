@@ -30,7 +30,8 @@ export class AuthService {
       params: {
         scope: environment.auth0.scope
       }
-    }
+    },
+    allowSignUp: false
   });
 
   public showLogin(): void {

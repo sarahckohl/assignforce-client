@@ -45,12 +45,13 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       .then(blist => {
         blist.forEach(batch => {
           // This is an object that encapsulates the Batch object's properties and a progress number.
+          const trainer = batch.trainer ? `${batch.trainer.firstName} ${batch.trainer.lastName}` : '';
           const batchObj = {
             name: batch.name,
             curriculum: batch.curriculum.name,
-            trainer: batch.trainer.firstName + ' ' + batch.trainer.lastName,
+            trainer: trainer,
             cotrainer: batch.cotrainer,
-            location: batch.address.name,
+            location: batch.address ? batch.address.name : null,
             building: batch.building,
             room: batch.room,
             startDate: batch.startDate,
