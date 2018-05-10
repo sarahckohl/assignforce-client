@@ -23,6 +23,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   // trainer name. used to set the width
   @ViewChildren('tooltiptext') tooltipTexts;
 
+  currentTrainers: Trainer[] = [];
+
   // dynamic values for formatting
   width = 1536;
   swimlaneXOfs = 100;
@@ -157,6 +159,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.updateSettings();
     this.updateBatches();
     this.updateTrainers();
+    this.currentTrainers = this.getTrainers();
   }
 
   // set initial values for start and end dates
@@ -371,6 +374,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.loading = true;
     this.trainerController.findAll().subscribe(
       result => {
+        console.log('updateTrainers(): ' + result);
         this.trainers = [];
         if (result.length === 0) {
           console.log('no trainers loaded!');

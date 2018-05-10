@@ -147,9 +147,27 @@
     {
       "id": 1,
       "active": true,
-      "address": { "id": 1 },
+      "address": {
+        "id": 1
+      },
       "name": "11730 Plaza America Dr.",
-      "rooms": [{ "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }]
+      "rooms": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        },
+        {
+          "id": 4
+        },
+        {
+          "id": 5
+        }
+      ]
     }
   ],
   "curricula": [],
@@ -266,7 +284,9 @@
       "certifications": null,
       "active": true,
       "resume": null,
-      "preferredLocation": { "id": 1 },
+      "preferredLocation": {
+        "id": 1
+      },
       "unavailabilities": []
     },
     {
@@ -277,7 +297,9 @@
       "certifications": null,
       "active": true,
       "resume": null,
-      "preferredLocation": { "id": 1 },
+      "preferredLocation": {
+        "id": 1
+      },
       "unavailabilities": []
     },
     {
@@ -310,7 +332,9 @@
       "certifications": null,
       "active": true,
       "resume": null,
-      "preferredLocation": { "id": 3 },
+      "preferredLocation": {
+        "id": 3
+      },
       "unavailabilities": []
     },
     {
@@ -321,7 +345,9 @@
       "certifications": null,
       "active": true,
       "resume": null,
-      "preferredLocation": { "id": 1 },
+      "preferredLocation": {
+        "id": 1
+      },
       "unavailabilities": []
     },
     {
@@ -343,8 +369,26 @@
       "certifications": null,
       "active": true,
       "resume": null,
-      "preferredLocation": { "id": 3 },
+      "preferredLocation": {
+        "id": 3
+      },
       "unavailabilities": []
+    }
+  ],
+  "setting": [
+    {
+      "id": 1,
+      "alias": "placeholder",
+      "trainersPerPage": 10,
+      "reportGrads": 1,
+      "batchLength": 10,
+      "reportIncomingGrads": 1,
+      "minBatchSize": 15,
+      "maxBatchSize": 40,
+      "trainerBreakDays": 1000,
+      "defaultLocation": {},
+      "defaultBuilding": {},
+      "defaultNamePattern": "placeholder"
     }
   ]
 }
