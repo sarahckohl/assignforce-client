@@ -11,14 +11,11 @@ export class AddressControllerService implements Service {
 
   private addressController = environment.apiUrls.addressController;
 
-  public create(location: Address): Observable<Address> {
-    return this.http.post<Address>(this.addressController.baseUrl + this.addressController.create, location);
+  public create(address: Address): Observable<Address> {
+    return this.http.post<Address>(this.addressController.baseUrl + this.addressController.create, address);
   }
-  public update(location: Address): Observable<Address> {
-    return this.http.put<Address>(
-      this.addressController.baseUrl + this.addressController.update + location.id,
-      location
-    );
+  public update(address: Address): Observable<Address> {
+    return this.http.put<Address>(this.addressController.baseUrl + this.addressController.update + address.id, address);
   }
   public findAll(): Observable<Address[]> {
     console.log(environment);

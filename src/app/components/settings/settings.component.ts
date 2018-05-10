@@ -65,16 +65,17 @@ export class SettingsComponent implements OnInit {
   getSettingsInfo() {
     console.log('loading setting data from service...');
     this.isLoading = true;
+
     this.settingService
-      .find(1)
+      .find()
       .toPromise()
       .then(setting => {
         console.log('retrieved setting data!');
-        console.log(setting);
+        console.log(setting[0]);
 
-        this.setting = setting;
-        this.defaultBuilding = setting.defaultBuilding;
-        this.defaultLocation = setting.defaultLocation;
+        this.setting = setting[0];
+        this.defaultBuilding = setting[0].defaultBuilding;
+        this.defaultLocation = setting[0].defaultLocation;
 
         this.isLoading = false;
       })
@@ -90,6 +91,7 @@ export class SettingsComponent implements OnInit {
   save() {
     console.log('saving settings...');
     this.isLoading = true;
+    console.log(this.setting);
     this.settingService
       .update(this.setting)
       .toPromise()
@@ -99,14 +101,14 @@ export class SettingsComponent implements OnInit {
       })
       .catch(err => {
         console.log(err);
+        this.isLoading = false;
       });
   }
 
   // resets the settings information
-  reset(evt) {
+  reset() {
     console.log('resetting settings');
     this.isError = false;
     this.getSettingsInfo();
-    evt.preventDefault();
   }
 }

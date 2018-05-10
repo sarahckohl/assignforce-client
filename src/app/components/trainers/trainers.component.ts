@@ -22,6 +22,8 @@ export class TrainersComponent implements OnInit {
   isManager = true;
   isLoading: boolean;
 
+  canLoad = true;
+
   constructor(public dialog: MatDialog, private trainerService: TrainerControllerService, private router: Router) {}
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class TrainersComponent implements OnInit {
       .then(t => {
         this.trainers = t;
         this.isLoading = false;
+        console.log(t);
       })
       .catch(error => {
         this.isLoading = false;
@@ -43,7 +46,9 @@ export class TrainersComponent implements OnInit {
 
   showCalendar() {}
 
-  goToTrainer(trainer: Trainer) {}
+  goToTrainer(id: Number) {
+    this.router.navigate([`profile/${id}`]);
+  }
 
   grabS3Resume(trainer: Trainer) {}
 
@@ -51,7 +56,7 @@ export class TrainersComponent implements OnInit {
     //add trainer
 
     const trainer: Trainer = {
-      id: 0,
+      id: null,
       firstName: '',
       lastName: '',
       skills: [],
@@ -71,28 +76,39 @@ export class TrainersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
         //  this.addTrainer(result);
         this.trainers.push(result);
 
-        // this.trainerService
-        //   .create(result)
-        //   .toPromise()
-        //   .then(t => {
-        //     console.log(t);
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   });
+        this.canLoad = false;
+
+        this.trainerService
+          .create(result)
+          .toPromise()
+          .then(t => {
+            console.log(t);
+            // event.stopPropagation();
+            window.location.reload();
+
+            this.trainerService
+              .findAll()
+              .toPromise()
+              .then(t2 => {
+                this.trainers = t2;
+                this.canLoad = true;
+              })
+              .catch(error2 => {
+                console.log(error2);
+              });
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
     });
   }
 
-  activateTrainer(trainer: Trainer) {
-    trainer.active = true;
-  }
-
-  gotoTrainer(id: number) {
-    console.log(`/profile/${id}`);
-    this.router.navigate([`/profile/${id}`]);
-  }
+  // activateTrainer(trainer: Trainer) {
+  //   trainer.active = true;
+  // }
 }

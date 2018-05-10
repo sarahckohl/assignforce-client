@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Trainer } from '../../../model/Trainer';
 import { Skill } from '../../../model/Skill';
 import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
@@ -28,7 +30,9 @@ export class TrainerItemComponent implements OnInit, DoCheck {
   }
 
   removeTrainer(trainer: Trainer) {
-    trainer.active = false;
+    console.log(trainer);
+    console.log(this.trainer);
+    this.trainer.active = false;
     this.trainerService
       .update(this.trainer)
       .toPromise()
@@ -41,7 +45,9 @@ export class TrainerItemComponent implements OnInit, DoCheck {
   }
 
   activateTrainer(trainer: Trainer) {
-    trainer.active = true;
+    console.log(trainer);
+    console.log(this.trainer);
+    this.trainer.active = true;
     this.trainerService
       .update(this.trainer)
       .toPromise()

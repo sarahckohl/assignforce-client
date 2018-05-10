@@ -7,7 +7,7 @@
         </mat-panel-title>
         <mat-panel-description>
           <span class="fill-space"></span>
-          <button mat-icon-button (click)="openAddFocusDialog()">
+          <button mat-icon-button (click)="openAddFocusDialog($event)">
             <mat-icon class="icon-margin-fix" matTooltip="Add New Focus">add_circle_outline</mat-icon>
           </button>
         </mat-panel-description>
@@ -18,9 +18,9 @@
             <div>
               <h3 mat-line class="focus-name">{{focus.name}}</h3>
               <span>Skills: </span>
-              <span *ngFor="let skill of focus.skills; lasty as last">
-                <span *ngIf="!lasty" class="focus-skills">{{skill.name}}, </span>
-                <span *ngIf="lasty" class="focus-skills">{{skill.name}}</span>
+              <span *ngFor="let skill of focus.skills; last as last">
+                <span *ngIf="!last" class="focus-skills">{{skill.name}}, </span>
+                <span *ngIf="last" class="focus-skills">{{skill.name}}</span>
               </span>
               <br><br><br>
             </div>
