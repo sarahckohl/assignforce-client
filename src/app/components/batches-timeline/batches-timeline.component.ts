@@ -770,8 +770,9 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // add each trainer and position to array
     const trainerposs = [];
     for (let i = 0; i < this.trainersOnThisPage; i++) {
-      if (!this.trainers) break;
       const trainer = this.trainers[this.actualTrainersPerPage * this.currentPage + i];
+      console.log(trainer);
+      if (!trainer) break;
 
       // get trainer name
       const name = trainer.firstName + ' ' + trainer.lastName;
@@ -1037,7 +1038,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         'randomly generated',
         startdate,
         ranEndDate,
-        new Curriculum(currId, null, true, [], []),
+        new Curriculum(currId, null, true, true, []),
         null,
         new Trainer(trId, null, null, null, null, true, null, null),
         null,

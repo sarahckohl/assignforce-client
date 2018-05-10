@@ -30,7 +30,7 @@ export class EditFocusComponent implements OnInit {
     this.skillControllerService.findAll().subscribe(data => {
       this.skills = data;
       this.selectedSkills = this.data.skills;
-      this.focus = this.data;
+      //this.focus = this.data;
     });
   }
 

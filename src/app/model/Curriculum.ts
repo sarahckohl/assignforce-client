@@ -4,15 +4,15 @@ import { Focus } from './Focus';
 export class Curriculum {
   id: number;
   name: string;
-  active: boolean;
-  focuses: Focus[];
+  isActive: boolean;
+  isCore: boolean;
   skills: Skill[];
 
-  constructor(id: number, name: string, active: boolean, focuses: Focus[], skills: Skill[]) {
+  constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
     this.id = id;
     this.name = name;
-    this.active = active;
-    this.focuses = focuses;
+    this.isActive = active;
+    this.isCore = core;
     this.skills = skills;
   }
 }
