@@ -14,13 +14,10 @@ export class CurriculumControllerService {
     const msg = {
       id: curriculum.id,
       name: curriculum.name,
-      active: curriculum.active,
-      focuses: [],
+      isActive: curriculum.isActive,
+      isCore: curriculum.isCore,
       skills: []
     };
-    curriculum.focuses.forEach(f => {
-      msg.focuses.push(environment.apiUrls.focusController.baseUrl + '/' + f.id);
-    });
     curriculum.skills.forEach(s => {
       msg.skills.push(environment.apiUrls.skillController.baseUrl + '/' + s.id);
     });

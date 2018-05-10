@@ -116,7 +116,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: 'http://localhost:3000/setting',
+      baseUrl: 'http://localhost:3000/settings',
       create: '',
       update: '/',
       findAll: '',

@@ -121,7 +121,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     //     this.isLoading = false;
     //     console.log(error);
     //   });
-    this.trainerService
+    this.batchService
       .findAll()
       .toPromise()
       .then(response => {

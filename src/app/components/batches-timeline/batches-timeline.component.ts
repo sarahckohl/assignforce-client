@@ -1238,9 +1238,10 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       row = Math.floor(Math.random() * this.trainersOnThisPage);
     }
     const currId = Math.floor(Math.random() * 4);
+    const trId = Math.floor(Math.random() * 4);
     let bid = -1;
     let bname = 'randomly generated';
-    let cur = new Curriculum(currId, null, true, [], []);
+    let cur = new Curriculum(currId, null, true, false, []);
     let cotrainer = null;
     let bskills = null;
     let bstatus = 'gen';
@@ -1257,7 +1258,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         '' +
         batch_start_date_date.getDate() +
         Math.floor(Math.random() * 10000);
-      cur = new Curriculum(currId, null, true, [], []);
+      cur = new Curriculum(currId, null, true, true, []);
       cotrainer = this.trainers[Math.floor(Math.random() * (this.trainers.length - 1))];
       bskills = null;
       const bstati = [];
