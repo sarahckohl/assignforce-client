@@ -5,6 +5,10 @@ import { MatSelectChange, MatCheckboxChange, MatOption } from '@angular/material
 import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 import { Trainer } from '../../model/Trainer';
 import { Curriculum } from '../../model/Curriculum';
+import { Address } from '../../model/Address';
+import { Building } from '../../model/Building';
+import { Room } from '../../model/Room';
+import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
 
 @Component({
   selector: 'app-batches-timeline',
@@ -33,6 +37,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   timescaleXOfs = 80;
   DEFAULT_PRECEEDING_MONTHS = 3;
   DEFAULT_PROCEEDING_MONTHS = 6;
+  ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 
   // editable data
   startDate: Date;
@@ -54,6 +59,25 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   endValue: number;
   todayLine = { x1: 0, x2: 0, y1: 0, y2: 0 };
 
+  // months and day of weeks
+  fullMonthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+  shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+  timescaleEnabled = true;
+
   // zooming
   zoomingEnabled = true;
   zooming = false;
@@ -67,7 +91,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   zoomScale = 0.01; // px to zoom scale
   shifting = false;
 
-  // this.keycodes
+  // useful keycodes
   keycodes = {
     up: 38,
     down: 40,
@@ -77,6 +101,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     primary: 66,
     secondary: 65,
     z: 90,
+    tilde: 192,
     p: 80,
     enter: 13,
     tab: 9,
@@ -99,6 +124,9 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   swimHigh = 0;
   swimPaused = false;
 
+  // random mode
+  randomModeActive = false;
+
   // tooltip
   tooltipActive = false;
   tooltipRect = { x: 0, y: 0, w: 0, h: 0, linespacing: 15, color: '#000000cc', triangle: '0,0 0,0 0,0' };
@@ -113,19 +141,22 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   tooltipNoneColor = '#FF6347';
 
   // cached data
-  batches = [];
-  trainers = [];
+  batches: Batch[] = [];
+  trainers: Trainer[] = [];
 
-  constructor(private batchController: BatchControllerService, private trainerController: TrainerControllerService) {}
+  constructor(
+    private batchController: BatchControllerService,
+    private trainerController: TrainerControllerService,
+    private settingControllerService: SettingControllerService
+  ) {}
 
   // initialize data
   ngOnInit() {
     this.loadInitialDates();
     this.currentPage = 0;
-    setTimeout(() => {
-      this.updateBatches();
-      this.updateTrainers();
-    }, 0);
+    this.updateSettings();
+    this.updateBatches();
+    this.updateTrainers();
   }
 
   // set initial values for start and end dates
@@ -251,14 +282,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       this.updatePage();
     } else {
       // unknown event!
-      // console.log('unknown event filter triggered! ' + event + '\n' + event.target);
+      console.log('unknown event filter triggered! ' + event + '\n' + event.target);
     }
   }
 
   // updates the max pages
   updatePage() {
     if (this.trainersPerPage > this.trainers.length) {
-      this.trainersPerPage = this.trainers.length;
+      this.actualTrainersPerPage = this.trainers.length;
     }
     if (this.trainersPerPage === 0) {
       this.actualTrainersPerPage = this.trainers.length;
@@ -283,41 +314,106 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   updateBatches() {
     // console.log('updating batches...');
     this.loading = true;
-    this.batchController.findAll().subscribe(result => {
-      this.batches = [];
-      for (let i = 0; i < result.length; i++) {
-        const batch = result[i];
-        // filter concluded batches
-        if (this.hideConcludedBatches) {
-          if (batch.endDate < Date.now()) {
-            continue;
-          }
+    this.batchController.findAll().subscribe(
+      result => {
+        this.batches = [];
+        if (result.length === 0) {
+          console.log('no batches loaded!');
+          return;
         }
-        // filter by type
-        if (this.curriculumFilter !== 'Any') {
-          if (batch.curriculum.name !== this.curriculumFilter) {
-            continue;
+        for (let i = 0; i < result.length; i++) {
+          const batch = result[i];
+          // filter concluded batches
+          if (this.hideConcludedBatches) {
+            if (batch.endDate < Date.now()) {
+              continue;
+            }
           }
-        }
-        if (this.focusFilter !== 'Any') {
-          if (batch.focus != null && batch.focus.name !== this.focusFilter) {
-            continue;
+          // filter by type
+          if (this.curriculumFilter !== 'Any') {
+            if (batch.curriculum.name !== this.curriculumFilter) {
+              continue;
+            }
           }
-        }
-        if (this.locationFilter !== 'Any') {
-          if (batch.address.name !== this.locationFilter) {
-            continue;
+          if (this.focusFilter !== 'Any') {
+            if (batch.focus != null && batch.focus.name !== this.focusFilter) {
+              continue;
+            }
           }
-        }
-        if (this.buildingFilter !== 'Any') {
-          if (batch.building.name !== this.buildingFilter) {
-            continue;
+          if (this.locationFilter !== 'Any') {
+            if (batch.address.name !== this.locationFilter) {
+              continue;
+            }
           }
+          if (this.buildingFilter !== 'Any') {
+            if (batch.building.name !== this.buildingFilter) {
+              continue;
+            }
+          }
+          // add it
+          if (typeof batch.startDate !== 'number') {
+            batch.startDate = new Date(batch.startDate).valueOf();
+            batch.endDate = new Date(batch.endDate).valueOf();
+          }
+          this.batches.push(batch);
         }
-        // add it
-        this.batches.push(batch);
+        this.loading = false;
+      },
+      err => {
+        console.log('failed to load batches ', err);
       }
-      this.loading = false;
+    );
+  }
+
+  // gets the list of trainers
+  updateTrainers() {
+    // console.log('updating trainers...');
+    this.loading = true;
+    this.trainerController.findAll().subscribe(
+      result => {
+        this.trainers = [];
+        if (result.length === 0) {
+          console.log('no trainers loaded!');
+          this.updatePage();
+          return;
+        }
+        for (let i = 0; i < result.length; i++) {
+          const trainer = result[i];
+          // filter batchless trainers
+          if (this.hideBatchlessTrainers) {
+            let hasBatch = false;
+            for (const batch of this.batches) {
+              if (batch.trainer.id === trainer.id) {
+                hasBatch = true;
+                break;
+              }
+            }
+            if (!hasBatch) {
+              continue;
+            }
+          }
+          // filter inactive trainers
+          if (this.hideInactiveTrainers) {
+            if (!trainer.active) {
+              continue;
+            }
+          }
+          this.trainers.push(trainer);
+        }
+        this.updatePage();
+        this.loading = false;
+      },
+      err => {
+        console.log('failed to load trainers ', err);
+      }
+    );
+  }
+
+  updateSettings() {
+    this.settingControllerService.find().subscribe(result => {
+      const setting = result[0];
+      this.trainersPerPage = setting.trainersPerPage;
+      this.updatePage();
     });
   }
 
@@ -343,40 +439,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // console.log(this.width + ' ' + this.height);
     this.finishSwimMode();
     this.updateTodayLine();
-  }
-
-  // makes the list of trainers
-  updateTrainers() {
-    // console.log('updating trainers...');
-    this.loading = true;
-    this.trainerController.findAll().subscribe(result => {
-      this.trainers = [];
-      for (let i = 0; i < result.length; i++) {
-        const trainer = result[i];
-        // filter batchless trainers
-        if (this.hideBatchlessTrainers) {
-          let hasBatch = false;
-          for (const batch of this.batches) {
-            if (batch.trainer.id === trainer.id) {
-              hasBatch = true;
-              break;
-            }
-          }
-          if (!hasBatch) {
-            continue;
-          }
-        }
-        // filter inactive trainers
-        if (this.hideInactiveTrainers) {
-          if (!trainer.active) {
-            continue;
-          }
-        }
-        this.trainers.push(trainer);
-      }
-      this.updatePage();
-      this.loading = false;
-    });
   }
 
   // updates the line for today
@@ -593,16 +655,19 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   getColorForcurriculum(currId: number) {
     let color = '';
     switch (currId) {
-      case 1:
+      case 13:
         color = '#1c77b4'; // java
         break;
-      case 2:
+      case 14:
         color = '#ff7f0e'; // .net
         break;
-      case 3:
+      case 15:
         color = '#aec7e8'; // sdet
         break;
-      case 4:
+      case 16:
+        color = '#D5F5E3'; // uh
+        break;
+      case 17:
         color = '#ffbb78'; // custom
         break;
       default:
@@ -620,12 +685,17 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       return rects;
     }
     const full_duration = this.endValue - this.startValue;
+
+    // text mode to use by pixel height
+    const txtlongpx = 105;
+    const txtshortpx = 30;
+    const txtnumpx = 0;
     // make a rectangle for each batch
     for (let i = 0; i < this.batches.length; i++) {
-      const batch = this.batches[i];
+      const batch: Batch = this.batches[i];
       // valueOf gives us ms, convert to weeks to get the duration this event takes
       let duration = batch.endDate - batch.startDate;
-      duration = Math.floor(duration / (1000 * 60 * 60 * 24 * 7)); // ms to weeks
+      duration = Math.floor(duration / this.ONE_WEEK);
 
       // get the correct color
       const color = this.getColorForcurriculum(batch.curriculum.id);
@@ -653,26 +723,23 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       const h = endy - y;
 
       // change label based on height of rectangle
-      const labelx = x + w / 4;
+      const labelx = x + w * 0.25;
       let labely = y + 20;
-      const pxhlong = 105;
-      const pxhshort = 30;
-      const pxhnum = 0;
       let labeltext = '';
-      if (h > pxhlong) {
+      if (h > txtlongpx) {
         // spell out weeks
         labeltext = 'WEEKS';
         labely = y + 25;
-      } else if (h > pxhshort) {
+      } else if (h > txtshortpx) {
         // only have number and w
         labeltext = 'W';
         labely = y + 15;
-      } else if (h > pxhnum) {
+      } else if (h >= txtnumpx) {
         // only number
         labeltext = '';
         labely = y - 2;
       } else {
-        // console.log('batch rectangle height is negative!');
+        // console.warn('batch rectangle height is negative!' + y + ' ' + endy);
         continue;
       }
       // get the text that will be put into the rectangle
@@ -747,7 +814,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if (trainerBatches[l].length > 1) {
         for (let m = 0; m < trainerBatches[l].length - 1; m++) {
           const gap = trainerBatches[l][m + 1].startDate - trainerBatches[l][m].endDate;
-          const duration = Math.floor(gap / (1000 * 60 * 60 * 24 * 7)); // ms to weeks
+          const duration = Math.floor(gap / this.ONE_WEEK);
           const midDate = trainerBatches[l][m].endDate + gap / 2;
           const y = this.dateToYPos(midDate);
           midPoints.push({ duration: duration, xPos: xpos, midDatePos: y });
@@ -768,7 +835,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     }
 
     // add each trainer and position to array
-    const trainerposs = [];
+    const trainerspos = [];
     for (let i = 0; i < this.trainersOnThisPage; i++) {
       const trainer = this.trainers[this.actualTrainersPerPage * this.currentPage + i];
       console.log(trainer);
@@ -781,10 +848,10 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if (i === 0) {
         left += this.swimlaneXOfs;
       }
-      trainerposs.push({ name: name, left: left, width: width });
+      trainerspos.push({ name: name, left: left, width: width });
     }
 
-    return trainerposs;
+    return trainerspos;
   }
 
   // start alternate control mode
@@ -792,6 +859,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // setup variables that are reset at start of swim mode
     this.swimActive = true;
     this.zoomingEnabled = false;
+    this.randomModeActive = false;
     this.batches = [];
     this.todayLine.x1 = this.todayLine.x2 = -10;
     this.swimPoints = 0;
@@ -840,7 +908,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const gaugeFillRate = 0.05;
 
     const numFrames = 15;
-    const oneWeekMs = 1000 * 60 * 60 * 24 * 7;
 
     const startMoveSpeed = defDur / 8 / numFrames;
     const maxMoveSpeed = defDur / numFrames;
@@ -943,7 +1010,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         // add batches
         addBatchTimer -= intervalRate;
         if (addBatchTimer <= 0) {
-          const randy = Math.random() * oneWeekMs * 4;
+          const randy = Math.random() * this.ONE_WEEK * 4;
           this.addRandomBatch(this.endValue + addBuffer + randy);
           addBatchTimer = this.linearInterpolation(
             addBatchRate,
@@ -956,7 +1023,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         addDotTimer -= intervalRate;
         if (addDotTimer <= 0) {
           const randX = leftlanex + this.columnWidth * Math.floor(Math.random() * this.trainersOnThisPage);
-          const randy = Math.random() * oneWeekMs * 5;
+          const randy = Math.random() * this.ONE_WEEK * 5;
           const y = this.dateToYPos(this.endValue + addBuffer - randy);
           // console.log('making dot ' + this.swimDots.length + ' at ' + randX + ' ' + y);
           this.swimDots.push({ x: randX, y: y, r: this.swimPos.r / 2, color: '#eedd20ee' });
@@ -979,7 +1046,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
               this.swimPos.x < this.swimDots[i].x + this.swimDots[i].r
             ) {
               this.swimPoints += 100;
-              // console.log('+100');
+              console.log('+100');
               this.swimDots.splice(i, 1);
               i--;
               continue;
@@ -1012,6 +1079,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
   // reset to normal mode
   finishSwimMode() {
+    if (!this.swimActive) return;
     if (this.swimPoints > this.swimHigh) {
       this.swimHigh = this.swimPoints;
     }
@@ -1023,20 +1091,195 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.updateTodayLine();
   }
 
+  // generate random batches
+  startRandomMode(forceRegenTrainers = false) {
+    this.randomModeActive = true;
+    this.batches = [];
+    this.loading = false;
+    if (forceRegenTrainers || this.trainers.length === 0) {
+      // make random trainers
+      this.trainers = [];
+      let trainers_to_make = this.trainersPerPage;
+      if (trainers_to_make === 0) {
+        trainers_to_make = Math.floor(Math.random() * 10 + 5); // 5 to 15
+      }
+      console.log('creating ' + trainers_to_make + ' random trainers');
+      const random_names = [
+        'Wei',
+        'Whitesell',
+        'Clotilde',
+        'Chiles',
+        'Mose',
+        'Malan',
+        'Alejandro',
+        'Alonso',
+        'Carolina',
+        'Calcagni',
+        'Billi',
+        'Bury',
+        'Sheldon',
+        'Sealey',
+        'Bryan',
+        'Broderick',
+        'Rocco',
+        'Reding',
+        'Latashia',
+        'Lehman',
+        'Loralee',
+        'Lobaugh',
+        'Hunter',
+        'Hausmann',
+        'Vivienne',
+        'Villacorta',
+        'Saul',
+        'Schatz',
+        'Meghann',
+        'Mendivil',
+        'Rubye',
+        'Rousseau',
+        'Charles',
+        'Crampton',
+        'Mabelle',
+        'Mcquire',
+        'Laurie',
+        'Lohr',
+        'Bailey',
+        'Boll',
+        'Roni',
+        'Gimenez',
+        'Chantay',
+        'Crosby',
+        'Paula',
+        'Denis',
+        'Liana',
+        'Fahey',
+        'Blossom',
+        'Millwood',
+        'Millard',
+        'John',
+        'Almeda',
+        'Mccarroll',
+        'Graciela',
+        'Robbs',
+        'Tora',
+        'Remer',
+        'Karl',
+        'Fern',
+        'Jenni',
+        'Heldt',
+        'Fe',
+        'Mcraney',
+        'Shenna',
+        'Jung',
+        'Noma',
+        'Shuster',
+        'Elvera',
+        'Dombrosky',
+        'Jinny',
+        'Engel',
+        'Harriet',
+        'Moffat',
+        'Zonia',
+        'Rodreguez',
+        'Terina',
+        'Rideaux',
+        'Waltraud',
+        'Hansard'
+      ];
+      for (let i = 0; i < trainers_to_make; i++) {
+        const randFName = random_names[Math.floor(Math.random() * random_names.length)];
+        const randLName = random_names[Math.floor(Math.random() * random_names.length)];
+        this.trainers.push(
+          new Trainer(
+            Math.floor(Math.random() * 10000),
+            randFName,
+            randLName,
+            [],
+            null,
+            Math.random() >= 0.5,
+            null,
+            null
+          )
+        );
+      }
+      this.updatePage();
+    }
+    const duration = Math.max(this.endValue - this.startValue, this.ONE_WEEK * 1); // min 1 week
+    const batches_per_teacher_to_make = Math.floor(duration / (this.ONE_WEEK * 15));
+    console.log('making ' + batches_per_teacher_to_make + ' batches');
+    const max_random_start = this.ONE_WEEK * 20; // 20 weeks
+    // const max_random = this.ONE_WEEK * 10; // 10 weeks
+    for (let i = 0; i < this.trainers.length; i++) {
+      let random_start_week = this.startValue + (Math.random() - 0.8) * 2 * max_random_start; // +/- randweeks
+      for (let j = 0; j < batches_per_teacher_to_make; j++) {
+        // const random_week = Math.random() * 2 * max_random; // +/- rand weeks
+        // console.log("rw: " + random_week);
+        const interval = Math.floor(Math.random() * (this.ONE_WEEK * 20) + this.ONE_WEEK * 8); // 1 every 8-28 weeks
+        const bstart = random_start_week + interval;
+        const rend = this.addRandomBatch(bstart, true, i);
+        random_start_week = rend;
+      }
+    }
+  }
+  // clear random batches and reset
+  finishRandomMode() {
+    this.randomModeActive = false;
+    this.updateTrainers();
+    this.updateBatches();
+    this.updateTodayLine();
+  }
+
   // adds a random batch that starts at the specified date
-  addRandomBatch(startdate: number) {
-    const baseDur = 1000 * 60 * 60 * 24 * 7 * 2; // 2 weeks
-    const maxDur = 1000 * 60 * 60 * 24 * 7 * 16; // 16 weeks
-    const ranEndDate = startdate + Math.random() * maxDur + baseDur;
-    const randRow = Math.floor(Math.random() * this.trainersOnThisPage);
-    const trId = this.trainers[randRow].id;
-    // console.log('adding random batch at col:' + randRow + ' enddate: ' + ranEndDate);
+  addRandomBatch(batchstartdate: number, detailed = false, row = -1) {
+    const baseDur = this.ONE_WEEK * 2; // 2 weeks
+    const maxDur = this.ONE_WEEK * 16; // 16 weeks
+    const ranEndDate = batchstartdate + Math.random() * maxDur + baseDur;
+    if (row < 0) {
+      row = Math.floor(Math.random() * this.trainersOnThisPage);
+    }
     const currId = Math.floor(Math.random() * 4);
+    let bid = -1;
+    let bname = 'randomly generated';
+    let cur = new Curriculum(currId, null, true, [], []);
+    let cotrainer = null;
+    let bskills = null;
+    let bstatus = 'gen';
+    let baddr = null;
+    let bbuil = null;
+    let broom = null;
+
+    if (detailed) {
+      bid = Math.random() * 10000;
+      const batch_start_date_date = new Date(batchstartdate);
+      bname =
+        '' +
+        this.shortMonthNames[batch_start_date_date.getMonth()] +
+        '' +
+        batch_start_date_date.getDate() +
+        Math.floor(Math.random() * 10000);
+      cur = new Curriculum(currId, null, true, [], []);
+      cotrainer = this.trainers[Math.floor(Math.random() * (this.trainers.length - 1))];
+      bskills = null;
+      const bstati = [];
+      bstatus = bstati[Math.floor(Math.random() * bstati.length)];
+      if (Math.random() > 0.3) {
+        const randAddrs = ['LA', 'New York', 'Florida', 'Canada', 'Nowhere'];
+        baddr = new Address(-1, randAddrs[Math.floor(Math.random() * randAddrs.length)], '', '');
+      }
+      if (Math.random() > 0.6) {
+        const randBuilds = ['HQ', 'Fake Buidling', 'Building id ' + Math.floor(Math.random() * 1000)];
+        bbuil = new Building(true, -1, baddr, randBuilds[Math.floor(Math.random() * randBuilds.length)], []);
+      }
+      if (Math.random() > 0.9) {
+        const randRooms = ['Room ' + Math.floor(Math.random() * 100), 'Back room'];
+        broom = new Room(-1, true, randRooms[Math.floor(Math.random() * randRooms.length)], bbuil, []);
+      }
+    }
     this.batches.push(
       new Batch(
-        -1,
-        'randomly generated',
-        startdate,
+        bid,
+        bname,
+        batchstartdate,
         ranEndDate,
         new Curriculum(currId, null, true, true, []),
         null,
@@ -1049,10 +1292,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         null
       )
     );
+    return ranEndDate;
   }
 
   // returns the list of months to display and their position
   getTimescale() {
+    if (!this.timescaleEnabled) {
+      return [];
+    }
     // cache some common values
     const full_duration = this.endValue - this.startValue;
     const start_month = this.startDate.getMonth();
@@ -1062,7 +1309,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const ys0 = this.dateToYPos(new Date(start_year, start_month).valueOf());
     const ys1 = this.dateToYPos(new Date(start_year, start_month + 1).valueOf());
     const dist_between_months = ys1 - ys0;
-    // console.log(dist_between_months);
 
     // the maximum number of dates to be shown on the screen
     const max_dates = 40;
@@ -1158,24 +1404,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       return null;
     }
 
-    // used to show names instead of numbers
-    const fullMonthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ];
-    const shortMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-
     // go through all the dates that were just created to apply the naming style and calculate the position
     const timescale = [];
     for (let i = 0; i < dates.length; i++) {
@@ -1185,17 +1413,17 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       switch (namestyle) {
         case 'day':
           if (date.getDate() === 1) {
-            name = fullMonthNames[date.getMonth()];
+            name = this.fullMonthNames[date.getMonth()];
           } else {
-            name = dayOfWeekNames[date.getDay()];
+            name = this.dayOfWeekNames[date.getDay()];
             name += ' ' + date.getDate();
           }
           break;
         case 'month':
           if (date.getDate() === 1) {
-            name = fullMonthNames[date.getMonth()];
+            name = this.fullMonthNames[date.getMonth()];
           } else {
-            name = shortMonthNames[date.getMonth()];
+            name = this.shortMonthNames[date.getMonth()];
             name += ' ' + date.getDate();
           }
           break;
@@ -1340,6 +1568,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
     if (event.keyCode === this.keycodes.esc) {
       // escape pressed
+      this.randomModeActive = false;
     }
     if (this.swimActive) {
       // keyboard codes for alternate control mode
@@ -1410,6 +1639,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
           } else {
             this.swimStartProgress = 0;
           }
+          break;
+        case this.keycodes.tilde:
+          if (!this.randomModeActive) {
+            this.startRandomMode(event.ctrlKey);
+          } else {
+            this.finishRandomMode();
+          }
+          console.log('random mode ' + (this.randomModeActive ? '' : 'de') + 'activated');
           break;
         case this.keycodes.left:
           if (this.swimStartProgress === 4 || this.swimStartProgress === 6) {

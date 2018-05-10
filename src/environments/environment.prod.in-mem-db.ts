@@ -58,7 +58,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: 'https://hydra.cfapps.io/api/buidings',
+      baseUrl: 'https://hydra.cfapps.io/api/buildings',
       create: '',
       update: '/',
       findAll: '',

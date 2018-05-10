@@ -3,6 +3,19 @@
   flex: 1 1 auto;
 }
 
+.revDark {
+  color: #37474f;
+}
+
+#skillsDiv {
+  padding: 0% 2% 1% 2.5%;
+}
+
+.mat-option-text,
+.mat-optgroup {
+  color: #37474f;
+}
+
 /* ---------- ICONS ----------- */
 mat-icon {
   margin: 0;
@@ -59,4 +72,10 @@ mat-card-content {
 
 mat-select {
   width: 300px;
+}
+
+/* ---------- BUTTONS ---------- */
+.mat-icon,
+.material-icons {
+  color: #f26a25;
 }
