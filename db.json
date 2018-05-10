@@ -1,0 +1,350 @@
+{
+  "addresses": [
+    {
+      "id": 1,
+      "name": "Revature HQ",
+      "city": "Reston",
+      "state": "VA",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "CUNY SPS",
+      "city": "New York City",
+      "state": "NY",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "USF",
+      "city": "Tamp",
+      "state": "FL",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "UT Arlington",
+      "city": "Dallas",
+      "state": "TX",
+      "active": false
+    }
+  ],
+  "batches": [
+    {
+      "id": 1,
+      "name": "1708 Aug14 Java",
+      "curriculum": "Java",
+      "trainer": {
+        "id": 4,
+        "firstName": "Genesis",
+        "lastName": "Bonds"
+      },
+      "cotrainer": "Mehrab Rahman",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "08/14/2017",
+      "endDate": "10/20/2017"
+    },
+    {
+      "id": 2,
+      "name": "1610 Oct24 Java",
+      "curriculum": "Java",
+      "trainer": {
+        "id": 5,
+        "firstName": "Nicholas",
+        "lastName": "Jurszack"
+      },
+      "cotrainer": "Richard Orr",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "10/24/2016",
+      "endDate": "01/06/2017"
+    },
+    {
+      "id": 3,
+      "name": "1611 Nov28 SDET",
+      "curriculum": "SDET",
+      "trainer": {
+        "id": 2,
+        "firstName": "Yuvi",
+        "lastName": "Damodaran"
+      },
+      "cotrainer": "",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "11/28/2016",
+      "endDate": "02/10/2017"
+    },
+    {
+      "id": 4,
+      "name": "1611 Nov14 Java",
+      "curriculum": "Java",
+      "trainer": {
+        "id": 1,
+        "firstName": "Patrick",
+        "lastName": "Walsh"
+      },
+      "cotrainer": "",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "11/14/2016",
+      "endDate": "02/03/2017"
+    },
+    {
+      "id": 5,
+      "name": "1706 Jun19 Custom",
+      "curriculum": "Custom",
+      "trainer": {
+        "id": 6,
+        "firstName": "Arun",
+        "lastName": "Kumar"
+      },
+      "cotrainer": "",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "06/19/2017",
+      "endDate": "08/25/2017"
+    },
+    {
+      "id": 6,
+      "name": "1706 Jun26 Custom",
+      "curriculum": "Custom",
+      "trainer": {
+        "id": 3,
+        "firstName": "Joe",
+        "lastName": "Kirkbride"
+      },
+      "cotrainer": "",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "06/26/2017",
+      "endDate": "09/01/2017"
+    },
+    {
+      "id": 7,
+      "name": "1801 Jan22 Java",
+      "curriculum": "Java",
+      "trainer": {
+        "id": 7,
+        "firstName": "Ryan",
+        "lastName": "Lessley"
+      },
+      "cotrainer": "",
+      "address": null,
+      "building": "",
+      "room": "",
+      "startDate": "01/22/2018",
+      "endDate": "03/30/2018"
+    }
+  ],
+  "buildings": [
+    {
+      "id": 1,
+      "active": true,
+      "address": { "id": 1 },
+      "name": "11730 Plaza America Dr.",
+      "rooms": [{ "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }]
+    }
+  ],
+  "curricula": [],
+  "rooms": [
+    {
+      "id": 1,
+      "active": true,
+      "roomName": "201",
+      "building": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 2,
+      "active": true,
+      "roomName": "202",
+      "building": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 3,
+      "active": true,
+      "roomName": "203",
+      "building": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 4,
+      "active": true,
+      "roomName": "204",
+      "building": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 5,
+      "active": true,
+      "roomName": "205",
+      "building": null,
+      "unavailabilities": []
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "name": "Core Java",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": ".NET Core",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "jUnit",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Amazon Web Services",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Google Cloud Platform",
+      "active": true
+    },
+    {
+      "id": 6,
+      "name": "Pivotal Cloud Foundry",
+      "active": true
+    },
+    {
+      "id": 7,
+      "name": "HTML/CSS/JS",
+      "active": true
+    },
+    {
+      "id": 8,
+      "name": "Angular(2+)",
+      "active": true
+    },
+    {
+      "id": 9,
+      "name": "Selenium",
+      "active": true
+    },
+    {
+      "id": 10,
+      "name": "Web Services",
+      "active": true
+    },
+    {
+      "id": 11,
+      "name": "Hibernate",
+      "active": true
+    },
+    {
+      "id": 12,
+      "name": "Spring Framework",
+      "active": true
+    },
+    {
+      "id": 13,
+      "name": "Spring Boot",
+      "active": true
+    }
+  ],
+  "trainers": [
+    {
+      "id": 1,
+      "firstName": "Patrick",
+      "lastName": "Walsh",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": { "id": 1 },
+      "unavailabilities": []
+    },
+    {
+      "id": 2,
+      "firstName": "Yuvi",
+      "lastName": "Damodaran",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": { "id": 1 },
+      "unavailabilities": []
+    },
+    {
+      "id": 3,
+      "firstName": "Joe",
+      "lastName": "Kirkbride",
+      "skills": [],
+      "certifications": null,
+      "active": false,
+      "resume": null,
+      "preferredLocation": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 4,
+      "firstName": "Genesis",
+      "lastName": "Bonds",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 5,
+      "firstName": "Nicholas",
+      "lastName": "Jurszack",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": { "id": 3 },
+      "unavailabilities": []
+    },
+    {
+      "id": 6,
+      "firstName": "Arun",
+      "lastName": "Kumar",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": { "id": 1 },
+      "unavailabilities": []
+    },
+    {
+      "id": 7,
+      "firstName": "Ryan",
+      "lastName": "Lessley",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": null,
+      "unavailabilities": []
+    },
+    {
+      "id": 8,
+      "firstName": "August",
+      "lastName": "Duet",
+      "skills": [],
+      "certifications": null,
+      "active": true,
+      "resume": null,
+      "preferredLocation": { "id": 3 },
+      "unavailabilities": []
+    }
+  ]
+}

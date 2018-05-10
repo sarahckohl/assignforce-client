@@ -168,16 +168,14 @@
           <!-- Trainer Column -->
           <ng-container matColumnDef="Trainer/Co-Trainer">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
-            <mat-cell *matCellDef="let batch"> {{batch.trainer.firstName}} {{batch.trainer.lastName}}
-              <br>
-              <div *ngIf="batch.cotrainer">{{batch.cotrainer.firstName}} {{batch.cotrainer.lastName}}</div>
-            </mat-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.trainer?.firstName}} {{batch.trainer?.lastName}}<br>
+              <div *ngIf="batch.cotrainer">{{batch.cotrainer.firstName}} {{batch.cotrainer.lastName}}</div></mat-cell>
           </ng-container>
 
           <!-- Address Column -->
           <ng-container matColumnDef="Location">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
-            <mat-cell *matCellDef="let batch"> {{batch.address.name}} </mat-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.address?.name}} </mat-cell>
           </ng-container>
 
           <!-- Building Column -->

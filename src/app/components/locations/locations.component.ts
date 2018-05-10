@@ -7,6 +7,8 @@ import { Address } from '../../model/Address';
 import { Room } from '../../model/Room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
+import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 
 @Component({
   selector: 'app-location-delete-location-dialog',
@@ -151,13 +153,16 @@ export class LocationEditRoomDialogComponent {
 })
 export class LocationsComponent implements OnInit {
   expanded: boolean[] = [];
-  locations = [];
-
+  locations: Address[] = [];
+  buildings: Building[] = [];
+  rooms: Room[] = [];
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     public dialog: MatDialog,
-    private locationService: AddressControllerService
+    private locationService: AddressControllerService,
+    private buildingService: BuildingControllerService,
+    private roomService: RoomControllerService
   ) {
     for (const location of this.locations) {
       this.expanded[location.id] = false;
@@ -177,10 +182,32 @@ export class LocationsComponent implements OnInit {
     this.locationService
       .findAll()
       .toPromise()
-      .then(response => {
-        this.locations = response;
-      });
+      .then((locations: Address[]) => (this.locations = locations));
+    this.buildingService
+      .findAll()
+      .toPromise()
+      .then((buildings: Building[]) => (this.buildings = buildings));
+    this.roomService
+      .findAll()
+      .toPromise()
+      .then((rooms: Room[]) => (this.rooms = rooms));
   }
+
+  locationBuildings(id: number) {
+    return this.buildings.filter((building: Building) => building.address.id === id);
+  }
+
+  buildingRooms(building: Building): Room[] {
+    const filtered: Room[] = [];
+    building.rooms.forEach((roomRef: { id: number }) => {
+      const r = this.rooms.find((room: Room) => roomRef.id === room.id);
+      if (r) {
+        filtered.push(r);
+      }
+    });
+    return filtered;
+  }
+
   collapseAll(id: any) {
     this.expanded[id] = !this.expanded[id];
 

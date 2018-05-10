@@ -1,6 +1,7 @@
 export const environment = {
-  production: true,
-  baseUrl: 'http://localhost:8080',
+  production: false,
+  name: 'local-server',
+  baseUrl: 'http://localhost:3000',
 
   appRoutes: {
     login: '',
@@ -34,7 +35,7 @@ export const environment = {
 
   apiUrls: {
     addressController: {
-      baseUrl: 'http://localhost:8080/addresses',
+      baseUrl: 'http://localhost:3000/addresses',
       create: '',
       update: '/',
       findAll: '',
@@ -43,7 +44,7 @@ export const environment = {
     },
 
     batchController: {
-      baseUrl: 'http://localhost:8080/batches',
+      baseUrl: 'http://localhost:3000/batches',
       create: '',
       update: '/',
       findAll: '',
@@ -52,7 +53,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: 'http://localhost:8080/buildings',
+      baseUrl: 'http://localhost:3000/buildings',
       create: '',
       update: '/',
       findAll: '',
@@ -61,7 +62,7 @@ export const environment = {
     },
 
     locationController: {
-      baseUrl: 'http://localhost:8080/locations',
+      baseUrl: 'http://localhost:3000/addresses',
       create: '',
       update: '/',
       findAll: '',
@@ -70,7 +71,7 @@ export const environment = {
     },
 
     roomController: {
-      baseUrl: 'http://localhost:8080/rooms',
+      baseUrl: 'http://localhost:3000/rooms',
       create: '',
       update: '/',
       findAll: '',
@@ -79,7 +80,7 @@ export const environment = {
     },
 
     curriculumController: {
-      baseUrl: 'http://localhost:8080/curricula',
+      baseUrl: 'http://localhost:3000/curricula',
       create: '',
       update: '/',
       findAll: '',
@@ -88,7 +89,7 @@ export const environment = {
     },
 
     focusController: {
-      baseUrl: 'http://localhost:8080/curriculum/curricula',
+      baseUrl: 'http://localhost:3000/curricula',
       create: '',
       update: '/',
       findAll: '',
@@ -97,7 +98,7 @@ export const environment = {
     },
 
     skillController: {
-      baseUrl: 'http://localhost:8080/skills',
+      baseUrl: 'http://localhost:3000/skills',
       create: '',
       update: '/',
       findAll: '',
@@ -106,7 +107,7 @@ export const environment = {
     },
 
     trainerController: {
-      baseUrl: 'http://localhost:8080/trainers',
+      baseUrl: 'http://localhost:3000/trainers',
       create: '',
       update: '/',
       findAll: '',
@@ -115,7 +116,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: 'http://localhost:8080/setting',
+      baseUrl: 'http://localhost:3000/setting',
       create: '',
       update: '/',
       findAll: '',
@@ -124,7 +125,7 @@ export const environment = {
     },
 
     unavailableController: {
-      baseUrl: 'http://localhost:8080/unavailables',
+      baseUrl: 'http://localhost:3000/unavailables',
       create: '',
       update: '/',
       findAll: '',

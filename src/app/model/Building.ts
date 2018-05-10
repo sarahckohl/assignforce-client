@@ -6,9 +6,9 @@ export class Building {
   id: number;
   address: Address;
   name: string;
-  rooms: Room[];
+  rooms: { id: number }[];
 
-  constructor(active: boolean, id: number, address: Address, name: string, rooms: Room[]) {
+  constructor(active: boolean, id: number, address: Address, name: string, rooms: { id: number }[]) {
     this.active = active;
     this.id = id;
     this.address = address;

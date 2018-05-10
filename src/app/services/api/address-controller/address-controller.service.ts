@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Address } from '../../../model/Address';
+import { Service } from '../service.interface';
 
 @Injectable()
-export class AddressControllerService {
+export class AddressControllerService implements Service {
   constructor(private http: HttpClient) {}
 
   private addressController = environment.apiUrls.addressController;
@@ -17,6 +18,7 @@ export class AddressControllerService {
     return this.http.put<Address>(this.addressController.baseUrl + this.addressController.update + address.id, address);
   }
   public findAll(): Observable<Address[]> {
+    console.log(environment);
     return this.http.get<Address[]>(this.addressController.baseUrl + this.addressController.findAll);
   }
   public remove(id: number): Observable<Address> {

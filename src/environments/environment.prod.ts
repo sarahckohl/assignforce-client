@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  name: 'prod',
   baseUrl: 'https://assignforce.cfapps.io',
 
   appRoutes: {
