@@ -1,6 +1,5 @@
 {
-  "addresses": [
-    {
+  "addresses": [{
       "id": 1,
       "name": "Revature HQ",
       "city": "Reston",
@@ -29,8 +28,7 @@
       "active": false
     }
   ],
-  "batches": [
-    {
+  "batches": [{
       "id": 1,
       "name": "1708 Aug14 Java",
       "curriculum": "Java",
@@ -143,58 +141,80 @@
       "endDate": "03/30/2018"
     }
   ],
-  "buildings": [
-    {
-      "id": 1,
-      "active": true,
-      "address": {
+  "buildings": [{
+    "id": 1,
+    "active": true,
+    "address": {
+      "id": 1
+    },
+    "name": "11730 Plaza America Dr.",
+    "rooms": [{
         "id": 1
       },
-      "name": "11730 Plaza America Dr.",
-      "rooms": [
-        {
-          "id": 1
-        },
-        {
-          "id": 2
-        },
-        {
-          "id": 3
-        },
-        {
-          "id": 4
-        },
-        {
-          "id": 5
-        }
-      ]
-    }
-  ],
-  "curricula": [
-    {
+      {
+        "id": 2
+      },
+      {
+        "id": 3
+      },
+      {
+        "id": 4
+      },
+      {
+        "id": 5
+      }
+    ]
+  }],
+  "curricula": [{
       "id": 1,
       "name": "Java",
       "active": true,
-      "focuses": [],
-      "skills": []
+      "focuses": [{
+        "id": 1,
+        "name": "TDD",
+        "active": true,
+        "skills": []
+      }],
+      "skills": [{
+        "id": 1,
+        "name": "Hibernate",
+        "active": true
+      }]
     },
     {
       "id": 2,
       "name": "SDET",
       "active": true,
-      "focuses": [],
-      "skills": []
+      "focuses": [{
+        "id": 1,
+        "name": "Testing",
+        "active": true,
+        "skills": []
+      }],
+      "skills": [{
+        "id": 1,
+        "name": "Selenium",
+        "active": true
+      }]
     },
     {
       "id": 3,
       "name": "Custom",
       "active": true,
-      "focuses": [],
-      "skills": []
+      "focuses": [{
+        "id": 1,
+        "name": "JavaScript",
+        "active": true,
+        "skills": []
+      }],
+      "skills": [{
+        "id": 1,
+        "name": "Microsoft Office",
+        "active": true
+      }]
     }
   ],
-  "rooms": [
-    {
+  "rooms": [{
       "id": 1,
       "active": true,
       "roomName": "201",
@@ -230,8 +250,7 @@
       "unavailabilities": []
     }
   ],
-  "skills": [
-    {
+  "skills": [{
       "id": 1,
       "name": "Core Java",
       "active": true
@@ -297,8 +316,7 @@
       "active": true
     }
   ],
-  "trainers": [
-    {
+  "trainers": [{
       "id": 1,
       "firstName": "Patrick",
       "lastName": "Walsh",
@@ -397,20 +415,18 @@
       "unavailabilities": []
     }
   ],
-  "setting": [
-    {
-      "id": 1,
-      "alias": "placeholder",
-      "trainersPerPage": 10,
-      "reportGrads": 1,
-      "batchLength": 10,
-      "reportIncomingGrads": 1,
-      "minBatchSize": 15,
-      "maxBatchSize": 40,
-      "trainerBreakDays": 1000,
-      "defaultLocation": {},
-      "defaultBuilding": {},
-      "defaultNamePattern": "placeholder"
-    }
-  ]
+  "setting": [{
+    "id": 1,
+    "alias": "placeholder",
+    "trainersPerPage": 10,
+    "reportGrads": 1,
+    "batchLength": 10,
+    "reportIncomingGrads": 1,
+    "minBatchSize": 15,
+    "maxBatchSize": 40,
+    "trainerBreakDays": 1000,
+    "defaultLocation": {},
+    "defaultBuilding": {},
+    "defaultNamePattern": "placeholder"
+  }]
 }
