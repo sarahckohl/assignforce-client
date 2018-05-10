@@ -170,7 +170,29 @@
       ]
     }
   ],
-  "curricula": [],
+  "curricula": [
+    {
+      "id": 1,
+      "name": "Java",
+      "active": true,
+      "focuses": [],
+      "skills": []
+    },
+    {
+      "id": 2,
+      "name": "SDET",
+      "active": true,
+      "focuses": [],
+      "skills": []
+    },
+    {
+      "id": 3,
+      "name": "Custom",
+      "active": true,
+      "focuses": [],
+      "skills": []
+    }
+  ],
   "rooms": [
     {
       "id": 1,
