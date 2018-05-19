@@ -11,16 +11,12 @@ export class BuildingControllerService {
   private buildingController = environment.apiUrls.buildingController;
 
   private generateDTO(building: Building): any {
-    const rooms: string[] = [];
-    building.rooms.forEach(room => {
-      rooms.push(environment.apiUrls.roomController.baseUrl + '/' + room.id);
-    });
     return {
       id: building.id,
       active: building.active,
-      address: environment.apiUrls.addressController.baseUrl + '/' + building.address.id,
+      address: building.address,
       name: building.name,
-      rooms: rooms
+      rooms: building.rooms
     };
   }
 

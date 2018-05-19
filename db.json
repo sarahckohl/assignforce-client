@@ -2,221 +2,1589 @@
   "addresses": [
     {
       "id": 1,
-      "name": "Revature HQ",
       "city": "Reston",
+      "name": "Revature HQ",
       "state": "VA",
       "active": true
     },
     {
       "id": 2,
-      "name": "CUNY SPS",
-      "city": "New York City",
+      "city": "ASU",
+      "name": "Tempe",
+      "state": "AZ",
+      "active": true
+    },
+    {
+      "id": 3,
+      "city": "NY",
+      "name": "New York City",
       "state": "NY",
       "active": true
     },
     {
-      "id": 3,
+      "id": 4,
+      "city": "Tempa",
       "name": "USF",
-      "city": "Tamp",
       "state": "FL",
       "active": true
     },
     {
-      "id": 4,
-      "name": "UT Arlington",
-      "city": "Dallas",
-      "state": "TX",
-      "active": false
+      "id": 5,
+      "city": "maryland",
+      "name": "UMUC",
+      "state": "MD",
+      "active": true
+    },
+    {
+      "id": 65,
+      "city": null,
+      "name": "WV",
+      "state": null,
+      "active": true
+    },
+    {
+      "id": 66,
+      "city": null,
+      "name": "Tx",
+      "state": null,
+      "active": true
+    },
+    {
+      "id": 45,
+      "city": null,
+      "name": "Capital One",
+      "state": null,
+      "active": true
     }
   ],
   "batches": [
     {
-      "id": 1,
+      "id": 187,
       "name": "1708 Aug14 Java",
-      "curriculum": "Java",
-      "trainer": {
-        "id": 4,
-        "firstName": "Genesis",
-        "lastName": "Bonds"
-      },
-      "cotrainer": "Mehrab Rahman",
+      "endDate": "2017-10-20T08:00:00Z",
+      "startDate": "2017-08-14T08:00:00Z",
+      "cotrainer": 36,
+      "curriculum": 1,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "08/14/2017",
-      "endDate": "10/20/2017"
+      "room": null,
+      "trainer": 13
     },
     {
-      "id": 2,
+      "id": 191,
       "name": "1610 Oct24 Java",
-      "curriculum": "Java",
-      "trainer": {
-        "id": 5,
-        "firstName": "Nicholas",
-        "lastName": "Jurszack"
-      },
-      "cotrainer": "Richard Orr",
+      "endDate": "2017-01-06T10:00:00Z",
+      "startDate": "2016-10-24T08:00:00Z",
+      "cotrainer": 10,
+      "curriculum": 1,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "10/24/2016",
-      "endDate": "01/06/2017"
+      "room": null,
+      "trainer": 11
     },
     {
-      "id": 3,
+      "id": 192,
       "name": "1611 Nov28 SDET",
-      "curriculum": "SDET",
-      "trainer": {
-        "id": 2,
-        "firstName": "Yuvi",
-        "lastName": "Damodaran"
-      },
-      "cotrainer": "",
+      "endDate": "2017-02-10T10:00:00Z",
+      "startDate": "2016-11-28T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 3,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "11/28/2016",
-      "endDate": "02/10/2017"
+      "room": null,
+      "trainer": 7
     },
     {
-      "id": 4,
+      "id": 193,
       "name": "1611 Nov14 Java",
-      "curriculum": "Java",
-      "trainer": {
-        "id": 1,
-        "firstName": "Patrick",
-        "lastName": "Walsh"
-      },
-      "cotrainer": "",
+      "endDate": "2017-02-03T10:00:00Z",
+      "startDate": "2016-11-14T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "11/14/2016",
-      "endDate": "02/03/2017"
+      "room": null,
+      "trainer": 6
     },
     {
-      "id": 5,
+      "id": 264,
       "name": "1706 Jun19 Custom",
-      "curriculum": "Custom",
-      "trainer": {
-        "id": 6,
-        "firstName": "Arun",
-        "lastName": "Kumar"
-      },
-      "cotrainer": "",
+      "endDate": "2017-08-25T08:00:00Z",
+      "startDate": "2017-06-19T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "06/19/2017",
-      "endDate": "08/25/2017"
+      "room": null,
+      "trainer": 38
     },
     {
-      "id": 6,
+      "id": 283,
       "name": "1706 Jun26 Custom",
-      "curriculum": "Custom",
-      "trainer": {
-        "id": 3,
-        "firstName": "Joe",
-        "lastName": "Kirkbride"
-      },
-      "cotrainer": "",
+      "endDate": "2017-09-01T08:00:00Z",
+      "startDate": "2017-06-26T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "06/26/2017",
-      "endDate": "09/01/2017"
+      "room": null,
+      "trainer": 3
     },
     {
-      "id": 7,
+      "id": 325,
       "name": "1801 Jan22 Java",
-      "curriculum": "Java",
-      "trainer": {
-        "id": 7,
-        "firstName": "Ryan",
-        "lastName": "Lessley"
-      },
-      "cotrainer": "",
+      "endDate": "2018-03-30T08:00:00Z",
+      "startDate": "2018-01-22T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
       "address": null,
-      "building": "",
-      "room": "",
-      "startDate": "01/22/2018",
-      "endDate": "03/30/2018"
+      "room": null,
+      "trainer": 9
+    },
+    {
+      "id": 465,
+      "name": "1803 Mar26 Java",
+      "endDate": "2018-06-01T08:00:00Z",
+      "startDate": "2018-03-26T08:00:00Z",
+      "cotrainer": 75,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 96
+    },
+    {
+      "id": 466,
+      "name": "1804 Apr09 .NET",
+      "endDate": "2018-06-15T08:00:00Z",
+      "startDate": "2018-04-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": 78
+    },
+    {
+      "id": 487,
+      "name": "1807 Jul02 Java",
+      "endDate": "2018-09-07T08:00:00Z",
+      "startDate": "2018-07-02T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 544,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 545,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 586,
+      "name": "1806 Jun18 Java",
+      "endDate": "2018-08-24T08:00:00Z",
+      "startDate": "2018-06-18T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 96
+    },
+    {
+      "id": 194,
+      "name": "1612 Dec12 Java",
+      "endDate": "2017-02-24T10:00:00Z",
+      "startDate": "2016-12-12T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 443,
+      "name": "1801 Jan08 Java",
+      "endDate": "2018-03-16T08:00:00Z",
+      "startDate": "2018-01-08T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 10
+    },
+    {
+      "id": 444,
+      "name": "1712 Dec18 Java",
+      "endDate": "2018-03-02T10:00:00Z",
+      "startDate": "2017-12-18T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 78
+    },
+    {
+      "id": 445,
+      "name": "1801 Jan22 Java",
+      "endDate": "2018-03-30T08:00:00Z",
+      "startDate": "2018-01-22T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 14
+    },
+    {
+      "id": 448,
+      "name": "1802 Feb26 Custom",
+      "endDate": "2018-05-04T08:00:00Z",
+      "startDate": "2018-02-26T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 77
+    },
+    {
+      "id": 449,
+      "name": "1802 Feb26 Java",
+      "endDate": "2018-05-04T08:00:00Z",
+      "startDate": "2018-02-26T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 11
+    },
+    {
+      "id": 451,
+      "name": "1803 Mar19 Custom",
+      "endDate": "2018-05-25T08:00:00Z",
+      "startDate": "2018-03-19T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 453,
+      "name": "1803 Mar05 Java",
+      "endDate": "2018-05-11T08:00:00Z",
+      "startDate": "2018-03-05T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 95
+    },
+    {
+      "id": 454,
+      "name": "1803 Mar12 .NET",
+      "endDate": "2018-05-18T08:00:00Z",
+      "startDate": "2018-03-12T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 455,
+      "name": "1804 Apr02 SDET",
+      "endDate": "2018-06-08T08:00:00Z",
+      "startDate": "2018-04-02T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 3,
+      "address": null,
+      "room": null,
+      "trainer": 7
+    },
+    {
+      "id": 456,
+      "name": "1804 Apr09 Custom",
+      "endDate": "2018-06-15T08:00:00Z",
+      "startDate": "2018-04-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 36
+    },
+    {
+      "id": 179,
+      "name": "1702 Feb13 Java",
+      "endDate": "2017-04-21T08:00:00Z",
+      "startDate": "2017-02-13T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 6
+    },
+    {
+      "id": 263,
+      "name": "1706 Jun19 Java",
+      "endDate": "2017-08-25T08:00:00Z",
+      "startDate": "2017-06-19T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 265,
+      "name": "1706 Jun26 Custom",
+      "endDate": "2017-09-01T08:00:00Z",
+      "startDate": "2017-06-26T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 12
+    },
+    {
+      "id": 266,
+      "name": "1707 Jul03 Java",
+      "endDate": "2017-09-08T08:00:00Z",
+      "startDate": "2017-07-03T08:00:00Z",
+      "cotrainer": 35,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 7
+    },
+    {
+      "id": 267,
+      "name": "1707 Jul10 Custom",
+      "endDate": "2017-09-15T08:00:00Z",
+      "startDate": "2017-07-10T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 11
+    },
+    {
+      "id": 268,
+      "name": "1704 Apr24 Java",
+      "endDate": "2017-06-30T08:00:00Z",
+      "startDate": "2017-04-24T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 343,
+      "name": "1709 Sep11 .NET PR",
+      "endDate": "2017-11-24T10:00:00Z",
+      "startDate": "2017-09-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 344,
+      "name": "1709 Sep25 Java",
+      "endDate": "2017-11-17T10:00:00Z",
+      "startDate": "2017-09-25T08:00:00Z",
+      "cotrainer": 36,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 37
+    },
+    {
+      "id": 383,
+      "name": "1710 Oct23 PEGA",
+      "endDate": "2017-12-15T10:00:00Z",
+      "startDate": "2017-10-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 10
+    },
+    {
+      "id": 546,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 181,
+      "name": "1704 Apr10 Java",
+      "endDate": "2017-04-21T08:00:00Z",
+      "startDate": "2017-04-10T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": 3,
+      "trainer": 8
+    },
+    {
+      "id": 182,
+      "name": "1704 Apr24 Java",
+      "endDate": "2017-05-05T08:00:00Z",
+      "startDate": "2017-04-24T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": 7
+    },
+    {
+      "id": 140,
+      "name": "1709 Sep11 JTA",
+      "endDate": "2017-11-17T10:00:00Z",
+      "startDate": "2017-09-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 3,
+      "address": 1,
+      "room": null,
+      "trainer": 7
+    },
+    {
+      "id": 183,
+      "name": "1702 Feb27 Java",
+      "endDate": "2017-05-05T08:00:00Z",
+      "startDate": "2017-02-27T05:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": 2,
+      "trainer": 11
+    },
+    {
+      "id": 309,
+      "name": "1712 Dec04 .NET",
+      "endDate": "2018-02-16T10:00:00Z",
+      "startDate": "2017-12-04T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 323,
+      "name": "1801 Jan08 Java",
+      "endDate": "2018-03-16T08:00:00Z",
+      "startDate": "2018-01-08T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 55
+    },
+    {
+      "id": 324,
+      "name": "1801 Jan29 Java",
+      "endDate": "2018-04-06T08:00:00Z",
+      "startDate": "2018-01-29T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 37
+    },
+    {
+      "id": 49,
+      "name": "1701 Jan09 Java",
+      "endDate": "2017-03-17T08:00:00Z",
+      "startDate": "2017-01-09T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 2,
+      "room": null,
+      "trainer": 5
+    },
+    {
+      "id": 326,
+      "name": "1802 Feb05 Java",
+      "endDate": "2018-04-13T08:00:00Z",
+      "startDate": "2018-02-05T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 327,
+      "name": "1802 Feb12 Java",
+      "endDate": "2018-04-20T08:00:00Z",
+      "startDate": "2018-02-12T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 76
+    },
+    {
+      "id": 66,
+      "name": "1701 Jan30 .NET",
+      "endDate": "2017-04-07T08:00:00Z",
+      "startDate": "2017-01-30T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": 1,
+      "room": 7,
+      "trainer": 3
+    },
+    {
+      "id": 328,
+      "name": "1802 Feb26 Java",
+      "endDate": "2018-05-04T08:00:00Z",
+      "startDate": "2018-02-26T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 35
+    },
+    {
+      "id": 67,
+      "name": "1701 Jan09 Java",
+      "endDate": "2017-03-17T08:00:00Z",
+      "startDate": "2017-01-09T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": 3,
+      "trainer": 8
+    },
+    {
+      "id": 363,
+      "name": "1709 Sep18 Custom",
+      "endDate": "2017-11-24T10:00:00Z",
+      "startDate": "2017-09-18T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 38
+    },
+    {
+      "id": 543,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 104,
+      "name": "1703 Mar20 Java",
+      "endDate": "2017-05-26T08:00:00Z",
+      "startDate": "2017-03-20T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": 6,
+      "trainer": 12
+    },
+    {
+      "id": 105,
+      "name": "1703 Mar27 Java",
+      "endDate": "2017-06-02T08:00:00Z",
+      "startDate": "2017-03-27T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": 1,
+      "trainer": 14
+    },
+    {
+      "id": 106,
+      "name": "SEED USF 06/05",
+      "endDate": "2017-06-16T08:00:00Z",
+      "startDate": "2017-06-05T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 3,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 583,
+      "name": "1805 May21 Java",
+      "endDate": "2018-07-27T08:00:00Z",
+      "startDate": "2018-05-21T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 108,
+      "name": "1704 Apr10 Java",
+      "endDate": "2017-06-16T08:00:00Z",
+      "startDate": "2017-04-10T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": 4,
+      "trainer": 10
+    },
+    {
+      "id": 111,
+      "name": "1705 May08 Java",
+      "endDate": "2017-07-14T08:00:00Z",
+      "startDate": "2017-05-08T08:00:00Z",
+      "cotrainer": 6,
+      "curriculum": 1,
+      "address": 1,
+      "room": 2,
+      "trainer": 7
+    },
+    {
+      "id": 145,
+      "name": "1708 Aug21 Java",
+      "endDate": "2017-11-03T08:00:00Z",
+      "startDate": "2017-08-21T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 141,
+      "name": "1709 Sep25 Java",
+      "endDate": "2017-12-01T10:00:00Z",
+      "startDate": "2017-09-25T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 14
+    },
+    {
+      "id": 142,
+      "name": "1707 Jul24 Java",
+      "endDate": "2017-09-29T08:00:00Z",
+      "startDate": "2017-07-24T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 6
+    },
+    {
+      "id": 143,
+      "name": "1706 Jun26 Java",
+      "endDate": "2017-09-01T08:00:00Z",
+      "startDate": "2017-06-26T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 10
+    },
+    {
+      "id": 144,
+      "name": "1710 Oct23 Java",
+      "endDate": "2018-01-05T10:00:00Z",
+      "startDate": "2017-10-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 146,
+      "name": "1709 Sep18 Java",
+      "endDate": "2017-11-24T10:00:00Z",
+      "startDate": "2017-09-18T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 584,
+      "name": "1805 May29 Java",
+      "endDate": "2018-08-03T08:00:00Z",
+      "startDate": "2018-05-28T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 10
+    },
+    {
+      "id": 148,
+      "name": "1708 Aug07 Java",
+      "endDate": "2017-10-13T08:00:00Z",
+      "startDate": "2017-08-07T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 1,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 585,
+      "name": "1806 Jun11 Java",
+      "endDate": "2018-08-17T08:00:00Z",
+      "startDate": "2018-06-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 11
+    },
+    {
+      "id": 587,
+      "name": "1807 Jul09 Java-CUNY",
+      "endDate": "2018-09-14T08:00:00Z",
+      "startDate": "2018-07-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 120,
+      "name": "1705 May15 Java",
+      "endDate": "2017-07-21T08:00:00Z",
+      "startDate": "2017-05-15T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 4,
+      "room": null,
+      "trainer": 13
+    },
+    {
+      "id": 116,
+      "name": "1705 May22 .NET",
+      "endDate": "2017-07-28T08:00:00Z",
+      "startDate": "2017-05-22T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": 1,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 119,
+      "name": "1706 Jun12 Java",
+      "endDate": "2017-08-18T08:00:00Z",
+      "startDate": "2017-06-12T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": 3,
+      "room": null,
+      "trainer": 14
+    },
+    {
+      "id": 180,
+      "name": "1704 Apr03 Java",
+      "endDate": "2017-05-26T08:00:00Z",
+      "startDate": "2017-04-03T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 5
+    },
+    {
+      "id": 184,
+      "name": "1705 May08 .NET",
+      "endDate": "2017-05-19T08:00:00Z",
+      "startDate": "2017-05-08T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 185,
+      "name": "1706 Jun05 Custom",
+      "endDate": "2017-07-28T08:00:00Z",
+      "startDate": "2017-06-05T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 5
+    },
+    {
+      "id": 303,
+      "name": "1709 Sep11 Java SEED",
+      "endDate": "2017-09-22T08:00:00Z",
+      "startDate": "2017-09-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 14
+    },
+    {
+      "id": 423,
+      "name": "1711 Nov13 Java",
+      "endDate": "2018-01-26T10:00:00Z",
+      "startDate": "2017-11-13T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 35
+    },
+    {
+      "id": 189,
+      "name": "1705 May30 Java",
+      "endDate": "2017-08-04T08:00:00Z",
+      "startDate": "2017-05-29T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 9
+    },
+    {
+      "id": 190,
+      "name": "1707 Jul24 Java",
+      "endDate": "2017-09-29T08:00:00Z",
+      "startDate": "2017-07-24T08:00:00Z",
+      "cotrainer": 36,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 12
+    },
+    {
+      "id": 304,
+      "name": "1710 Oct09 Custom",
+      "endDate": "2017-12-15T10:00:00Z",
+      "startDate": "2017-10-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 11
+    },
+    {
+      "id": 463,
+      "name": "1802 Feb05 Custom BA",
+      "endDate": "2018-04-13T08:00:00Z",
+      "startDate": "2018-02-05T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 245,
+      "name": "1705 May22 Java",
+      "endDate": "2017-07-28T08:00:00Z",
+      "startDate": "2017-05-22T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 306,
+      "name": "1710 Oct30 Java",
+      "endDate": "2018-01-12T10:00:00Z",
+      "startDate": "2017-10-30T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 37
+    },
+    {
+      "id": 307,
+      "name": "1711 Nov06 Java",
+      "endDate": "2018-01-19T10:00:00Z",
+      "startDate": "2017-11-06T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 9
+    },
+    {
+      "id": 308,
+      "name": "1711 Nov13 Java",
+      "endDate": "2018-01-26T10:00:00Z",
+      "startDate": "2017-11-13T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 13
+    },
+    {
+      "id": 310,
+      "name": "1712 Dec04 Java",
+      "endDate": "2018-02-16T10:00:00Z",
+      "startDate": "2017-12-04T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 36
+    },
+    {
+      "id": 311,
+      "name": "1712 Dec11 Java",
+      "endDate": "2018-02-23T10:00:00Z",
+      "startDate": "2017-12-11T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 7
+    },
+    {
+      "id": 312,
+      "name": "1712 Dec11 Java",
+      "endDate": "2018-02-23T10:00:00Z",
+      "startDate": "2017-12-11T10:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 8
+    },
+    {
+      "id": 603,
+      "name": "1806 Jun04 Custom",
+      "endDate": "2018-08-10T08:00:00Z",
+      "startDate": "2018-06-04T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 2
+    },
+    {
+      "id": 467,
+      "name": "1804 Apr16 SDET",
+      "endDate": "2018-06-22T08:00:00Z",
+      "startDate": "2018-04-16T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 3,
+      "address": null,
+      "room": null,
+      "trainer": 56
+    },
+    {
+      "id": 468,
+      "name": "1804 Apr16 .NET",
+      "endDate": "2018-06-22T08:00:00Z",
+      "startDate": "2018-04-16T08:00:00Z",
+      "cotrainer": 57,
+      "curriculum": 2,
+      "address": null,
+      "room": null,
+      "trainer": 78
+    },
+    {
+      "id": 469,
+      "name": "1804 Apr23 Custom",
+      "endDate": "2018-06-29T08:00:00Z",
+      "startDate": "2018-04-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 470,
+      "name": "1804 Apr30 Custom",
+      "endDate": "2018-07-06T08:00:00Z",
+      "startDate": "2018-04-30T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 38
+    },
+    {
+      "id": 472,
+      "name": "1805 May14 Java",
+      "endDate": "2018-07-20T08:00:00Z",
+      "startDate": "2018-05-14T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 37
+    },
+    {
+      "id": 473,
+      "name": "1805 May07 Java",
+      "endDate": "2018-07-13T08:00:00Z",
+      "startDate": "2018-05-07T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 13
+    },
+    {
+      "id": 476,
+      "name": "1805 May21 Java",
+      "endDate": "2018-07-27T08:00:00Z",
+      "startDate": "2018-05-21T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 75
+    },
+    {
+      "id": 478,
+      "name": "1805 May21 Custom",
+      "endDate": "2018-07-27T08:00:00Z",
+      "startDate": "2018-05-21T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 76
+    },
+    {
+      "id": 479,
+      "name": "1806 Jun04 Custom",
+      "endDate": "2018-08-10T08:00:00Z",
+      "startDate": "2018-06-04T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 35
+    },
+    {
+      "id": 480,
+      "name": "1806 Jun04 Java",
+      "endDate": "2018-08-10T08:00:00Z",
+      "startDate": "2018-06-04T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 95
+    },
+    {
+      "id": 481,
+      "name": "1806 Jun11 Java",
+      "endDate": "2018-08-17T08:00:00Z",
+      "startDate": "2018-06-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 1
+    },
+    {
+      "id": 482,
+      "name": "1806 Jun11 Java",
+      "endDate": "2018-08-17T08:00:00Z",
+      "startDate": "2018-06-11T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 55
+    },
+    {
+      "id": 483,
+      "name": "1806 Jun18 Java",
+      "endDate": "2018-08-24T08:00:00Z",
+      "startDate": "2018-06-18T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 77
+    },
+    {
+      "id": 484,
+      "name": "1806 Jun18 SDET",
+      "endDate": "2018-08-24T08:00:00Z",
+      "startDate": "2018-06-18T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 3,
+      "address": null,
+      "room": null,
+      "trainer": 9
+    },
+    {
+      "id": 485,
+      "name": "1806 Jun25 Java",
+      "endDate": "2018-08-31T08:00:00Z",
+      "startDate": "2018-06-25T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 58
+    },
+    {
+      "id": 486,
+      "name": "1806 Jun25 Aptitude",
+      "endDate": "2018-08-31T08:00:00Z",
+      "startDate": "2018-06-25T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 489,
+      "name": "1807 Jul09 Java",
+      "endDate": "2018-09-14T08:00:00Z",
+      "startDate": "2018-07-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 490,
+      "name": "1807 Jul09 Java",
+      "endDate": "2018-09-14T08:00:00Z",
+      "startDate": "2018-07-09T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 36
+    },
+    {
+      "id": 491,
+      "name": "1807 Jul16 Java",
+      "endDate": "2018-09-21T08:00:00Z",
+      "startDate": "2018-07-16T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 492,
+      "name": "1807 Jul16 Java",
+      "endDate": "2018-09-21T08:00:00Z",
+      "startDate": "2018-07-16T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 493,
+      "name": "1807 Jul23 Java",
+      "endDate": "2018-09-28T08:00:00Z",
+      "startDate": "2018-07-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 494,
+      "name": "1807 Jul23 Java",
+      "endDate": "2018-09-28T08:00:00Z",
+      "startDate": "2018-07-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 503,
+      "name": "1803 Mar26 Custom",
+      "endDate": "2018-06-01T08:00:00Z",
+      "startDate": "2018-03-26T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 105,
+      "address": null,
+      "room": null,
+      "trainer": 115
+    },
+    {
+      "id": 548,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 547,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 549,
+      "name": " - ",
+      "endDate": "2018-11-30T20:28:35Z",
+      "startDate": "2018-09-10T18:28:35Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": null
+    },
+    {
+      "id": 563,
+      "name": "1804 Apr23 Java",
+      "endDate": "2018-06-29T08:00:00Z",
+      "startDate": "2018-04-23T08:00:00Z",
+      "cotrainer": null,
+      "curriculum": 1,
+      "address": null,
+      "room": null,
+      "trainer": 14
     }
   ],
   "buildings": [
     {
+      "id": 52,
+      "active": 0,
+      "address": 5,
+      "name": "Testing"
+    },
+    {
+      "id": 64,
+      "active": 1,
+      "address": 45,
+      "name": "Chicago"
+    },
+    {
       "id": 1,
-      "active": true,
-      "address": { "id": 1 },
-      "name": "11730 Plaza America Dr.",
-      "rooms": [{ "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }, { "id": 5 }]
+      "active": 1,
+      "address": 1,
+      "name": "11730 Plaza American Drive (HQ)"
+    },
+    {
+      "id": 2,
+      "active": 1,
+      "address": 2,
+      "name": "ASU Building 1"
+    },
+    {
+      "id": 21,
+      "active": 1,
+      "address": 3,
+      "name": "SPS"
+    },
+    {
+      "id": 3,
+      "active": 1,
+      "address": 3,
+      "name": "Queens"
     }
   ],
   "curricula": [
     {
-      "id": 1,
-      "name": "Java",
-      "isActive": true,
-      "isCore": true,
-      "skills": []
-    },
-    {
       "id": 2,
       "name": ".NET",
-      "isActive": true,
-      "isCore": true,
-      "skills": []
+      "isActive": 1,
+      "isCore": 1,
+      "skills": [
+        46,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Java",
+      "isActive": 1,
+      "isCore": 1,
+      "skills": [
+        1,
+        2,
+        3,
+        4,
+        25,
+        48,
+        49,
+        50,
+        51,
+        52,
+        3,
+        54,
+        55,
+        56,
+        57
+      ]
     },
     {
       "id": 3,
-      "name": "JTA",
-      "isActive": true,
-      "isCore": true,
+      "name": "SDET",
+      "isActive": 1,
+      "isCore": 1,
+      "skills": [
+        47,
+        68,
+        69,
+        5,
+        70,
+        71,
+        72
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Custom",
+      "isActive": 1,
+      "isCore": 1,
+      "skills": []
+    },
+    {
+      "id": 25,
+      "name": "Appian",
+      "isActive": 1,
+      "isCore": 0,
       "skills": []
     },
     {
       "id": 4,
-      "name": "Custom",
-      "isActive": true,
-      "isCore": true,
+      "name": "Capital One",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": [
+        4,
+        3,
+        55,
+        56
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Testing",
+      "isActive": 0,
+      "isCore": 0,
+      "skills": [
+        47,
+        50,
+        51
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Testing2",
+      "isActive": 0,
+      "isCore": 0,
+      "skills": [
+        4,
+        47,
+        50,
+        51
+      ]
+    },
+    {
+      "id": 24,
+      "name": "name",
+      "isActive": 0,
+      "isCore": 0,
+      "skills": [
+        4,
+        1,
+        47,
+        50,
+        51
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Big Data",
+      "isActive": 0,
+      "isCore": 0,
+      "skills": [
+        27
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Dynamics CRM",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": [
+        28
+      ]
+    },
+    {
+      "id": 7,
+      "name": "PEGA",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": [
+        30
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Oracle Fusion",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": [
+        29
+      ]
+    },
+    {
+      "id": 9,
+      "name": "GO",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": [
+        31
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Salesforce",
+      "isActive": 1,
+      "isCore": 0,
+      "skills": []
+    },
+    {
+      "id": 44,
+      "name": "BA",
+      "isActive": 1,
+      "isCore": 0,
       "skills": []
     }
   ],
   "rooms": [
     {
-      "id": 1,
+      "id": 7,
+      "roomName": "208",
       "active": true,
+      "building": 1
+    },
+    {
+      "id": 1,
       "roomName": "201",
-      "building": null,
-      "unavailabilities": []
+      "active": true,
+      "building": 1
     },
     {
       "id": 2,
-      "active": true,
       "roomName": "202",
-      "building": null,
-      "unavailabilities": []
+      "active": true,
+      "building": 1
     },
     {
       "id": 3,
+      "roomName": "204",
       "active": true,
-      "roomName": "203",
-      "building": null,
-      "unavailabilities": []
+      "building": 1
     },
     {
       "id": 4,
+      "roomName": "205",
       "active": true,
-      "roomName": "204",
-      "building": null,
-      "unavailabilities": []
+      "building": 1
     },
     {
       "id": 5,
+      "roomName": "X1",
+      "active": false,
+      "building": 1
+    },
+    {
+      "id": 6,
+      "roomName": "207",
       "active": true,
-      "roomName": "205",
-      "building": null,
-      "unavailabilities": []
+      "building": 1
+    },
+    {
+      "id": 100,
+      "roomName": "X2",
+      "active": false,
+      "building": 1
+    },
+    {
+      "id": 101,
+      "roomName": "X3",
+      "active": false,
+      "building": 1
+    },
+    {
+      "id": 122,
+      "roomName": "209",
+      "active": true,
+      "building": 1
+    },
+    {
+      "id": 102,
+      "roomName": "203",
+      "active": true,
+      "building": 1
+    },
+    {
+      "id": 103,
+      "roomName": "206",
+      "active": true,
+      "building": 1
+    },
+    {
+      "id": 142,
+      "roomName": "214",
+      "active": true,
+      "building": 1
     }
   ],
   "settings": [
@@ -237,390 +1605,488 @@
   ],
   "skills": [
     {
+      "id": 4,
+      "name": "AngularJS",
+      "active": 1
+    },
+    {
       "id": 1,
       "name": "Core Java",
-      "active": true
+      "active": 1
     },
     {
       "id": 2,
-      "name": ".NET Core",
-      "active": true
-    },
-    {
-      "id": 3,
-      "name": "jUnit",
-      "active": true
-    },
-    {
-      "id": 4,
-      "name": "Amazon Web Services",
-      "active": true
+      "name": "JUnit",
+      "active": 1
     },
     {
       "id": 5,
-      "name": "Google Cloud Platform",
-      "active": true
+      "name": "Selenium/WebDriver",
+      "active": 1
+    },
+    {
+      "id": 3,
+      "name": "Spring",
+      "active": 1
     },
     {
       "id": 6,
-      "name": "Pivotal Cloud Foundry",
-      "active": true
+      "name": "XYZ",
+      "active": 1
     },
     {
-      "id": 7,
-      "name": "HTML/CSS/JS",
-      "active": true
+      "id": 32,
+      "name": "Salesforce",
+      "active": 1
     },
     {
-      "id": 8,
-      "name": "Angular(2+)",
-      "active": true
+      "id": 47,
+      "name": "Core SDET",
+      "active": 1
     },
     {
-      "id": 9,
-      "name": "Selenium",
-      "active": true
+      "id": 50,
+      "name": "Java Servlets",
+      "active": 1
     },
     {
-      "id": 10,
-      "name": "Web Services",
-      "active": true
+      "id": 51,
+      "name": "JSP",
+      "active": 1
     },
     {
-      "id": 11,
+      "id": 78,
+      "name": "C++",
+      "active": 1
+    },
+    {
+      "id": 25,
+      "name": "Oracle SQL",
+      "active": 1
+    },
+    {
+      "id": 48,
+      "name": "JDBC",
+      "active": 1
+    },
+    {
+      "id": 49,
+      "name": "HTML",
+      "active": 1
+    },
+    {
+      "id": 52,
+      "name": "Freemarker",
+      "active": 1
+    },
+    {
+      "id": 53,
+      "name": "CSS",
+      "active": 1
+    },
+    {
+      "id": 54,
+      "name": "jQuery",
+      "active": 1
+    },
+    {
+      "id": 55,
       "name": "Hibernate",
-      "active": true
+      "active": 1
     },
     {
-      "id": 12,
-      "name": "Spring Framework",
-      "active": true
+      "id": 56,
+      "name": "REST",
+      "active": 1
     },
     {
-      "id": 13,
-      "name": "Spring Boot",
-      "active": true
+      "id": 57,
+      "name": "SOAP",
+      "active": 1
+    },
+    {
+      "id": 59,
+      "name": "ASP.NET MVC",
+      "active": 1
+    },
+    {
+      "id": 60,
+      "name": "ASP.NET WEB API",
+      "active": 1
+    },
+    {
+      "id": 58,
+      "name": "C#",
+      "active": 1
+    },
+    {
+      "id": 66,
+      "name": "ADO.NET",
+      "active": 1
+    },
+    {
+      "id": 62,
+      "name": "MSTest",
+      "active": 1
+    },
+    {
+      "id": 67,
+      "name": "T-SQL",
+      "active": 1
+    },
+    {
+      "id": 65,
+      "name": "Entity Framework",
+      "active": 1
+    },
+    {
+      "id": 63,
+      "name": "xUnit",
+      "active": 1
+    },
+    {
+      "id": 64,
+      "name": "NLog",
+      "active": 1
+    },
+    {
+      "id": 61,
+      "name": "IIS",
+      "active": 1
+    },
+    {
+      "id": 69,
+      "name": "TestNG",
+      "active": 1
+    },
+    {
+      "id": 72,
+      "name": "Manual Testing",
+      "active": 1
+    },
+    {
+      "id": 70,
+      "name": "Pyhton",
+      "active": 1
+    },
+    {
+      "id": 71,
+      "name": "UFT",
+      "active": 1
+    },
+    {
+      "id": 68,
+      "name": "Cucumber",
+      "active": 1
+    },
+    {
+      "id": 73,
+      "name": "C",
+      "active": 1
+    },
+    {
+      "id": 46,
+      "name": "Core .NET",
+      "active": 1
+    },
+    {
+      "id": 26,
+      "name": "Microservices",
+      "active": 1
+    },
+    {
+      "id": 27,
+      "name": "Big Data",
+      "active": 1
+    },
+    {
+      "id": 28,
+      "name": "Dynamics CRM",
+      "active": 1
+    },
+    {
+      "id": 29,
+      "name": "Oracle Fusion",
+      "active": 1
+    },
+    {
+      "id": 30,
+      "name": "PEGA",
+      "active": 1
+    },
+    {
+      "id": 31,
+      "name": "GO",
+      "active": 1
     }
   ],
   "trainers": [
     {
-      "id": 1,
-      "firstName": "Arun",
-      "lastName": "Kumar",
-      "skills": [],
-      "certifications": null,
+      "firstName": "August",
+      "lastName": "Duet",
+      "email": "august.duet@revature.com",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "id": 1,
+      "skills": [
+        4,
+        1,
+        2,
+        3,
+        50,
+        51,
+        25,
+        48,
+        49,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        26
+      ],
+      "preferredLocation": 4
     },
     {
       "id": 2,
-      "firstName": "August",
-      "lastName": "Duet",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Fred",
+      "lastName": "Belotte",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": "fred.belotte@revature.com"
     },
     {
       "id": 3,
-      "firstName": "Bharath",
-      "lastName": "K ",
-      "skills": [],
-      "certifications": null,
-      "active": true,
+      "firstName": "Joe",
+      "lastName": "Kirkbride",
+      "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 4,
-      "firstName": "Blake",
-      "lastName": "Kruppa",
-      "skills": [],
-      "certifications": null,
-      "active": true,
+      "firstName": "Brian",
+      "lastName": "Connolly",
+      "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 5,
-      "firstName": "Carolyn",
-      "lastName": "Rehm",
-      "skills": [],
-      "certifications": null,
-      "active": true,
+      "firstName": "Taylor",
+      "lastName": "Kemper",
+      "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 6,
-      "firstName": "Emily",
-      "lastName": "Higgins",
-      "skills": [],
-      "certifications": null,
-      "active": true,
+      "firstName": "Patrick",
+      "lastName": "Walsh",
+      "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 7,
-      "firstName": "Fred",
-      "lastName": "Belotte",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Yuvi",
+      "lastName": "Damodaran",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 8,
-      "firstName": "Genesis",
-      "lastName": "Bonds",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Steven",
+      "lastName": "Kelsey",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 9,
-      "firstName": "Jason Matt",
-      "lastName": "Knighten",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Ryan",
+      "lastName": "Lessley",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 10,
-      "firstName": "Mehrab",
-      "lastName": "Rahman",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Richard",
+      "lastName": "Orr",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 11,
-      "firstName": "Mitch",
-      "lastName": "Goshorn",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Nicholas",
+      "lastName": "Jurczak",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 12,
-      "firstName": "Nicholas",
-      "lastName": "Jurczak",
-      "skills": [],
-      "certifications": null,
-      "active": true,
+      "firstName": "Ankit",
+      "lastName": "Garg",
+      "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 13,
-      "firstName": "Nicholas",
-      "lastName": "Escalona",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Genesis",
+      "lastName": "Bonds",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
       "id": 14,
-      "firstName": "Peter",
-      "lastName": "Alagna",
-      "skills": [],
-      "certifications": null,
+      "firstName": "Emily",
+      "lastName": "Higgins",
       "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
+    },
+    {
+      "id": 75,
+      "firstName": "Carolyn",
+      "lastName": "Rehm",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 95,
+      "firstName": "Mitch",
+      "lastName": "Goshorn",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 55,
+      "firstName": "Trevin",
+      "lastName": "Chester",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 56,
+      "firstName": "William",
+      "lastName": "Gentry",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 57,
+      "firstName": "Nicholas",
+      "lastName": "Escalona",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 58,
+      "firstName": "Trainer",
+      "lastName": "3",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 76,
+      "firstName": "Jason \"Matt\"",
+      "lastName": "Knighten",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 77,
+      "firstName": "Bharath",
+      "lastName": "K.",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 78,
+      "firstName": "Pushpinder",
+      "lastName": "Kaur",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 96,
+      "firstName": "Wezley",
+      "lastName": "Singleton",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 97,
+      "firstName": "Pushpinder",
+      "lastName": "Kaur",
+      "active": false,
+      "resume": null,
+      "email": ""
     },
     {
       "id": 15,
-      "firstName": "Pushpinder",
-      "lastName": "Kaur",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 16,
-      "firstName": "Richard",
-      "lastName": "Orr",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 17,
-      "firstName": "Ryan",
-      "lastName": "Lessley",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 18,
-      "firstName": "Satish",
-      "lastName": "Reddy",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 19,
-      "firstName": "Steven",
-      "lastName": "Kelsey",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 20,
-      "firstName": "Trevin",
-      "lastName": "Chester",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 21,
-      "firstName": "Wezley",
-      "lastName": "Singleton",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 22,
-      "firstName": "William",
-      "lastName": "Gentry",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 23,
-      "firstName": "Yuvi",
-      "lastName": "Damodaran",
-      "skills": [],
-      "certifications": null,
-      "active": true,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 24,
-      "firstName": "Ankit",
-      "lastName": "Garg",
-      "skills": [],
-      "certifications": null,
-      "active": false,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 25,
-      "firstName": "Brian",
-      "lastName": "Connolly",
-      "skills": [],
-      "certifications": null,
-      "active": false,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 26,
-      "firstName": "Joe",
-      "lastName": "Kirkbride",
-      "skills": [],
-      "certifications": null,
-      "active": false,
-      "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
-    },
-    {
-      "id": 27,
       "firstName": "Karan",
       "lastName": "Dhirar",
-      "skills": [],
-      "certifications": null,
       "active": false,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
-      "id": 28,
-      "firstName": "Patrick",
-      "lastName": "Walsh",
-      "skills": [],
-      "certifications": null,
-      "active": false,
+      "id": 35,
+      "firstName": "Peter",
+      "lastName": "Alagna",
+      "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
     },
     {
-      "id": 29,
-      "firstName": "Taylor",
-      "lastName": "Kemper",
-      "skills": [],
-      "certifications": null,
-      "active": false,
+      "id": 36,
+      "firstName": "Mehrab",
+      "lastName": "Rahman",
+      "active": true,
       "resume": null,
-      "preferredLocation": null,
-      "unavailabilities": []
+      "email": ""
+    },
+    {
+      "id": 37,
+      "firstName": "Blake",
+      "lastName": "Kruppa",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 38,
+      "firstName": "Arun",
+      "lastName": "Kumar",
+      "active": true,
+      "resume": null,
+      "email": ""
+    },
+    {
+      "id": 115,
+      "firstName": "Satish",
+      "lastName": "Reddy",
+      "active": true,
+      "resume": null,
+      "email": ""
     }
   ]
 }

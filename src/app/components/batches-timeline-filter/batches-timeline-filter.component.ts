@@ -97,10 +97,9 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.addressControllerService.findAll().subscribe(
       result => {
         this.locationData = [];
-        this.locationData.push('Any');
         for (let i = 0; i < result.length; i++) {
           const location = result[i];
-          const value = location.name;
+          const value = location;
           if (value != null) {
             this.locationData.push(value);
           }

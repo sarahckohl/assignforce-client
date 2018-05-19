@@ -27,7 +27,7 @@ export class EditFocusComponent implements OnInit {
   skills: Skill[] = [];
 
   //The array of selected skills
-  selectedSkills: Skill[] = [];
+  selectedSkills: number[] = [];
 
   //Sets up the modal with all the data it will need to occomplish its task.
   ngOnInit() {
@@ -57,7 +57,7 @@ export class EditFocusComponent implements OnInit {
   //Sends the updated focus to the backend to be processed
   editFocus(): void {
     console.log('We are Editing a focus ' + this.data.name);
-    this.focus.skills = this.selectedSkills;
+    //this.focus.skills = this.selectedSkills;
     console.log(this.focus.skills);
     this.focusControllerService
       .update(this.focus)

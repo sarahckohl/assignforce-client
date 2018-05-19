@@ -12,17 +12,18 @@ export class BatchControllerService {
   private batchController = environment.apiUrls.batchController;
 
   public create(batch: Batch): Observable<Batch> {
-    return this.http.post<Batch>(this.batchController.baseUrl + this.batchController.create, {
+    console.log(batch);
+    return this.http.post<Batch>(`${this.batchController.baseUrl}${this.batchController.create}`, {
       name: batch.name,
       startDate: batch.startDate,
       endDate: batch.endDate,
-      curriculum: `${environment.apiUrls.curriculumController.baseUrl}/${batch.curriculum.id}`,
-      focus: `${environment.apiUrls.focusController.baseUrl}/${batch.focus.id}`,
-      trainer: `${environment.apiUrls.trainerController.baseUrl}/${batch.trainer.id}`,
-      skills: this.parseSkills(batch.skills),
-      address: `${environment.apiUrls.addressController.baseUrl}/${batch.address.id}`,
-      building: `${environment.apiUrls.buildingController.baseUrl}/${batch.building.id}`,
-      room: `${environment.apiUrls.roomController.baseUrl}/${batch.room.id}`
+      curriculum: batch.curriculum,
+      trainer: ((batch.trainer) ? batch.trainer : null),
+      cotrainer: ((batch.cotrainer) ? batch.cotrainer : null),
+      skills: batch.skills,
+      address: ((batch.address) ? batch.address : null),
+      building: ((batch.building) ? batch.building : null),
+      room: ((batch.room) ? batch.room : null)
     });
   }
   public update(batch: Batch): Observable<Batch> {
@@ -30,20 +31,22 @@ export class BatchControllerService {
       name: batch.name,
       startDate: batch.startDate,
       endDate: batch.endDate,
-      curriculum: `${environment.apiUrls.curriculumController.baseUrl}/${batch.curriculum.id}`,
-      focus: `${environment.apiUrls.focusController.baseUrl}/${batch.focus.id}`,
-      trainer: `${environment.apiUrls.trainerController.baseUrl}/${batch.trainer.id}`,
-      skills: this.parseSkills(batch.skills),
-      address: `${environment.apiUrls.addressController.baseUrl}/${batch.address.id}`,
-      building: `${environment.apiUrls.buildingController.baseUrl}/${batch.building.id}`,
-      room: `${environment.apiUrls.roomController.baseUrl}/${batch.room.id}`
+      curriculum: batch.curriculum,
+      trainer: ((batch.trainer) ? batch.trainer : null),
+      cotrainer: ((batch.cotrainer) ? batch.cotrainer : null),
+      skills: batch.skills,
+      address: batch.address,
+      building: ((batch.building) ? batch.building : null),
+      room: ((batch.room) ? batch.room : null)
     });
   }
   public findAll(): Observable<Batch[]> {
     return this.http.get<Batch[]>(this.batchController.baseUrl + this.batchController.findAll);
   }
-  public remove(id: number): Observable<Batch> {
-    return this.http.delete<Batch>(this.batchController.baseUrl + this.batchController.remove + id);
+  public remove(id: number) {
+    this.http
+    .delete<Batch>(this.batchController.baseUrl + this.batchController.remove + id)
+    .subscribe((res) => {});
   }
 
   public find(id: number): Observable<Batch> {
@@ -51,8 +54,6 @@ export class BatchControllerService {
   }
 
   private parseSkills(skills) {
-    return skills.map(skill => {
-      return `${this.batchController.baseUrl}/skills/${skill.id}`;
-    });
+    return skills.map(skill => skill.id);
   }
 }

@@ -4,11 +4,11 @@ import { Address } from './Address';
 export class Building {
   active: boolean;
   id: number;
-  address: Address;
+  address: number;
   name: string;
-  rooms: { id: number }[];
+  rooms: number[];
 
-  constructor(active: boolean, id: number, address: Address, name: string, rooms: { id: number }[]) {
+  constructor(active: boolean, id: number, address: number, name: string, rooms: number[]) {
     this.active = active;
     this.id = id;
     this.address = address;

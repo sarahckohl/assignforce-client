@@ -48,9 +48,7 @@ export class AddFocusComponent implements OnInit {
 
   //Sends the Focus to the server to be added.
   addFocus(): void {
-    console.log('We are Adding a focus ' + this.focus.name);
-    console.log(this.focus);
-    this.focus.skills = this.selectedSkills;
+    this.focus.skills = this.selectedSkills.map(skill => skill.id);
     this.focusControllerService
       .create(this.focus)
       .toPromise()

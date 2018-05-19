@@ -19,7 +19,8 @@ export class TrainersAddComponent implements OnInit {
     active: true,
     resume: '',
     preferredLocation: null,
-    unavailabilities: []
+    unavailabilities: [],
+    email: ''
   };
 
   data = {

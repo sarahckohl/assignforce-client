@@ -4,9 +4,9 @@ export class Focus {
   id: number;
   name: string;
   active: boolean;
-  skills: Skill[];
+  skills: number[];
 
-  constructor(id: number, name: string, active: boolean, skills: Skill[]) {
+  constructor(id: number, name: string, active: boolean, skills: number[]) {
     this.id = id;
     this.name = name;
     this.active = active;

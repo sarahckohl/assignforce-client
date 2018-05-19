@@ -11,15 +11,15 @@ export class RoomControllerService {
   private roomController = environment.apiUrls.roomController;
 
   private generateDTO(room: Room): any {
-    const unavailabilities: string[] = [];
+    const unavailabilities: number[] = [];
     room.unavailabilities.forEach(unavail => {
-      unavailabilities.push(environment.apiUrls.roomController.baseUrl + '/' + unavail.id);
+      unavailabilities.push(unavail);
     });
     return {
       id: room.id,
       active: room.active,
       roomName: room.roomName,
-      building: environment.apiUrls.buildingController.baseUrl + '/' + room.building.id,
+      building: room.building,
       unavailabilities: unavailabilities
     };
   }

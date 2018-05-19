@@ -18,7 +18,7 @@ export class FocusControllerService {
       skills: []
     };
     focus.skills.forEach(s => {
-      msg.skills.push(environment.apiUrls.skillController.baseUrl + '/' + s.id);
+      msg.skills.push(s);
     });
     return msg;
   }

@@ -17,6 +17,14 @@ import { Trainer } from '../../model/Trainer';
 import { Building } from '../../model/Building';
 import { Room } from '../../model/Room';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { AuthService } from '../../services/auth/auth.service';
+
+export enum BatchMode {
+  Create = 1,
+  Edit
+}
 
 @Component({
   selector: 'app-batches',
@@ -34,6 +42,8 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
   trainers: Trainer[] = [];
   buildings: Building[] = [];
   rooms: Room[] = [];
+  skills: Skill[] = [];
+  buildingRooms: Room[] = [];
   selectedLocation = null;
   selectedBuilding = null;
   selectedCurriculum = null;
@@ -58,7 +68,6 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     'Checkbox',
     'Name',
     'Curriculum',
-    'Focus',
     'Trainer/Co-Trainer',
     'Location',
     'Building',
@@ -72,13 +81,21 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
   dataSource = new MatTableDataSource(this.allBatches);
   secondHeader = 'Loading...';
 
+  BatchMode = BatchMode;
+  batchMode: BatchMode = BatchMode.Create;
+
+  batchModel = new Batch();
+
   constructor(
     private fb: FormBuilder,
     private curriculumService: CurriculumControllerService,
     private addressService: AddressControllerService,
     private trainerService: TrainerControllerService,
     private batchService: BatchControllerService,
-    private buildingService: BuildingControllerService
+    private buildingService: BuildingControllerService,
+    private roomService: RoomControllerService,
+    private skillsService: SkillControllerService,
+    public auth0: AuthService
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -110,17 +127,13 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
         this.isLoading = false;
         console.log(error);
       });
-    // this.curriculumService
-    //   .findAll()
-    //   .toPromise()
-    //   .then(response => {
-    //     this.focuses = response;
-    //     this.isLoading = false;
-    //   })
-    //   .catch(error => {
-    //     this.isLoading = false;
-    //     console.log(error);
-    //   });
+    this.trainerService
+      .findAll()
+      .toPromise()
+      .then((response: Trainer[]) => {
+        this.trainers = response;
+        this.isLoading = false;
+      });
     this.batchService
       .findAll()
       .toPromise()
@@ -146,18 +159,36 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
         this.isLoading = false;
         console.log(error);
       });
+    this.roomService
+      .findAll()
+      .toPromise()
+      .then(response => {
+        this.rooms = response;
+        this.isLoading = false;
+      })
+      .catch(error => {
+        this.isLoading = false;
+        console.log(error);
+      });
+
+    this.skillsService
+      .findAll()
+      .toPromise()
+      .then(response => {
+        this.skills = response;
+        this.isLoading = false;
+      });
 
     // ------------ Batch Form Validation --------------
     this.batchForm = this.fb.group({
       curriculum: [null, Validators.required],
-      focus: [null],
-      skills: [[], Validators.required],
+      skills: [[]],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       batchName: [null],
-      trainer: [null, Validators.required],
+      trainer: [null],
       cotrainer: [null],
-      location: [null, Validators.required],
+      location: [null],
       building: [null],
       room: [null]
     });
@@ -165,14 +196,19 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     // ----- Observable for form changes in Create Batches panel ------
     this.batchForm.valueChanges.subscribe(data => {
       const startDate = data.startDate;
-      const endDate = data.endDate;
-      const curriculum = data.curriculum;
-      const focus = data.focus;
-      this.genBatchName = this.createBatchName(curriculum, focus, startDate);
-
-      if (startDate) {
-        this.genEndDate = this.computeDefaultEndDate(startDate);
-        this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, endDate);
+      const endDate = new Date(data.endDate).getTime();
+      const curriculum = this.curriculums.find(c => c.id === data.curriculum);
+      if (this.batchMode === BatchMode.Create) {
+        this.batchModel.name = this.createBatchName(curriculum, null, startDate);
+        if (startDate) {
+          this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate);
+          this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, this.batchModel.endDate);
+        }
+      } else if(this.batchMode === BatchMode.Edit) {
+        if(startDate) {
+          this.batchModel.name = this.createBatchName(curriculum, null, startDate);
+          this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, endDate);
+        }
       }
     });
   }
@@ -182,56 +218,27 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     // ------- Populating Subsequent fields based on selection ---------
 
     // Checking if Location has been selected, if so, populate buildings
-    if (this.batchForm.value.location) {
-      const locationName = this.batchForm.value.location.name;
-      if (locationName && locationName !== this.selectedLocation) {
-        this.selectedLocation = locationName;
-
-        this.buildings.forEach(building => {
-          if (building.address && building.address.name === this.selectedLocation) {
-            this.buildingsOfALocation.push(building);
-          }
-        });
-      }
+    if (this.batchModel.address && this.selectedLocation !== this.batchModel.address) {
+      this.selectedLocation = this.batchModel.address;
+      this.buildings.forEach(building => {
+        if (building.address && building.address === this.batchModel.address) {
+          this.buildingsOfALocation.push(building);
+        }
+      });
     }
 
     // Checking if Building has been selected, if so, populate rooms
-    if (this.batchForm.value.building) {
-      const buildingName = this.batchForm.value.building.name;
-      if (buildingName && buildingName !== this.selectedBuilding) {
-        this.selectedBuilding = buildingName;
-        this.rooms = this.batchForm.value.building.rooms;
+      if (this.batchModel.building && this.batchModel.building !== this.selectedBuilding) {
+        this.selectedBuilding = this.batchModel.building;
+        this.buildingRooms = this.rooms.filter(rm => rm.building === this.selectedBuilding.id);
       }
-    }
 
     // Checking if Curriculum has been selected, if so, populate focuses and skills
-    if (this.batchForm.value.curriculum) {
-      const curriculumName = this.batchForm.value.curriculum.name;
-      if (curriculumName && curriculumName !== this.selectedCurriculum) {
-        this.selectedCurriculum = curriculumName;
-        this.focuses = this.batchForm.value.curriculum.focuses;
-        this.skillsList = this.batchForm.value.curriculum.skills;
-      }
-    }
-
-    // Checking if Focus has been selected, if so, append focus skills to core skills
-    if (this.batchForm.value.focus) {
-      const focusName = this.batchForm.value.focus.name;
-      if (focusName && focusName !== this.selectedFocus) {
-        this.selectedFocus = focusName;
-
-        this.batchForm.value.focus.skills.forEach(skill => {
-          let canAdd = true;
-          this.skillsList.forEach(s => {
-            if (s.name === skill.name) {
-              canAdd = false;
-            }
-          });
-          if (canAdd) {
-            this.skillsList.push(skill);
-          }
-        });
-      }
+    if (this.batchModel.curriculum && 
+      this.batchModel.curriculum !== this.selectedCurriculum &&
+      this.batchMode !== BatchMode.Edit) {
+      this.selectedCurriculum = this.batchModel.curriculum;
+      this.batchModel.skills = <any>this.selectSkills(this.batchModel.curriculum);
     }
   }
 
@@ -239,34 +246,36 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     this.dataSource.sort = this.sort;
   }
 
+  entityLookup(entityContainerName: string, entityId: number) {
+    return this[entityContainerName].find(e => e.id === entityId);
+  }
+
   // ------ Create a new batch using provided valid form data ------
   onSubmit() {
-    this.newBatch = new Batch(
-      0,
-      this.batchForm.value.batchName,
-      this.batchForm.value.startDate,
-      this.batchForm.value.endDate,
-      this.batchForm.value.curriculum,
-      this.batchForm.value.focus,
-      this.batchForm.value.trainer,
-      this.batchForm.value.cotrainer,
-      this.batchForm.value.skills,
-      '',
-      this.batchForm.value.location,
-      this.batchForm.value.building,
-      this.batchForm.value.room
-    );
-    console.log(this.newBatch);
-    this.batchService
-      .create(this.newBatch)
-      .toPromise()
-      .then(b => {
-        // tslint:disable-next-line:no-unused-expression
-        location.reload();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (this.batchMode === BatchMode.Create) {
+      this.batchModel.id = 0;
+      this.batchService
+        .create(this.batchModel)
+        .toPromise()
+        .then(b => {
+          // tslint:disable-next-line:no-unused-expression
+          location.reload();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else if (this.batchMode === BatchMode.Edit) {
+      this.batchService
+        .update(this.batchModel)
+        .toPromise()
+        .then(b => {
+          // tslint:disable-next-line:no-unused-expression
+          location.reload();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   // --------------------------------- Methods for auto generating form values -------------------------------------
@@ -283,11 +292,11 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   //Calculate the Date of Ten weeks later from start date
-  computeDefaultEndDate(startDate: number): number {
+  computeDefaultEndDate(startDate: number): Date {
     const dateValue = new Date(startDate);
     if (dateValue) {
-      const tenWeeks = 1000 * 60 * 60 * 24 * 7 * 10 + 1000 * 60 * 60 * 24;
-      return dateValue.valueOf() + tenWeeks;
+      const tenWeeks = 1000 * 60 * 60 * 24 * 7 * 10 + 1000 * 60 * 60 * 24 * 4;
+      return new Date(dateValue.valueOf() + tenWeeks);
     }
   }
 
@@ -316,19 +325,33 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     }
     return '';
   }
+
+  selectSkills(currId: number): number[] {
+    const curriculum = this.curriculums.find((c: Curriculum) => c.id === currId);
+    return this.skills
+      .filter(skill => curriculum.skills.includes(skill.id))
+      .map(skill => skill.id);
+  }
+
   // -------------------------------------------- End auto generate methods -----------------------------------------
 
   // --------------------------------------- Begin Methods for All Batches Panel ------------------------------------
-  editBatch() {
-    //TODO
+  editBatch(batch: Batch) {
+    console.log(batch);
+    this.batchMode = BatchMode.Edit;
+    this.firstHeader = 'Edit Batch';
+    this.batchModel = Object.assign({}, batch);
+    this.batchForm.clearValidators();
+    this.batchForm.markAsDirty();
   }
 
   cloneBatch() {
     //TODO
   }
 
-  deleteBatch() {
-    //TODO
+  deleteBatch(batch: Batch) {
+    this.batchService.remove(batch.id);
+    location.reload();
   }
   // ---------------------------------------- End Methods for All Batches Panel -------------------------------------
 }

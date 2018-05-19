@@ -24,18 +24,10 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Focus</mat-label>
-        <mat-select id="focus" name="focus" (change)="onFilterChange($event)" [(ngModel)]="focusFilter">
-          <mat-option *ngFor="let foc of focusData" value="{{foc}}">
-            {{foc}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
         <mat-label>Location</mat-label>
         <mat-select id="location" name="location" (change)="onFilterChange($event)" [(ngModel)]="locationFilter">
-          <mat-option *ngFor="let loc of locationData" value="{{loc}}">
-            {{loc}}
+          <mat-option *ngFor="let loc of locationData" value="{{loc.id}}">
+            {{loc.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>

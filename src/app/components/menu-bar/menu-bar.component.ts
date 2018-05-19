@@ -12,40 +12,77 @@ import { AuthService } from '../../services/auth/auth.service';
 export class MenuBarComponent implements OnInit {
   selectedTab = 0;
 
-  tabs = ['overview', 'batches', 'locations', 'curricula', 'trainers', 'profile', 'reports', 'settings'];
+  tabs = [
+    {
+      label:'overview',
+      roles: []
+    }, 
+    {
+      label: 'batches',
+      roles: []
+    },
+    {
+      label: 'locations',
+      roles: []
+    },
+    {
+      label: 'curricula',
+      roles: []
+    },
+    {
+      label: 'trainers',
+      roles: []
+    },
+    {
+      label: 'profile',
+      roles: ['Trainer']
+    },
+    {
+      label: 'reports',
+      roles: []
+    },
+    {
+      label: 'settings',
+      roles: []
+    }
+  ];
 
   id = 'undefined';
 
   check = true;
 
-  constructor(private router: Router, private route: ActivatedRoute, private auth0: AuthService) {}
+  constructor(private router: Router, private route: ActivatedRoute, public auth0: AuthService) {}
 
   logout() {
     this.auth0.logout();
   }
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.selectedTab = this.tabs.indexOf(event.url.split('/')[1]);
-        if (this.router.url.includes('profile')) {
-          this.id = this.router.url.split('/')[2];
-        }
-      }
-    });
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.selectedTab = this.tabs.findIndex(tab => tab.label === event.url.split('/')[1]);
+    //     if (this.router.url.includes('profile')) {
+    //       this.id = this.router.url.split('/')[2];
+    //     }
+    //   }
+    // });
   }
 
   selectTab(evt) {
-    console.log(evt);
     if (this.id === 'undefined') {
-      if (localStorage.getItem('user-email')) {
-        this.id = localStorage.getItem('user-email');
-      }
+      this.auth0
+        .getProfile((err, profile) => {
+          if(err) {
+            console.log(err);
+          } else {
+            this.id = profile.name;
+          }
+        })
     }
-    if (this.selectedTab === this.tabs.indexOf('profile')) {
+    if (this.selectedTab === this.tabs.findIndex(tab => tab.label === 'profile')) {
       this.router.navigate([`/profile/${this.id}`]);
     } else {
-      this.router.navigate([this.tabs[evt.index]]);
+      this.router.navigate([this.tabs[evt.index].label]);
     }
   }
 }

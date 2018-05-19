@@ -1,32 +1,30 @@
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Trainer } from '../../../model/Trainer';
 import { Skill } from '../../../model/Skill';
 import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
+import { SkillControllerService } from '../../../services/api/skill-controller/skill-controller.service';
 
 @Component({
   selector: 'app-trainer-item',
   templateUrl: './trainer-item.component.html',
   styleUrls: ['./trainer-item.component.css']
 })
-export class TrainerItemComponent implements OnInit, DoCheck {
-  @Input() trainer: Trainer = new Trainer(0, '', '', [], [], null, '', []);
+export class TrainerItemComponent implements OnInit {
+  @Input() trainer: Trainer;
   isManager: boolean;
-  check = false;
-  skillsList = '';
+  allSkills: Skill[] = [];
 
-  constructor(private trainerService: TrainerControllerService) {}
+  constructor(private trainerService: TrainerControllerService,
+    private skillsService: SkillControllerService) {}
 
   ngOnInit() {
     this.isManager = true;
-  }
-
-  ngDoCheck() {
-    if (this.trainer.skills && !this.check) {
-      this.listSkills(this.trainer.skills);
-      this.check = true;
-    }
+    this.skillsService
+      .findAll()
+      .toPromise()
+      .then(response => this.allSkills = response)
   }
 
   removeTrainer(trainer: Trainer) {
@@ -59,20 +57,19 @@ export class TrainerItemComponent implements OnInit, DoCheck {
       });
   }
 
-  listSkills(skills: Skill[]) {
-    this.skillsList = '';
-    const skillsArray = [];
+  listSkills() {
 
-    for (let i = 0; i < skills.length; i++) {
-      skillsArray.push(skills[i].name);
+    if(!this.trainer.skills || this.trainer.skills.length === 0) {
+      return 'None';
     }
 
-    this.skillsList = skillsArray.join(', ');
-
-    if (this.skillsList === '' || skills.length === 0) {
-      this.skillsList = 'None';
-    }
-
-    console.log(this.skillsList);
+    const skillsArray = this.allSkills
+      .filter(aSkill =>{
+        if(this.trainer.skills){
+          return this.trainer.skills.findIndex(tSkill => aSkill.id === tSkill) >= 0;
+        }
+        return false;
+      });
+      return skillsArray.map(skill => skill.name).join(', ');
   }
 }

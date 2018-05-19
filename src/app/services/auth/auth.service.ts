@@ -31,7 +31,8 @@ export class AuthService {
         scope: environment.auth0.scope
       }
     },
-    allowSignUp: false
+    allowSignUp: false,
+    allowConnections: false
   });
 
   public showLogin(): void {
@@ -42,8 +43,9 @@ export class AuthService {
   public handleAuthentication(): void {
     this.lock.on('authenticated', authResult => {
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+        console.log(profile);
         if (authResult && authResult.accessToken && authResult.idToken) {
-          console.log(profile);
+          this.userProfile = profile;
           this.setSession(authResult);
           this.router.navigate([this.urlService.getOverviewUrl()]);
         } else if (error) {
@@ -57,14 +59,11 @@ export class AuthService {
     // Set the time that the Access Token will expire at
     const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
 
-    console.log(authResult);
-
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    this.getProfile((error, profile) => {
-      console.log(localStorage.getItem('user-profile'));
-    });
+    localStorage.setItem('roles', authResult.idTokenPayload['https://revature.com/roles']);
+    localStorage.setItem('groups', authResult.idTokenPayload['https://revature.com/groups']);
   }
 
   public logout(): void {
@@ -83,9 +82,12 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  public userHasRole(expectedRoles: Array<String>): boolean {
-    //todo
-    return true;
+  public userHasRole(expectedRoles: Array<string>): boolean {
+    const userRoles = localStorage.getItem('roles');
+    if(!this.isAuthenticated()) {
+      return false;
+    }
+    return expectedRoles.every(value => userRoles.indexOf(value) >=0);
   }
 
   public getProfile(cb): void {
@@ -95,13 +97,13 @@ export class AuthService {
     }
 
     const self = this;
-    this.lock.getUserInfo(accessToken, (error, profile) => {
-      if (profile) {
-        self.userProfile = profile;
-        localStorage.setItem('user-email', profile.name);
-      }
-      cb(error, profile);
-    });
+    if(!this.userProfile) {
+      this.lock.getUserInfo(accessToken, (error, profile) => {
+        cb(error, profile);
+      });
+    } else {
+      cb(null, this.userProfile);
+    }
   }
 
   public getToken(): string {

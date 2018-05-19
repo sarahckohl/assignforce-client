@@ -5,6 +5,8 @@ import { AddFocusComponent } from '../add-focus/add-focus.component';
 import { EditFocusComponent } from '../edit-focus/edit-focus.component';
 import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
 import { Focus } from '../../model/Focus';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { Skill } from '../../model/Skill';
 
 @Component({
   selector: 'app-foci',
@@ -12,10 +14,13 @@ import { Focus } from '../../model/Focus';
   styleUrls: ['./foci.component.css']
 })
 export class FociComponent implements OnInit {
-  constructor(private dialog: MatDialog, private focusControllerService: FocusControllerService) {}
+  constructor(private dialog: MatDialog, 
+    private focusControllerService: FocusControllerService,
+    private skillService: SkillControllerService) {}
 
   //The array of focuses to be displayed in the list
   focusData: Focus[] = [];
+  skills: Skill[] = [];
 
   //Sets up all the focuses that will need to be displayed
   ngOnInit() {
@@ -25,6 +30,21 @@ export class FociComponent implements OnInit {
       .then(data => {
         this.focusData = data;
       });
+    this.skillService
+      .findAll()
+      .toPromise()
+      .then(data => this.skills = data)
+  }
+
+  focusSkills(curriculum: Focus): Skill[] {
+    const filtered: Skill[] = [];
+    curriculum.skills.forEach(skill => {
+      const t = this.skills.find(s => s.id === skill);
+      if (t) {
+        filtered.push(t);
+      }
+    });
+    return filtered;
   }
 
   //Opens up the Add Focus Modal

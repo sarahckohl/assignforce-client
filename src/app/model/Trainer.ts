@@ -6,22 +6,25 @@ export class Trainer {
   id: number;
   firstName: string;
   lastName: string;
-  skills: Skill[];
+  skills: number[];
   certifications: any;
   active: boolean;
   resume: any;
-  preferredLocation: Address;
+  preferredLocation: number;
   unavailabilities: Unavailability[];
+  email: string;
 
   constructor(
     id: number,
     firstName: string,
     lastName: string,
-    skills: Skill[],
+    skills: number[],
     certifications: any,
     active: boolean,
     resume: any,
-    unavailabilities: Unavailability[]
+    unavailabilities: Unavailability[],
+    email: string,
+    preferredLocation: number
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -31,5 +34,7 @@ export class Trainer {
     this.active = active;
     this.resume = resume;
     this.unavailabilities = unavailabilities;
+    this.email = email;
+    this.preferredLocation = preferredLocation;
   }
 }

@@ -19,7 +19,7 @@ export class CurriculumControllerService {
       skills: []
     };
     curriculum.skills.forEach(s => {
-      msg.skills.push(environment.apiUrls.skillController.baseUrl + '/' + s.id);
+      msg.skills.push(environment.apiUrls.skillController.baseUrl + '/' + s);
     });
     return msg;
   }

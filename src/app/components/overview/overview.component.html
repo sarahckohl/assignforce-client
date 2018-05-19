@@ -38,33 +38,37 @@
   
             <!-- Curriculum Column -->
             <ng-container matColumnDef="curriculum">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Curriculum </mat-header-cell>
-              <mat-cell *matCellDef="let batchObj"> {{batchObj.curriculum}}</mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Curriculum </mat-header-cell>
+              <mat-cell *matCellDef="let batchObj"> 
+                <span *ngIf="curriculumList">
+                  {{ curriculumList[batchObj.curriculum - 1]?.name }}
+                </span>
+              </mat-cell>
             </ng-container>
   
             <!-- Trainers/CoTrainer Column -->
             <ng-container matColumnDef="trainer">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Co-Trainer </mat-header-cell>
-              <mat-cell *matCellDef="let batchObj">{{batchObj.trainer}}<br>
-                <div *ngIf="batchObj.cotrainer">{{batchObj.cotrainer.firstName}} {{batchObj.cotrainer.lastName}}</div></mat-cell>
+              <mat-cell *matCellDef="let batchObj">{{ trainerList[batchObj.trainer - 1]?.firstName }} {{ trainerList[batchObj.trainer - 1]?.lastName }}<br>
+                <div *ngIf="batchObj.cotrainer">{{ trainerList[batchObj.cotrainer - 1 ]?.firstName }} {{ trainerList[batchObj.cotrainer - 1 ]?.lastName }}</div></mat-cell>
             </ng-container>
   
             <!-- Location Column -->
             <ng-container matColumnDef="location">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
-              <mat-cell *matCellDef="let batchObj"> {{batchObj.location}}</mat-cell>
+              <mat-cell *matCellDef="let batchObj"> {{ addressList[batchObj.address - 1]?.name }}</mat-cell>
             </ng-container>
   
             <!-- Building Column -->
             <ng-container matColumnDef="building">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Building </mat-header-cell>
-              <mat-cell *matCellDef="let batchObj"><div *ngIf="batchObj.building">{{batchObj.building.name}}</div></mat-cell>
+              <mat-cell *matCellDef="let batchObj"><div *ngIf="batchObj.building && addressList[batchObj.address - 1]?.buildings?.length">{{ addressList[batchObj.address - 1].buildings[batchObj.building - 1]?.name }}</div></mat-cell>
             </ng-container>
-  
+
             <!-- Room Column -->
             <ng-container matColumnDef="room">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
-              <mat-cell *matCellDef="let batchObj"><div *ngIf="batchObj.room">{{batchObj.room.roomName}}</div></mat-cell>
+              <mat-cell *matCellDef="let batchObj"><div *ngIf="batchObj.room">{{ roomsList[batchObj.room - 1]?.roomName }}</div></mat-cell>
             </ng-container>
   
             <!-- Start Date Column -->

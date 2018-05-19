@@ -9,6 +9,7 @@ import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.com
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-location-delete-location-dialog',
@@ -162,7 +163,8 @@ export class LocationsComponent implements OnInit {
     public dialog: MatDialog,
     private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
-    private roomService: RoomControllerService
+    private roomService: RoomControllerService,
+    public auth0: AuthService
   ) {
     for (const location of this.locations) {
       this.expanded[location.id] = false;
@@ -190,21 +192,15 @@ export class LocationsComponent implements OnInit {
     this.roomService
       .findAll()
       .toPromise()
-      .then((rooms: Room[]) => (this.rooms = rooms));
+      .then((rooms: Room[]) => this.rooms = rooms);
   }
 
   locationBuildings(id: number) {
-    return this.buildings.filter((building: Building) => building.address.id === id);
+    return this.buildings.filter((building: Building) => building.address === id);
   }
 
   buildingRooms(building: Building): Room[] {
-    const filtered: Room[] = [];
-    building.rooms.forEach((roomRef: { id: number }) => {
-      const r = this.rooms.find((room: Room) => roomRef.id === room.id);
-      if (r) {
-        filtered.push(r);
-      }
-    });
+    const filtered = this.rooms.filter(rm => rm.building === building.id);
     return filtered;
   }
 

@@ -1,74 +1,62 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, AfterViewInit, AfterViewChecked, OnChanges, EventEmitter } from '@angular/core';
 
 import { Skill } from '../../model/Skill';
 import { Trainer } from '../../model/Trainer';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css']
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, OnChanges {
   // data
 
   lockSkills = true;
   disabled = true;
   skillsList: Skill[] = [];
+  allSkills: Skill[] = [];
   skill: Skill;
   @Input() trainer: Trainer;
-  @Input() displayTrainer: Trainer;
+  @Input() editable: boolean;
   loading: boolean;
+  @Output() skillsUpdated: EventEmitter<Trainer> = new EventEmitter<Trainer>();
 
   constructor(
     private skillService: SkillControllerService,
     private trainerService: TrainerControllerService,
-    private http: HttpClient
+    private http: HttpClient,
+    public auth0: AuthService
   ) {}
 
   ngOnInit() {
     this.getAllSkills();
   }
 
-  updateSkills() {
-    this.lockSkills = !this.lockSkills;
-    if (this.lockSkills) {
-      console.log('MADE IT HERE');
-      this.trainerService
-        .update(this.trainer)
-        .toPromise()
-        .then(trainer => {
-          this.http
-            .get(`https://hydra.cfapps.io/api/trainers/3/skills`)
-            .toPromise()
-            .then(resp => {
-              console.log(resp);
-            });
-          //this.trainer = trainer;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+  ngOnChanges(changes) {
+    if(changes.trainer) {
+      this.trainer = Object.assign({}, changes.trainer.currentValue);
     }
   }
 
-  // updateSkills() {
-  //   this.lockSkills = !this.lockSkills;
-  //   if (this.lockSkills === true) {
-  //     this.trainerService
-  //       .update(this.trainer)
-  //       .toPromise()
-  //       .then(trainer => {
-  //         console.log(trainer);
-  //         this.trainer = trainer;
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }
+  trainerSkills(): Skill[] {
+    return this.allSkills.filter(aSkill => {
+      if(!this.trainer.skills){
+        return false;
+      }
+      return this.trainer.skills.findIndex(tSkill => tSkill === aSkill.id) >= 0;
+    });
+  }
+
+  updateSkills() {
+    this.lockSkills = !this.lockSkills;
+    if (this.lockSkills) {
+      this.skillsUpdated.emit(this.trainer);
+    }
+  }
 
   // called to save the current state of the trainers skills
   saveTSkills() {
@@ -88,13 +76,8 @@ export class SkillsComponent implements OnInit {
 
   // remove a trainer skill on the bottom
   removeSkill(skill) {
-    for (let i = 0; i < this.trainer.skills.length; i++) {
-      if (this.trainer.skills[i] === skill) {
-        this.skillsList.push(skill.name);
-        this.trainer.skills.splice(i, 1);
-        break;
-      }
-    }
+    this.trainer.skills = this.trainer.skills
+      .filter(tSkill => skill.id !== tSkill);
   }
 
   // grab all the skills and create a skill list
@@ -105,14 +88,7 @@ export class SkillsComponent implements OnInit {
       .toPromise()
       .then(response => {
         this.loading = false;
-        this.skillsList = response;
-        for (const skill of this.skillsList) {
-          for (const trainerSkill of this.displayTrainer.skills) {
-            if (skill.name === trainerSkill.name) {
-              this.skillsList.splice(this.skillsList.indexOf(skill));
-            }
-          }
-        }
+        this.allSkills = response;
       })
       .catch(error => {
         console.log(error);

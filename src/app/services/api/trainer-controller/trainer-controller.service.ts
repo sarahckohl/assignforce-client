@@ -24,7 +24,7 @@ export class TrainerControllerService {
       unavailabilities: []
     };
     trainer.skills.forEach(s => {
-      msg.skills.push(environment.apiUrls.skillController.baseUrl + '/' + s.id);
+      msg.skills.push(s);
     });
     trainer.unavailabilities.forEach(u => {
       msg.unavailabilities.push(environment.apiUrls.unavailableController.baseUrl + '/' + u.id);
@@ -39,20 +39,7 @@ export class TrainerControllerService {
     );
   }
   public update(trainer: Trainer): Observable<Trainer> {
-    return this.http.put<Trainer>(this.trainerController.baseUrl + this.trainerController.update + trainer.id, {
-      firstName: trainer.firstName,
-      lastName: trainer.lastName,
-      email: localStorage.getItem('user-email'),
-      skills: this.parseSkills(trainer.skills),
-      active: trainer.active,
-      resume: trainer.resume
-    });
-  }
-
-  private parseSkills(skills) {
-    return skills.map(skill => {
-      return `${this.trainerController.baseUrl}/skills/${skill.id}`;
-    });
+    return this.http.put<Trainer>(this.trainerController.baseUrl + this.trainerController.update + trainer.id, trainer);
   }
 
   public findAll(): Observable<Trainer[]> {
@@ -67,6 +54,6 @@ export class TrainerControllerService {
   }
 
   public findByEmail(email: String) {
-    return this.http.get<Trainer>(this.trainerController.baseUrl + `/email?email=${email}`);
+    return this.http.get<Trainer>(this.trainerController.baseUrl + `?email=${email}`);
   }
 }

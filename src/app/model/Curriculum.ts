@@ -6,9 +6,9 @@ export class Curriculum {
   name: string;
   isActive: boolean;
   isCore: boolean;
-  skills: Skill[];
+  skills: number[];
 
-  constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
+  constructor(id: number, name: string, active: boolean, core: boolean, skills: number[]) {
     this.id = id;
     this.name = name;
     this.isActive = active;

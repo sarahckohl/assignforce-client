@@ -191,7 +191,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       id = event.source.id;
       const matopt = event.source.selected;
       if (matopt instanceof MatOption) {
-        value = matopt.viewValue;
+        value = matopt.value;
+        console.log(matopt);
       }
     } else if (event instanceof MatCheckboxChange) {
       id = event.source.id;
@@ -217,7 +218,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       startDate: 'startDate',
       endDate: 'endDate',
       curriculum: 'curriculum',
-      focus: 'focus',
       location: 'location',
       building: 'building',
       hideConcluded: 'hideconcluded',
@@ -240,9 +240,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     } else if (id === filterIds.curriculum) {
       // batch type filters
       this.curriculumFilter = value;
-      this.updateBatches();
-    } else if (id === filterIds.focus) {
-      this.focusFilter = value;
       this.updateBatches();
     } else if (id === filterIds.location) {
       this.locationFilter = value;
@@ -331,22 +328,17 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
           }
           // filter by type
           if (this.curriculumFilter !== 'Any') {
-            if (batch.curriculum.name !== this.curriculumFilter) {
-              continue;
-            }
-          }
-          if (this.focusFilter !== 'Any') {
-            if (batch.focus != null && batch.focus.name !== this.focusFilter) {
+            if (batch.curriculum !== +this.curriculumFilter) {
               continue;
             }
           }
           if (this.locationFilter !== 'Any') {
-            if (batch.address.name !== this.locationFilter) {
+            if (batch.address !== +this.locationFilter) {
               continue;
             }
           }
           if (this.buildingFilter !== 'Any') {
-            if (batch.building.name !== this.buildingFilter) {
+            if (batch.building !== +this.buildingFilter) {
               continue;
             }
           }
@@ -383,7 +375,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
           if (this.hideBatchlessTrainers) {
             let hasBatch = false;
             for (const batch of this.batches) {
-              if (batch.trainer.id === trainer.id) {
+              if (batch.trainer === trainer.id) {
                 hasBatch = true;
                 break;
               }
@@ -437,7 +429,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.columnWidth = Math.min(this.maxColumnWidth, Math.max(this.minColumnWidth, col_wid));
 
     // console.log(this.width + ' ' + this.height);
-    this.finishSwimMode();
+    //this.finishSwimMode();
     this.updateTodayLine();
   }
 
@@ -495,33 +487,22 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       const lines = [];
       if (batch.curriculum != null) {
         lines.push([
-          { text: batch.curriculum.name, color: this.tooltipTitleColor },
+          { text: batch.curriculum, color: this.tooltipTitleColor },
           { text: ' Batch', color: this.tooltipDefaultColor }
         ]);
       } else {
         lines.push(this.getTooltipNone('core curriculum'));
       }
-      if (batch.focus != null) {
-        lines.push([
-          { text: 'w/ focus on ', color: this.tooltipDefaultColor },
-          { text: batch.focus.name, color: this.tooltipTitleColor }
-        ]);
-      } else {
-        lines.push([
-          { text: 'w/', color: this.tooltipDefaultColor },
-          { text: 'no focus.', color: this.tooltipNoneColor }
-        ]);
-      }
 
       lines.push([{ text: '----------', color: this.tooltipDefaultColor }]);
 
       if (batch.trainer != null) {
-        lines.push(this.getTooltipExists('Trainer', batch.trainer.firstName + ' ' + batch.trainer.lastName));
+        lines.push(this.getTooltipExists('Trainer', `${batch.trainer}`));
       } else {
         lines.push(this.getTooltipNone('Trainer'));
       }
       if (batch.cotrainer != null) {
-        lines.push(this.getTooltipExists('Cotrainer', batch.cotrainer.firstName + ' ' + batch.cotrainer.lastName));
+        lines.push(this.getTooltipExists('Cotrainer', `${batch.cotrainer}`));
       } else {
         lines.push(this.getTooltipNone('Cotrainer'));
       }
@@ -539,17 +520,17 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       lines.push([{ text: '----------', color: this.tooltipDefaultColor }]);
 
       if (batch.address != null) {
-        lines.push(this.getTooltipExists('Location', batch.address.name));
+        lines.push(this.getTooltipExists('Location', `${batch.address}`));
       } else {
         lines.push(this.getTooltipNone('Location'));
       }
       if (batch.building != null) {
-        lines.push(this.getTooltipExists('Building', batch.building.name));
+        lines.push(this.getTooltipExists('Building', `${batch.building}`));
       } else {
         lines.push(this.getTooltipNone('Building'));
       }
       if (batch.room != null) {
-        lines.push(this.getTooltipExists('Room', batch.room.roomName));
+        lines.push(this.getTooltipExists('Room', `${batch.room}`));
       } else {
         lines.push(this.getTooltipNone('Room'));
       }
@@ -698,10 +679,10 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       duration = Math.floor(duration / this.ONE_WEEK);
 
       // get the correct color
-      const color = this.getColorForcurriculum(batch.curriculum.id);
+      const color = this.getColorForcurriculum(batch.curriculum);
 
       // get the column this batch will be in
-      let trainer_index = this.trainers.findIndex(t => t.id === batch.trainer.id);
+      let trainer_index = this.trainers.findIndex(t => t.id === batch.trainer);
       if (trainer_index < 0) {
         // this batch has no trainer, it may have been filtered
         continue;
@@ -748,7 +729,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         .split(' ')
         .concat(labeltext.split(''));
 
-      //console.log('batch ' + batch.name + '\n rect: ' + ' x:' + x + ' y:' + y + ' h:' + h);
+      // console.log('batch ' + batch.name + '\n rect: ' + ' x:' + x + ' y:' + y + ' h:' + h);
       rects.push({
         x: x,
         y: y,
@@ -792,7 +773,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.trainers.length; i++) {
       const batchSet = [];
       for (let j = 0; j < this.batches.length; j++) {
-        if (this.batches[j].trainer.id === this.trainers[i].id) {
+        if (this.batches[j].trainer === this.trainers[i].id) {
           batchSet.push(this.batches[j]);
         }
       }
@@ -838,11 +819,10 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const trainerspos = [];
     for (let i = 0; i < this.trainersOnThisPage; i++) {
       const trainer = this.trainers[this.actualTrainersPerPage * this.currentPage + i];
-      console.log(trainer);
       if (!trainer) break;
 
       // get trainer name
-      const name = trainer.firstName + ' ' + trainer.lastName;
+      const name = `${trainer.firstName} ${trainer.lastName[0]}.`;
       // get left offset of this trainer
       let left = spacing;
       if (i === 0) {
@@ -854,447 +834,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     return trainerspos;
   }
 
-  // start alternate control mode
-  startSwimMode() {
-    // setup variables that are reset at start of swim mode
-    this.swimActive = true;
-    this.zoomingEnabled = false;
-    this.randomModeActive = false;
-    this.batches = [];
-    this.todayLine.x1 = this.todayLine.x2 = -10;
-    this.swimPoints = 0;
-    this.swimDown = false;
-    this.swimDots = [];
-
-    // setup posiitons
-    const defDur = 1000 * 60 * 60 * 24 * 0.71 * this.height; // 0.7 days per pixel
-    this.endValue = this.startValue + defDur;
-    const swimposy = this.dateToYPos(this.startValue + defDur / 8);
-    const pointsRect = { x: this.width, y: swimposy };
-    const highpointsRect = { x: this.width, y: swimposy + 50 };
-    const leftlanex = this.swimlaneXOfs + 0 * this.columnWidth + this.columnWidth * 0.5;
-    const swimColor = '#122555';
-    this.swimPos = {
-      x: leftlanex,
-      y: swimposy,
-      color: swimColor + 'ff',
-      r: 15,
-      points: pointsRect,
-      highpoints: highpointsRect
-    };
-
-    // setup gauge position
-    const gaugex = leftlanex - this.columnWidth;
-    const gaugeh = this.swimPos.r * 4;
-    const gaugey = swimposy - gaugeh / 2;
-    const gaugey2 = swimposy + gaugeh / 2;
-    const gaugew = 8;
-    this.swimGauge = {
-      value: 0,
-      y1: gaugey,
-      y2: gaugey2,
-      bgy1: gaugey,
-      bgy2: gaugey2,
-      x1: gaugex,
-      x2: gaugex,
-      bgx1: gaugex,
-      bgx2: gaugex,
-      w: gaugew
-    };
-
-    // setup local variables for loop
-    const gaugeMax = 1;
-    const gaugeDepleteRate = 0.02;
-    const gaugeFillRate = 0.05;
-
-    const numFrames = 15;
-
-    const startMoveSpeed = defDur / 8 / numFrames;
-    const maxMoveSpeed = defDur / numFrames;
-    const maxMoveMaxScore = 10000;
-    let moveSpeed = startMoveSpeed;
-
-    const addBuffer = defDur / 6;
-    let addBatchTimer = 0;
-    const addBatchRate = 1000;
-    const minAddBatchRate = 80;
-    const minBatchAddMaxScore = 7500;
-    let addDotTimer = 0;
-    const addDotRate = 1000;
-
-    let gotHit = false;
-    let restartPauseTimer = 3000;
-    const intervalRate = 1000 / numFrames;
-    let time = 0;
-    const startIn = 1000;
-    // start
-    setTimeout(() => {
-      const loop = setInterval(() => {
-        // stop
-        if (!this.swimActive) {
-          clearInterval(loop);
-          return;
-        }
-
-        // wait until not paused
-        if (this.swimPaused) {
-          return;
-        }
-
-        // check finished
-        if (gotHit) {
-          if (restartPauseTimer > 0) {
-            restartPauseTimer -= intervalRate;
-          } else {
-            // console.log('completed with ' + this.swimPoints + '!');
-            if (this.swimPoints > this.swimHigh) {
-              this.swimHigh = this.swimPoints;
-            }
-            // console.log('restarting...');
-            clearInterval(loop);
-            this.startSwimMode();
-          }
-          return;
-        }
-        time += intervalRate;
-
-        // update lane
-        this.swimPos.x = leftlanex + this.columnWidth * this.swimLane;
-
-        // update gauge
-        if (this.swimDown) {
-          if (this.swimGauge.value > 0) {
-            this.swimGauge.value -= gaugeDepleteRate;
-          } else {
-            this.swimGauge.value = 0;
-            this.swimDown = false;
-          }
-          // transparent
-          this.swimPos.color = swimColor + '99';
-        }
-        if (!this.swimDown) {
-          if (this.swimGauge.value < gaugeMax) {
-            this.swimGauge.value += gaugeFillRate;
-          } else {
-            this.swimGauge.value = gaugeMax;
-          }
-          // solid
-          this.swimPos.color = swimColor + 'ff';
-        }
-        this.swimGauge.y1 = gaugey2 - gaugeh * (gaugeMax - (1 - this.swimGauge.value));
-
-        // check collision
-        if (!this.swimDown) {
-          for (let i = 0; i < this.batches.length; i++) {
-            const batch = this.batches[i];
-            // remove old ones
-            if (batch.endDate < this.startValue - 1000 - moveSpeed) {
-              // console.log('removing batch ' + i + ' '+ batch.endDate + ' ' + this.startValue);
-              this.batches.splice(i, 1);
-              i--;
-              continue;
-            }
-            // check overlap
-            const py = this.yPosToDate(this.swimPos.y);
-            if (py > batch.startDate.valueOf() && py < batch.endDate.valueOf()) {
-              const batchlane = this.trainers.findIndex(t => t.id === batch.trainer.id);
-              if (this.swimLane === batchlane) {
-                // console.log('hit!');
-                gotHit = true;
-                return;
-              }
-            }
-          }
-        }
-
-        // add batches
-        addBatchTimer -= intervalRate;
-        if (addBatchTimer <= 0) {
-          const randy = Math.random() * this.ONE_WEEK * 4;
-          this.addRandomBatch(this.endValue + addBuffer + randy);
-          addBatchTimer = this.linearInterpolation(
-            addBatchRate,
-            minAddBatchRate,
-            Math.min(1, this.swimPoints / minBatchAddMaxScore)
-          );
-        }
-
-        // add dots
-        addDotTimer -= intervalRate;
-        if (addDotTimer <= 0) {
-          const randX = leftlanex + this.columnWidth * Math.floor(Math.random() * this.trainersOnThisPage);
-          const randy = Math.random() * this.ONE_WEEK * 5;
-          const y = this.dateToYPos(this.endValue + addBuffer - randy);
-          // console.log('making dot ' + this.swimDots.length + ' at ' + randX + ' ' + y);
-          this.swimDots.push({ x: randX, y: y, r: this.swimPos.r / 2, color: '#eedd20ee' });
-          addDotTimer = addDotRate;
-        }
-        for (let i = 0; i < this.swimDots.length; i++) {
-          if (this.swimDots[i].y <= -50) {
-            // console.log('removing dot '+i);
-            this.swimDots.splice(i, 1);
-            i--;
-            continue;
-          }
-          // check collision
-          if (
-            this.swimPos.y - this.swimPos.r - this.swimDots[i].r < this.swimDots[i].y &&
-            this.swimPos.y + this.swimPos.r > this.swimDots[i].y
-          ) {
-            if (
-              this.swimPos.x > this.swimDots[i].x - this.swimDots[i].r &&
-              this.swimPos.x < this.swimDots[i].x + this.swimDots[i].r
-            ) {
-              this.swimPoints += 100;
-              console.log('+100');
-              this.swimDots.splice(i, 1);
-              i--;
-              continue;
-            }
-          }
-          this.swimDots[i].y = this.dateToYPos(this.yPosToDate(this.swimDots[i].y) - moveSpeed);
-        }
-
-        // update pos
-        this.startValue = this.startValue + moveSpeed;
-        this.endValue = this.endValue + moveSpeed;
-
-        // increase speed
-        moveSpeed = this.linearInterpolation(
-          startMoveSpeed,
-          maxMoveSpeed,
-          Math.min(1, this.swimPoints / maxMoveMaxScore)
-        );
-
-        this.swimPoints += 1;
-        // console.log(this.swimPoints);
-      }, intervalRate);
-    }, startIn);
-  }
-
-  // interpolates over from-to by d
-  linearInterpolation(from, to, d) {
-    return d * (to - from) + from;
-  }
-
-  // reset to normal mode
-  finishSwimMode() {
-    if (!this.swimActive) return;
-    if (this.swimPoints > this.swimHigh) {
-      this.swimHigh = this.swimPoints;
-    }
-    this.swimActive = false;
-    this.swimStartProgress = 0;
-    this.zoomingEnabled = true;
-    this.loadInitialDates();
-    this.updateBatches();
-    this.updateTodayLine();
-  }
-
-  // generate random batches
-  startRandomMode(forceRegenTrainers = false) {
-    this.randomModeActive = true;
-    this.batches = [];
-    this.loading = false;
-    if (forceRegenTrainers || this.trainers.length === 0) {
-      // make random trainers
-      this.trainers = [];
-      let trainers_to_make = this.trainersPerPage;
-      if (trainers_to_make === 0) {
-        trainers_to_make = Math.floor(Math.random() * 10 + 5); // 5 to 15
-      }
-      console.log('creating ' + trainers_to_make + ' random trainers');
-      const random_names = [
-        'Wei',
-        'Whitesell',
-        'Clotilde',
-        'Chiles',
-        'Mose',
-        'Malan',
-        'Alejandro',
-        'Alonso',
-        'Carolina',
-        'Calcagni',
-        'Billi',
-        'Bury',
-        'Sheldon',
-        'Sealey',
-        'Bryan',
-        'Broderick',
-        'Rocco',
-        'Reding',
-        'Latashia',
-        'Lehman',
-        'Loralee',
-        'Lobaugh',
-        'Hunter',
-        'Hausmann',
-        'Vivienne',
-        'Villacorta',
-        'Saul',
-        'Schatz',
-        'Meghann',
-        'Mendivil',
-        'Rubye',
-        'Rousseau',
-        'Charles',
-        'Crampton',
-        'Mabelle',
-        'Mcquire',
-        'Laurie',
-        'Lohr',
-        'Bailey',
-        'Boll',
-        'Roni',
-        'Gimenez',
-        'Chantay',
-        'Crosby',
-        'Paula',
-        'Denis',
-        'Liana',
-        'Fahey',
-        'Blossom',
-        'Millwood',
-        'Millard',
-        'John',
-        'Almeda',
-        'Mccarroll',
-        'Graciela',
-        'Robbs',
-        'Tora',
-        'Remer',
-        'Karl',
-        'Fern',
-        'Jenni',
-        'Heldt',
-        'Fe',
-        'Mcraney',
-        'Shenna',
-        'Jung',
-        'Noma',
-        'Shuster',
-        'Elvera',
-        'Dombrosky',
-        'Jinny',
-        'Engel',
-        'Harriet',
-        'Moffat',
-        'Zonia',
-        'Rodreguez',
-        'Terina',
-        'Rideaux',
-        'Waltraud',
-        'Hansard'
-      ];
-      for (let i = 0; i < trainers_to_make; i++) {
-        const randFName = random_names[Math.floor(Math.random() * random_names.length)];
-        const randLName = random_names[Math.floor(Math.random() * random_names.length)];
-        this.trainers.push(
-          new Trainer(
-            Math.floor(Math.random() * 10000),
-            randFName,
-            randLName,
-            [],
-            null,
-            Math.random() >= 0.5,
-            null,
-            null
-          )
-        );
-      }
-      this.updatePage();
-    }
-    const duration = Math.max(this.endValue - this.startValue, this.ONE_WEEK * 1); // min 1 week
-    const batches_per_teacher_to_make = Math.floor(duration / (this.ONE_WEEK * 15));
-    console.log('making ' + batches_per_teacher_to_make + ' batches');
-    const max_random_start = this.ONE_WEEK * 20; // 20 weeks
-    // const max_random = this.ONE_WEEK * 10; // 10 weeks
-    for (let i = 0; i < this.trainers.length; i++) {
-      let random_start_week = this.startValue + (Math.random() - 0.8) * 2 * max_random_start; // +/- randweeks
-      for (let j = 0; j < batches_per_teacher_to_make; j++) {
-        // const random_week = Math.random() * 2 * max_random; // +/- rand weeks
-        // console.log("rw: " + random_week);
-        const interval = Math.floor(Math.random() * (this.ONE_WEEK * 20) + this.ONE_WEEK * 8); // 1 every 8-28 weeks
-        const bstart = random_start_week + interval;
-        const rend = this.addRandomBatch(bstart, true, i);
-        random_start_week = rend;
-      }
-    }
-  }
-  // clear random batches and reset
-  finishRandomMode() {
-    this.randomModeActive = false;
-    this.updateTrainers();
-    this.updateBatches();
-    this.updateTodayLine();
-  }
-
-  // adds a random batch that starts at the specified date
-  addRandomBatch(batchstartdate: number, detailed = false, row = -1) {
-    const baseDur = this.ONE_WEEK * 2; // 2 weeks
-    const maxDur = this.ONE_WEEK * 16; // 16 weeks
-    const ranEndDate = batchstartdate + Math.random() * maxDur + baseDur;
-    if (row < 0) {
-      row = Math.floor(Math.random() * this.trainersOnThisPage);
-    }
-    const currId = Math.floor(Math.random() * 4);
-    const trId = Math.floor(Math.random() * 4);
-    let bid = -1;
-    let bname = 'randomly generated';
-    let cur = new Curriculum(currId, null, true, false, []);
-    let cotrainer = null;
-    let bskills = null;
-    let bstatus = 'gen';
-    let baddr = null;
-    let bbuil = null;
-    let broom = null;
-
-    if (detailed) {
-      bid = Math.random() * 10000;
-      const batch_start_date_date = new Date(batchstartdate);
-      bname =
-        '' +
-        this.shortMonthNames[batch_start_date_date.getMonth()] +
-        '' +
-        batch_start_date_date.getDate() +
-        Math.floor(Math.random() * 10000);
-      cur = new Curriculum(currId, null, true, true, []);
-      cotrainer = this.trainers[Math.floor(Math.random() * (this.trainers.length - 1))];
-      bskills = null;
-      const bstati = [];
-      bstatus = bstati[Math.floor(Math.random() * bstati.length)];
-      if (Math.random() > 0.3) {
-        const randAddrs = ['LA', 'New York', 'Florida', 'Canada', 'Nowhere'];
-        baddr = new Address(-1, randAddrs[Math.floor(Math.random() * randAddrs.length)], '', '');
-      }
-      if (Math.random() > 0.6) {
-        const randBuilds = ['HQ', 'Fake Buidling', 'Building id ' + Math.floor(Math.random() * 1000)];
-        bbuil = new Building(true, -1, baddr, randBuilds[Math.floor(Math.random() * randBuilds.length)], []);
-      }
-      if (Math.random() > 0.9) {
-        const randRooms = ['Room ' + Math.floor(Math.random() * 100), 'Back room'];
-        broom = new Room(-1, true, randRooms[Math.floor(Math.random() * randRooms.length)], bbuil, []);
-      }
-    }
-    this.batches.push(
-      new Batch(
-        bid,
-        bname,
-        batchstartdate,
-        ranEndDate,
-        new Curriculum(currId, null, true, true, []),
-        null,
-        new Trainer(trId, null, null, null, null, true, null, null),
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      )
-    );
-    return ranEndDate;
-  }
+  
 
   // returns the list of months to display and their position
   getTimescale() {
@@ -1561,148 +1101,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.updateTooltipVisibility();
     if (this.width !== this.trainernamesElement.nativeElement.getBoundingClientRect().width) {
       this.updateSize();
-    }
-  }
-
-  keydown(event: KeyboardEvent) {
-    // console.log(event.keyCode + ' pressed');
-
-    if (event.keyCode === this.keycodes.esc) {
-      // escape pressed
-      this.randomModeActive = false;
-    }
-    if (this.swimActive) {
-      // keyboard codes for alternate control mode
-      if (
-        event.keyCode === this.keycodes.tab ||
-        event.keyCode === this.keycodes.enter ||
-        event.keyCode === this.keycodes.esc
-      ) {
-        this.finishSwimMode();
-      }
-      if (
-        event.keyCode === this.keycodes.primary ||
-        event.keyCode === this.keycodes.secondary ||
-        event.keyCode === this.keycodes.z ||
-        event.keyCode === this.keycodes.space ||
-        event.keyCode === this.keycodes.down ||
-        event.keyCode === this.keycodes.up
-      ) {
-        if (this.swimGauge.value >= 0.6) {
-          event.preventDefault();
-          this.swimDown = true;
-        }
-      }
-      if (!this.swimPaused && !this.swimDown) {
-        if (event.keyCode === this.keycodes.left) {
-          this.swimLane = Math.max(0, this.swimLane - 1);
-        }
-        if (event.keyCode === this.keycodes.right) {
-          this.swimLane = Math.min(this.trainersOnThisPage - 1, this.swimLane + 1);
-        }
-      }
-      if (event.keyCode === this.keycodes.p) {
-        this.swimPaused = !this.swimPaused;
-        event.preventDefault();
-      }
-    } else {
-      switch (event.keyCode) {
-        case this.keycodes.plus:
-          this.startZoom((this.dateToYPos(this.endValue) - this.dateToYPos(this.startValue)) / 2);
-          this.zoomBy(0.75);
-          this.finishZoom();
-          break;
-        case this.keycodes.minus:
-          this.startZoom((this.dateToYPos(this.endValue) - this.dateToYPos(this.startValue)) / 2);
-          this.zoomBy(1.5);
-          this.finishZoom();
-          break;
-        case this.keycodes.up:
-          if (event.shiftKey && this.keyBoardScrollEnabled) {
-            // scroll up
-            event.preventDefault();
-            this.shiftBy(this.keyScrollSpeed);
-          }
-          if (this.swimStartProgress === 0 || this.swimStartProgress === 1) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.down:
-          if (event.shiftKey && this.keyBoardScrollEnabled) {
-            // scroll down
-            event.preventDefault();
-            this.shiftBy(-this.keyScrollSpeed);
-          }
-          if (this.swimStartProgress === 2 || this.swimStartProgress === 3) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.tilde:
-          if (!this.randomModeActive) {
-            this.startRandomMode(event.ctrlKey);
-          } else {
-            this.finishRandomMode();
-          }
-          console.log('random mode ' + (this.randomModeActive ? '' : 'de') + 'activated');
-          break;
-        case this.keycodes.left:
-          if (this.swimStartProgress === 4 || this.swimStartProgress === 6) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.right:
-          if (this.swimStartProgress === 5 || this.swimStartProgress === 7) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.primary:
-          if (this.swimStartProgress === 8) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.secondary:
-          if (this.swimStartProgress === 9) {
-            this.swimStartProgress += 1;
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-        case this.keycodes.enter:
-          if (this.swimStartProgress === 10) {
-            event.preventDefault();
-            this.swimStartProgress += 1;
-            this.startSwimMode();
-          } else {
-            this.swimStartProgress = 0;
-          }
-          break;
-      }
-    }
-  }
-
-  keyup(event: KeyboardEvent) {
-    if (this.swimActive) {
-      if (
-        event.keyCode === this.keycodes.primary ||
-        event.keyCode === this.keycodes.secondary ||
-        event.keyCode === this.keycodes.z ||
-        event.keyCode === this.keycodes.space ||
-        event.keyCode === this.keycodes.down ||
-        event.keyCode === this.keycodes.up
-      ) {
-        event.preventDefault();
-        this.swimDown = false;
-      }
     }
   }
 

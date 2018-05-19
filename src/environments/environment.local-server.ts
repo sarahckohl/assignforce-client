@@ -1,10 +1,10 @@
 export const environment = {
   production: false,
   name: 'local-server',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://localhost:4200',
 
   appRoutes: {
-    login: '',
+    login: 'login',
     overview: 'overview',
     batches: 'batches',
     locations: 'locations',

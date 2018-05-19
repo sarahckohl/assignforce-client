@@ -20,7 +20,7 @@
     "e2e:run": "cypress run",
     "test:ci": "ng test --single-run --browsers=ChromeHeadless",
     "lint:ci": "ng lint --fix",
-    "json-server": "json-server --watch ./db.json"
+    "json-server": "json-server --watch ./db.json --middlewares ./js-middleware/delete-hook.js"
   },
   "private": true,
   "dependencies": {

@@ -3,6 +3,15 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { Batch } from '../../model/Batch';
 import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
+import { Curriculum } from '../../model/Curriculum';
+import { Trainer } from '../../model/Trainer';
+import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
+import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
+import { Building } from '../../model/Building';
+import { Room } from '../../model/Room';
 
 @Component({
   selector: 'app-overview',
@@ -16,6 +25,10 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   panelTitle = 'Loading...';
   isLoading: boolean;
   batchList: any[] = [];
+  curriculumList: Curriculum[];
+  trainerList: Trainer[];
+  addressList: any[] = [];
+  roomsList: Room[] = [];
   displayedBatchList: any[];
   displayedColumns = [
     'name',
@@ -33,44 +46,71 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private batchController: BatchControllerService) {}
+  constructor(
+    private batchController: BatchControllerService,
+    private curriculumServce: CurriculumControllerService,
+    private trainerService: TrainerControllerService,
+    private addressService: AddressControllerService,
+    private buildingService: BuildingControllerService,
+    private roomService: RoomControllerService
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
+
+    this.curriculumServce
+      .findAll()
+      .toPromise()
+      .then(cList => {
+        this.curriculumList = cList;
+        this.curriculumList.sort((a, b) => a.id - b.id);
+      });
+
+    this.trainerService
+      .findAll()
+      .toPromise()
+      .then(tList => {
+        this.trainerList = tList;
+        this.trainerList.sort((a, b) => a.id - b.id);
+      });
+
+    this.addressService
+      .findAll()
+      .toPromise()
+      .then(lList => {
+        this.addressList = lList;
+        this.addressList.sort((a, b) => a.id - b.id);
+        this.buildingService
+          .findAll()
+          .toPromise()
+          .then(bdList => {
+            bdList.sort((a, b) => a.id - b.id);
+            this.addressList.forEach((address: any) => {
+              const buildings = bdList.filter((building: Building) => address.id === building.address);
+              address.buildings = buildings || [];
+            });
+
+            this.roomService
+              .findAll()
+              .toPromise()
+              .then(rList => {
+                this.roomsList = rList;
+                this.roomsList.sort((a,b) => a.id - b.id);
+              });
+          });
+      });
 
     // ------- Populating batch list data --------
     this.batchController
       .findAll()
       .toPromise()
       .then(blist => {
-        blist.forEach(batch => {
-          // This is an object that encapsulates the Batch object's properties and a progress number.
-          const trainer = batch.trainer ? `${batch.trainer.firstName} ${batch.trainer.lastName}` : '';
-          const batchObj = {
-            name: batch.name,
-            curriculum: batch.curriculum.name,
-            trainer: trainer,
-            cotrainer: batch.cotrainer,
-            location: batch.address ? batch.address.name : null,
-            building: batch.building,
-            room: batch.room,
-            startDate: batch.startDate,
-            endDate: batch.endDate,
-            progress: 0
-          };
-          this.batchList.push(batchObj);
-          this.isLoading = false;
+        this.batchList = blist;
+        this.batchList.forEach(b => (b.progress = this.getCurrentProgress(b)));
+        this.applyFilter(0);
+        this.isLoading = false;
 
-          // Calculating and updating the progress of each batch.
-          this.batchList.forEach(batchOb => {
-            batchOb.progress = this.getCurrentProgress(batchOb);
-          });
-
-          // This starts the view on showing All Batches.
-          this.applyFilter(0);
-        });
-
-        if (blist.length < 1) {
+        if (this.batchList.length < 1) {
           this.isLoading = false;
           this.panelTitle = 'All Batches';
         }

@@ -8,18 +8,22 @@
       </mat-expansion-panel-header>
       <div class="mat-panel-content">
         <mat-list>
-          <mat-list-item class="item-detail" *ngFor="let core of coreData; last as last">
-            <div>
-              <h3 mat-line class="core-name">{{core.name}}</h3>
-              <span class="core-skills-label">Skills: </span>
-              <span *ngFor="let skill of core.skills; last as last">
-                <span *ngIf="!last" class="core-skills">{{skill.name}}, </span>
-                <span *ngIf="last" class="core-skills">{{skill.name}}</span>
-              </span>
-              <br><br><br>
-              <mat-divider *ngIf="!last"></mat-divider>
-            </div>
-          </mat-list-item>
+          <div *ngFor="let core of coreData; last as last">
+            <mat-list-item class="item-detail" *ngIf="core.isCore">
+              <div>
+                <h3 mat-line class="core-name">{{core.name}}</h3>
+                <span class="core-skills-label">Skills: </span>
+                <span *ngFor="let skill of curriculumSkills(core); last as last">
+                  <span *ngIf="!last" class="core-skills">{{skill.name}}, </span>
+                  <span *ngIf="last" class="core-skills">{{skill.name}}</span>
+                </span>
+                <br>
+                <br>
+                <br>
+                <mat-divider *ngIf="!last"></mat-divider>
+              </div>
+            </mat-list-item>
+          </div>
         </mat-list>
       </div>
     </mat-expansion-panel>
