@@ -65,30 +65,55 @@ export class TrainersAddComponent implements OnInit {
       // merge current skills with new skills
       const skills = currentSkills.concat(this.curricula.find(c => c.id === value).skills);
 
-      // remove dupes
-      const uniques = [];
-
-      for (let i = 0; i < skills.length; i++) {
-        if (uniques.indexOf(skills[i]) === -1) {
-          uniques.push(skills[i]);
-        }
-      }
-
-      const controls = uniques.map(unique => this.fb.control(unique));
+      const controls = skills.map(unique => this.fb.control(unique));
       const formControls = this.addTrainerForm.get('skills') as FormArray;
 
       while (formControls.length !== 0) {
         formControls.removeAt(0);
       }
       controls.forEach(control => (this.addTrainerForm.get('skills') as FormArray).push(control));
+    } else {
+      //remove
+      const currentSkills = this.skills.map(control => control.value);
+      const curriculumSkills = this.curricula.find(c => c.id === value).skills;
+      console.log('currentSkills', currentSkills);
+      console.log('curriculumSkills', curriculumSkills);
+
+      // the current skills will contain all skills that were added
+      // including dupes we can remove the first instance of the skill id
+      for (let i = 0; i < curriculumSkills.length; i++) {
+        currentSkills.splice(currentSkills.findIndex(c => c === curriculumSkills[i]), 1);
+      }
+
+      const controls = currentSkills.map(unique => this.fb.control(unique));
+      const formControls = this.addTrainerForm.get('skills') as FormArray;
+
+      while (formControls.length !== 0) {
+        formControls.removeAt(0);
+      }
+      controls.forEach(control => (this.addTrainerForm.get('skills') as FormArray).push(control));
+
+      console.log('currentSkills', currentSkills);
     }
   }
 
   ngOnInit() {}
 
   onSubmit(value, valid) {
-    if(valid) {
+    if (valid) {
       this.trainer = Object.assign({}, this.trainer, value);
+
+      // remove dupes from trainer skills
+      const uniques = [];
+
+      for (let i = 0; i < this.trainer.skills.length; i++) {
+        if (uniques.indexOf(this.trainer.skills[i]) === -1) {
+          uniques.push(this.trainer.skills[i]);
+        }
+      }
+
+      this.trainer.skills = uniques;
+
       this.dialogRef.close(this.trainer);
     }
   }
