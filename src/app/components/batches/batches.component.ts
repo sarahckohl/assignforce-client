@@ -48,6 +48,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
   selectedBuilding = null;
   selectedCurriculum = null;
   selectedFocus = null;
+  sortedTrainers: any[] = [];
 
   //For form select in Create New Batch
   curriculums: Curriculum[] = [];
@@ -239,6 +240,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
       this.batchMode !== BatchMode.Edit) {
       this.selectedCurriculum = this.batchModel.curriculum;
       this.batchModel.skills = <any>this.selectSkills(this.batchModel.curriculum);
+      this.sortTrainers();
     }
   }
 
@@ -248,6 +250,26 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
 
   entityLookup(entityContainerName: string, entityId: number) {
     return this[entityContainerName].find(e => e.id === entityId);
+  }
+
+  sortTrainers() {
+    const curr = this.curriculums.find(c => c.id === this.selectedCurriculum);
+    let skillsMapping = 0;
+    let skillsMatch = [];
+    this.trainers
+      .forEach(trainer => {
+        if (!trainer.active) {
+          return;
+        }
+        skillsMatch = trainer.skills.filter(tSkill => curr.skills.findIndex(cSkill => tSkill === cSkill) >= 0);
+        skillsMapping = Math.floor(skillsMatch.length / curr.skills.length * 100);
+        const t = <any>Object.assign({}, trainer);
+        t.skillsMapping = skillsMapping;
+        this.sortedTrainers.push(t);
+      })
+    this.sortedTrainers.sort((a,b) => b.skillsMapping - a.skillsMapping);
+    console.log(this.sortedTrainers);
+    return null;
   }
 
   // ------ Create a new batch using provided valid form data ------

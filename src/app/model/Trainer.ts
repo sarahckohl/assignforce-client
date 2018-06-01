@@ -11,7 +11,7 @@ export class Trainer {
   active: boolean;
   resume: any;
   preferredLocation: number;
-  unavailabilities: Unavailability[];
+  unavailabilities: number[];
   email: string;
 
   constructor(
@@ -22,7 +22,7 @@ export class Trainer {
     certifications: any,
     active: boolean,
     resume: any,
-    unavailabilities: Unavailability[],
+    unavailabilities: number[],
     email: string,
     preferredLocation: number
   ) {

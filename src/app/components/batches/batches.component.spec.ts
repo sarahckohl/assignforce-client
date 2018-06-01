@@ -16,6 +16,8 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { RouterModule } from '@angular/router';
 
 describe('BatchesComponent', () => {
   let component: BatchesComponent;
@@ -29,7 +31,8 @@ describe('BatchesComponent', () => {
           ReactiveFormsModule,
           FormsModule,
           HttpClientTestingModule,
-          BrowserAnimationsModule
+          BrowserAnimationsModule,
+          RouterModule
         ],
         declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent],
         providers: [
@@ -41,7 +44,8 @@ describe('BatchesComponent', () => {
           AddressControllerService,
           RoomControllerService,
           BuildingControllerService,
-          SkillControllerService
+          SkillControllerService,
+          AuthService
         ]
       }).compileComponents();
     })

@@ -27,7 +27,7 @@ describe('TrainerItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TrainerItemComponent);
     component = fixture.componentInstance;
-    component.trainer = new Trainer(1, '', '', [], null, false, null, []);
+    component.trainer = new Trainer(1, '', '', [], null, false, null, [], '', 1);
   });
 
   it('should create', () => {

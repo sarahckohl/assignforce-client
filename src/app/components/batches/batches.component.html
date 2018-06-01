@@ -55,8 +55,13 @@
         <div>
           <mat-form-field>
             <mat-select formControlName="trainer" placeholder="Trainer" [disabled]="curriculums.length < 1 && trainers.length < 1" [(ngModel)]="batchModel.trainer">
-              <mat-option *ngFor="let trainer of trainers" [value]="trainer.id">
-                {{ trainer.firstName }}
+              <mat-option *ngFor="let trainer of sortedTrainers" [value]="trainer.id">
+                {{ trainer.firstName }} 
+                <span *ngIf="trainer.id !== batchModel.trainer">
+                  -- {{ trainer.skillsMapping }}%
+                  <mat-icon>list_alt</mat-icon>
+                  <!-- <mat-icon>calendar_today</mat-icon> -->
+                </span>
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -64,17 +69,18 @@
           <mat-form-field>
             <mat-select formControlName="cotrainer" placeholder="Co-Trainer" [disabled]="!batchForm.value.trainer" [(ngModel)]="batchModel.cotrainer">
               <div *ngFor="let trainer of trainers">
-              <mat-option *ngIf="batchForm.value.trainer !== trainer" [value]="trainer.id">
-                {{ trainer.firstName }}
-              </mat-option>
-            </div>
+                <mat-option *ngIf="batchForm.value.trainer !== trainer" [value]="trainer.id">
+                  {{ trainer.firstName }}
+                </mat-option>
+              </div>
             </mat-select>
           </mat-form-field>
         </div>
 
         <div>
           <mat-form-field>
-            <mat-select formControlName="location" placeholder="Location" [disabled]="curriculums.length < 1 && locations.length < 1" [(ngModel)]="batchModel.address">
+            <mat-select formControlName="location" placeholder="Location" [disabled]="curriculums.length < 1 && locations.length < 1"
+              [(ngModel)]="batchModel.address">
               <mat-option *ngFor="let location of locations" [value]="location.id">
                 {{ location.name }}
               </mat-option>
@@ -153,9 +159,12 @@
           <!-- Trainer Column -->
           <ng-container matColumnDef="Trainer/Co-Trainer">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
-            <mat-cell *matCellDef="let batch"> 
-              <div *ngIf="batch.trainer">{{ (entityLookup('trainers', batch.trainer)?.firstName + ' ' + entityLookup('trainers', batch.trainer)?.lastName) || "" }}</div> 
-              <div *ngIf="batch.cotrainer">{{ (entityLookup('trainers', batch.cotrainer)?.firstName + ' ' + entityLookup('trainers', batch.cotrainer)?.lastName) || "" }}</div></mat-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.trainer">{{ (entityLookup('trainers', batch.trainer)?.firstName + ' ' + entityLookup('trainers', batch.trainer)?.lastName)
+                || "" }}</div>
+              <div *ngIf="batch.cotrainer">{{ (entityLookup('trainers', batch.cotrainer)?.firstName + ' ' + entityLookup('trainers', batch.cotrainer)?.lastName)
+                || "" }}</div>
+            </mat-cell>
           </ng-container>
 
           <!-- Address Column -->

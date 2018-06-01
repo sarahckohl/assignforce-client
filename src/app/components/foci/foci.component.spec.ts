@@ -11,8 +11,8 @@ describe('FociComponent', () => {
   let component: FociComponent;
   let fixture: ComponentFixture<FociComponent>;
   const testData: Focus[] = [
-    new Focus(1, 'Test Focus', false, [{ id: 1, name: 'Test Skill', active: true }]),
-    new Focus(2, 'Test Focus 2', true, [{ id: 1, name: 'Test Skill', active: true }])
+    new Focus(1, 'Test Focus', false, [1,2,3,4]),
+    new Focus(2, 'Test Focus 2', true, [5,6,7,8])
   ];
   let focusControllerService = FocusControllerService;
 

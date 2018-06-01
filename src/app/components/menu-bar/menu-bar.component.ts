@@ -58,14 +58,11 @@ export class MenuBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.router.events.subscribe(event => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.selectedTab = this.tabs.findIndex(tab => tab.label === event.url.split('/')[1]);
-    //     if (this.router.url.includes('profile')) {
-    //       this.id = this.router.url.split('/')[2];
-    //     }
-    //   }
-    // });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.selectedTab = this.tabs.findIndex(tab => tab.label === event.url.split('/')[1]);
+      }
+    });
   }
 
   selectTab(evt) {

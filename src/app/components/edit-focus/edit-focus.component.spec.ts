@@ -18,7 +18,7 @@ describe('EditFocusComponent', () => {
     id: 1,
     name: 'Test Focus',
     active: true,
-    skills: [{ id: 1, name: 'Test Skill', active: true }]
+    skills: [1,2,3,4,5]
   };
   const testData: Skill[] = [new Skill(1, 'Test Skill', true), new Skill(2, 'Test Skill 2', true)];
   let skillControllerService: SkillControllerService;

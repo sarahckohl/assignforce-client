@@ -124,30 +124,11 @@ describe('BatchesTimelineComponent', () => {
     expect(component.endDate.valueOf() - component.startDate.valueOf()).toEqual(zoomFactor * prezoom);
   });
 
-  it('should change the mode', () => {
-    component.startSwimMode();
-    expect(component.swimActive).toBeTruthy();
-    expect(component.swimPoints).toEqual(0);
-    expect(component.swimPos.x).toBeGreaterThan(0);
-    component.finishSwimMode();
-    expect(component.swimActive).toBeFalsy();
-  });
-
   it('should set the tooltip', () => {
     component.updateTooltip(0, { x: 1, y: 1 });
     expect(component.tooltipRect.x).toEqual(0);
   });
-  it('should interpolate', () => {
-    expect(component.linearInterpolation(10, 20, 0.5)).toEqual(15);
-    expect(component.linearInterpolation(10000, 2000, 0.75)).toEqual(4000);
-    expect(component.linearInterpolation(-20, 0, 1)).toEqual(0);
-  });
-  it('should add a batch', () => {
-    component.batches = [];
-    component.trainers.push(new Trainer(4, null, null, null, null, null, null, null));
-    component.addRandomBatch(10000);
-    expect(component.batches.length).toBeGreaterThan(0);
-  });
+
   it('should convert the date to a position', () => {
     const ypos = component.dateToYPos(Date.now() + 1000 * 60 * 60 * 24 * 7 * 3); // now + 3 weeks
     expect(ypos).toBeGreaterThan(0); // should return a positive value

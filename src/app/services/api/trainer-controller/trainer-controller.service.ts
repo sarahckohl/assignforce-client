@@ -27,7 +27,7 @@ export class TrainerControllerService {
       msg.skills.push(s);
     });
     trainer.unavailabilities.forEach(u => {
-      msg.unavailabilities.push(environment.apiUrls.unavailableController.baseUrl + '/' + u.id);
+      msg.unavailabilities.push(u);
     });
     return msg;
   }

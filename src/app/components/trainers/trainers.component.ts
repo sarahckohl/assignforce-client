@@ -6,6 +6,8 @@ import { Trainer } from '../../model/Trainer';
 import { TrainersAddComponent } from './trainers-add/trainers-add.component';
 import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 import { Router } from '@angular/router';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { Curriculum } from '../../model/Curriculum';
 
 @Component({
   selector: 'app-trainers',
@@ -18,13 +20,17 @@ export class TrainersComponent implements OnInit {
   firstName;
   lastName;
   trainers: Trainer[] = [];
+  curricula: Curriculum[] = [];
 
   isManager = true;
   isLoading: boolean;
 
   canLoad = true;
 
-  constructor(public dialog: MatDialog, private trainerService: TrainerControllerService, private router: Router) {}
+  constructor(public dialog: MatDialog, 
+    private trainerService: TrainerControllerService,
+    private curriculumService: CurriculumControllerService,
+    private router: Router) {}
 
   ngOnInit() {
     this.isManager = true;
@@ -41,6 +47,11 @@ export class TrainersComponent implements OnInit {
         this.isLoading = false;
         console.log(error);
       });
+
+    this.curriculumService
+      .findAll()
+      .toPromise()
+      .then(curricula => this.curricula = curricula);
   }
 
   showCalendar() {}
@@ -70,7 +81,8 @@ export class TrainersComponent implements OnInit {
     const dialogRef = this.dialog.open(TrainersAddComponent, {
       width: '450px',
       data: {
-        trainer: trainer
+        trainer: trainer,
+        curricula: this.curricula.slice(0,3);
       }
     });
 

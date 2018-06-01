@@ -18,8 +18,8 @@ describe('CurriculaComponent', () => {
   let component: CurriculaComponent;
   let fixture: ComponentFixture<CurriculaComponent>;
   const testData: Curriculum[] = [
-    new Curriculum(1, 'Test Curriculum', true, [], [{ id: 1, name: 'Test Skill', active: true }]),
-    new Curriculum(2, 'Test Curriculum 2', true, [], [{ id: 1, name: 'Test Skill', active: true }])
+    new Curriculum(1, 'Test Curriculum', true, true, [1,2,3]),
+    new Curriculum(2, 'Test Curriculum 2', true, false, [4,5,6])
   ];
   const testData2: Skill[] = [new Skill(1, 'Test Skill', true), new Skill(2, 'Test Skill 2', true)];
   const testData3: Focus[] = [new Focus(0, 'Test Focus', true, []), new Focus(0, 'Test Focus 2', true, [])];

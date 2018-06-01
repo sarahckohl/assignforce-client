@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angu
 import { Trainer } from '../../../model/Trainer';
 import { Skill } from '../../../model/Skill';
 import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-trainers-add',
@@ -27,73 +28,78 @@ export class TrainersAddComponent implements OnInit {
     trainer: this.trainer
   };
 
+  curricula = [];
+
+  addTrainerForm: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<TrainersAddComponent>,
     @Inject(MAT_DIALOG_DATA) public dataP: any,
-    private trainerService: TrainerControllerService
-  ) {}
+    private trainerService: TrainerControllerService,
+    private fb: FormBuilder
+  ) {
+    this.addTrainerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      skills: this.fb.array([])
+    });
+
+    this.addTrainerForm.controls['firstName'].setValue(this.trainer.firstName);
+    this.addTrainerForm.controls['lastName'].setValue(this.trainer.lastName);
+    this.addTrainerForm.controls['email'].setValue(this.trainer.email);
+
+    this.curricula = Array.from(dataP.curricula);
+    this.curricula.sort((a, b) => a.id - b.id);
+  }
+
+  get skills() {
+    return (this.addTrainerForm.get('skills') as FormArray).controls;
+  }
+
+  skillChange(checked, value) {
+    if (checked) {
+      //get the current values from the form
+      const currentSkills = this.skills.map(control => control.value);
+
+      // merge current skills with new skills
+      const skills = currentSkills.concat(this.curricula.find(c => c.id === value).skills);
+
+      // remove dupes
+      const uniques = [];
+
+      for (let i = 0; i < skills.length; i++) {
+        if (uniques.indexOf(skills[i]) === -1) {
+          uniques.push(skills[i]);
+        }
+      }
+
+      const controls = uniques.map(unique => this.fb.control(unique));
+      const formControls = this.addTrainerForm.get('skills') as FormArray;
+
+      while (formControls.length !== 0) {
+        formControls.removeAt(0);
+      }
+      controls.forEach(control => (this.addTrainerForm.get('skills') as FormArray).push(control));
+    }
+  }
 
   ngOnInit() {}
 
-  onSubmit() {
-    if (
-      this.trainer.firstName !== '' &&
-      this.trainer.lastName !== '' &&
-      this.trainer.firstName.charAt(0).match(/[A-Za-z]/i) &&
-      this.trainer.lastName.charAt(0).match(/[A-Za-z]/i)
-    ) {
-      const fn = this.trainer.firstName.charAt(0).toUpperCase() + this.trainer.firstName.substring(1).toLowerCase();
-      this.trainer.firstName = fn;
-
-      let f = '';
-
-      for (let i = 0; i < this.trainer.firstName.length; i++) {
-        if (this.trainer.firstName.charAt(i) === ' ') {
-          f += fn.charAt(i);
-          f += fn.charAt(i + 1).toUpperCase();
-          i++;
-        } else {
-          f += fn.charAt(i);
-        }
-      }
-
-      this.trainer.firstName = f;
-
-      const ln = this.trainer.lastName.charAt(0).toUpperCase() + this.trainer.lastName.substring(1).toLowerCase();
-
-      let l = '';
-
-      for (let i = 0; i < this.trainer.lastName.length; i++) {
-        if (this.trainer.lastName.charAt(i) === ' ') {
-          l += ln.charAt(i);
-          l += ln.charAt(i + 1).toUpperCase();
-          i++;
-        } else {
-          l += ln.charAt(i);
-        }
-      }
-
-      this.trainer.lastName = l;
-      // this.canLoad = false;
-      // this.trainerService
-      //   .create(this.trainer)
-      //   .toPromise()
-      //   .then(t => {
-      //     console.log(t);
-      //     event.stopPropagation();
-      //     // window.location.reload();
-      //     this.canLoad = true;
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-
-      console.log(this.trainer);
+  onSubmit(value, valid) {
+    if(valid) {
+      this.trainer = Object.assign({}, this.trainer, value);
+      this.dialogRef.close(this.trainer);
     }
   }
 
   onNoClick(evt): void {
     evt.preventDefault();
     this.dialogRef.close();
+  }
+
+  private mapCurricula() {
+    const arr = this.curricula.map(c => this.fb.control(c));
+    return arr;
   }
 }

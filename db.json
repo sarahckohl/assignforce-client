@@ -1363,7 +1363,6 @@
         50,
         51,
         52,
-        3,
         54,
         55,
         56,
@@ -1854,7 +1853,8 @@
       "lastName": "Belotte",
       "active": true,
       "resume": null,
-      "email": "fred.belotte@revature.com"
+      "email": "fred.belotte@revature.com",
+      "skills": []
     },
     {
       "id": 3,
@@ -1862,7 +1862,8 @@
       "lastName": "Kirkbride",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 4,
@@ -1870,7 +1871,8 @@
       "lastName": "Connolly",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 5,
@@ -1878,7 +1880,8 @@
       "lastName": "Kemper",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 6,
@@ -1886,7 +1889,8 @@
       "lastName": "Walsh",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 7,
@@ -1894,7 +1898,8 @@
       "lastName": "Damodaran",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 8,
@@ -1902,7 +1907,8 @@
       "lastName": "Kelsey",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 9,
@@ -1910,7 +1916,8 @@
       "lastName": "Lessley",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 10,
@@ -1918,7 +1925,8 @@
       "lastName": "Orr",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 11,
@@ -1926,7 +1934,8 @@
       "lastName": "Jurczak",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 12,
@@ -1934,7 +1943,8 @@
       "lastName": "Garg",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 13,
@@ -1942,7 +1952,8 @@
       "lastName": "Bonds",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 14,
@@ -1950,7 +1961,8 @@
       "lastName": "Higgins",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 75,
@@ -1958,7 +1970,8 @@
       "lastName": "Rehm",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 95,
@@ -1966,7 +1979,8 @@
       "lastName": "Goshorn",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 55,
@@ -1974,7 +1988,8 @@
       "lastName": "Chester",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 56,
@@ -1982,7 +1997,8 @@
       "lastName": "Gentry",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 57,
@@ -1990,7 +2006,8 @@
       "lastName": "Escalona",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 58,
@@ -1998,7 +2015,8 @@
       "lastName": "3",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 76,
@@ -2006,7 +2024,8 @@
       "lastName": "Knighten",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 77,
@@ -2014,7 +2033,8 @@
       "lastName": "K.",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 78,
@@ -2022,7 +2042,8 @@
       "lastName": "Kaur",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 96,
@@ -2030,7 +2051,8 @@
       "lastName": "Singleton",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 97,
@@ -2038,7 +2060,8 @@
       "lastName": "Kaur",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 15,
@@ -2046,7 +2069,8 @@
       "lastName": "Dhirar",
       "active": false,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 35,
@@ -2054,7 +2078,8 @@
       "lastName": "Alagna",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 36,
@@ -2062,7 +2087,8 @@
       "lastName": "Rahman",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 37,
@@ -2070,7 +2096,8 @@
       "lastName": "Kruppa",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 38,
@@ -2078,7 +2105,8 @@
       "lastName": "Kumar",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     },
     {
       "id": 115,
@@ -2086,7 +2114,8 @@
       "lastName": "Reddy",
       "active": true,
       "resume": null,
-      "email": ""
+      "email": "",
+      "skills": []
     }
   ]
 }
