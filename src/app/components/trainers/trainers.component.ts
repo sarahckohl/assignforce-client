@@ -82,7 +82,7 @@ export class TrainersComponent implements OnInit {
       width: '450px',
       data: {
         trainer: trainer,
-        curricula: this.curricula.slice(0,3);
+        curricula: this.curricula.slice(0,3)
       }
     });
 
