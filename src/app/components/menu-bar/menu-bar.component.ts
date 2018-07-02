@@ -14,9 +14,9 @@ export class MenuBarComponent implements OnInit {
 
   tabs = [
     {
-      label:'overview',
+      label: 'overview',
       roles: []
-    }, 
+    },
     {
       label: 'batches',
       roles: []
@@ -58,6 +58,21 @@ export class MenuBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    for (let i = this.tabs.length - 1; i >= 0; i--) {
+      let val = this.tabs[i];
+      let roleIsHere = false;
+      val.roles.forEach(rolename => {
+        if (rolename === localStorage.getItem('roles')) {
+          roleIsHere = true;
+          return;
+        }
+      });
+
+      if (val.roles.length !== 0 && !roleIsHere) {
+        this.tabs.splice(i, 1);
+      }
+    }
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.selectedTab = this.tabs.findIndex(tab => tab.label === event.url.split('/')[1]);
@@ -66,15 +81,16 @@ export class MenuBarComponent implements OnInit {
   }
 
   selectTab(evt) {
+    console.log(this.selectedTab);
+
     if (this.id === 'undefined') {
-      this.auth0
-        .getProfile((err, profile) => {
-          if(err) {
-            console.log(err);
-          } else {
-            this.id = profile.name;
-          }
-        })
+      this.auth0.getProfile((err, profile) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.id = profile.name;
+        }
+      });
     }
     if (this.selectedTab === this.tabs.findIndex(tab => tab.label === 'profile')) {
       this.router.navigate([`/profile/${this.id}`]);
