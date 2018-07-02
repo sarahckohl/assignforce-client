@@ -2,7 +2,7 @@
 
   <!-- Create New Batch  -->
   <!-- Should Only Appear if they are admin -->
-  <mat-accordion *ngIf="auth0.userHasRole(['SVP of Technology'])">
+  <mat-accordion *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -207,13 +207,13 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
             <mat-cell *matCellDef="let batch">
 
-              <button *ngIf="auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="editBatch(batch)">
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="editBatch(batch)">
                 <mat-icon matTooltip="Edit" matTooltipPosition="above">mode_edit</mat-icon>
               </button>
               <!-- <button mat-icon-button (click)="cloneBatch()" [disabled]="true">
                 <mat-icon matTooltip="Clone" matTooltipPosition="above">filter_none</mat-icon>
               </button> -->
-              <button *ngIf="auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="deleteBatch(batch)">
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="deleteBatch(batch)">
                 <mat-icon matTooltip="Delete" matTooltipPosition="above">delete</mat-icon>
               </button>
               <!-- <button mat-icon-button>
