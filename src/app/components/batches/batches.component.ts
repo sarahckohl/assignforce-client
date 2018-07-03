@@ -20,6 +20,7 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 export enum BatchMode {
   Create = 1,
@@ -109,6 +110,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
       .toPromise()
       .then(response => {
         this.curriculums = response;
+        this.curriculums;
         this.firstHeader = 'Create New Batch';
         this.isLoading = false;
       })
@@ -196,13 +198,17 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
 
     // ----- Observable for form changes in Create Batches panel ------
     this.batchForm.valueChanges.subscribe(data => {
+      
       const startDate = data.startDate;
       const endDate = new Date(data.endDate).getTime();
       const curriculum = this.curriculums.find(c => c.id === data.curriculum);
       if (this.batchMode === BatchMode.Create) {
         this.batchModel.name = this.createBatchName(curriculum, null, startDate);
         if (startDate) {
-          this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate);
+          if(!this.endDateIsSet())
+          {
+            this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate); 
+          }
           this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, this.batchModel.endDate);
         }
       } else if(this.batchMode === BatchMode.Edit) {
@@ -375,5 +381,10 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     this.batchService.remove(batch.id);
     location.reload();
   }
+
+  endDateIsSet(): boolean {
+    return this.batchModel.endDate ? true: false;
+  }
+
   // ---------------------------------------- End Methods for All Batches Panel -------------------------------------
 }
