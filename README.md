@@ -1,4 +1,4 @@
-![Revature](./rev-brand.png)
+![Revature](https://github.com/sarahckohl/assignforce-client/raw/staging/src/assets/revature_logo_250.png)
 
 # Assignforce
 
