@@ -1,85 +1,28 @@
-# assignforce-client
+![Revature](./rev-brand.png)
 
-Angular client for Assignforce
+# Assignforce
 
-## Dev Server
+## Project Description and Objectives
 
-Since Auth0 is the authentication provider, the dev server needs to be started with ssl.
+### Description
 
-```bash
-ng serve --ssl
-```
+Assignforce is a tool that provides users with a graphical interface to view information about the various Revature training batches occuring within the various Revature training locations. While a trainer has access to view information such as the progress of batches in a timeline format, the technologies being trained in the aforementioned batches, and the location of training batches, the Senior Vice President (SVP) has permissions to update the information.
 
-You can also run the following command to achieve the same thing.
+### Objectives
 
-```bash
-npm run dev
-```
+* Provide a graphical user interface to view information about training batches
+* Provide users with a secure web application that will filter all incoming and outgoing web requests
 
-## Dev Server using Production Environment
+## Current State
 
-Run the following command
+## Scope
 
-```bash
-npm run dev:prod
-```
+### Features
+* Integration of Auth0 login service to handle user authentication and authorization
+* Utilize D3.js to provide interactive data displaying the timeline of various training batch
 
-## Allow Insecure in Chrome
 
-In order to get chrome to play nicely with SSL, navigate to `chrome://flags/#allow-insecure-localhost` in the address bar. Then, set `Allow invalid certificates for resources loaded from localhost` to `enabled`.
+## Stakeholder/Users
 
-You will need to relaunch Chrome changing this setting.
-
-## Syncing of Upstream forks
-
-Makes it a little bit easier to sync a forked repository with its upstream counterpart.
-
-> This tool is compatible with Linux, MacOS, and Windows Subsystem Linux only.
-
-1.  Change to `clientApp` directory
-
-```bash
-cd clientApp
-```
-
-2.  To view all commands
-
-```bash
-sh fsync
-```
-
-You should see the following:
-
-```bash
-sh fsync init    --> initialize upstream and sync
-sh fsync sync    --> sync with upstream
-sh fsync merge   --> sync with upstream, push and merge with current branch (use with caution)
-```
-
-3.  `fsync init`
-
-Use this option when this is your first time syncing your fork with the parent repository.
-
-```bash
-sh fsync init
-```
-
-4.  `fsync sync`
-
-Use this option each time aftwards.
-
-```bash
-sh fsync sync
-```
-
-This option will _not_ push the new changes to GitHub... Use option 5 for that.
-
-5.  `fsync merge`
-
-If you're feeling confident, this command will fetch from upstream, commit to the forked repository, switch to the branch you were working on, and merge staging into your branch. (use carefully)
-
-```bash
-sh fsync merge
-```
-
-> The `sync` and `merge` commands will stash any uncommitted files, and then unstash them when it completes its task.
+### Primary Users
+VP of Technology, Trainers
