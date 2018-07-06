@@ -5,7 +5,7 @@
         <mat-panel-title>
           <span class="panel-title-fix">Skills</span>
         </mat-panel-title>
-        <mat-panel-description>
+        <mat-panel-description *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
           <span class="fill-space"></span>
           <button mat-icon-button (click)="openAddSkillDialog($event)">
             <mat-icon class="icon-margin-fix" matTooltip="Add New Skill">add_circle_outline</mat-icon>
@@ -19,10 +19,10 @@
               <h3 mat-line class="skill-name">{{skill.name}}</h3>
             </div>
             <span class="fill-space"></span>
-            <button mat-icon-button class="edit-button button-orange" (click)="openEditSkillDialog(skill)">
+            <button mat-icon-button class="edit-button button-orange" *ngIf="this.auth0.userHasRole(['SVP of Technology'])" (click)="openEditSkillDialog(skill)">
               <mat-icon class="icon-margin-fix" matTooltip="Edit Skill">mode_edit</mat-icon>
             </button>
-            <button mat-icon-button class="remove-button button-orange" (click)="confirmRemoveFocus(skill)">
+            <button mat-icon-button class="remove-button button-orange" *ngIf="this.auth0.userHasRole(['SVP of Technology'])" (click)="confirmRemoveFocus(skill)">
               <mat-icon class="icon-margin-fix" matTooltip="Remove Skill">remove_circle</mat-icon>
             </button>
             <mat-divider *ngIf="!last"></mat-divider>
