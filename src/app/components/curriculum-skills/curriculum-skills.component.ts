@@ -5,6 +5,7 @@ import { Skill } from '../../model/Skill';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { AddSkillComponent } from '../add-skill/add-skill.component';
 import { EditSkillComponent } from '../edit-skill/edit-skill.component';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-curriculum-skills',
@@ -14,12 +15,20 @@ import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 export class CurriculumSkillsComponent implements OnInit {
   skillData: Skill[] = [];
 
-  constructor(private dialog: MatDialog, private skillControllerService: SkillControllerService) {}
+  constructor(
+    private dialog: MatDialog,
+    private skillControllerService: SkillControllerService,
+    public auth0: AuthService
+  ) {}
 
   ngOnInit() {
     this.skillControllerService.findAll().subscribe(data => {
       this.skillData = data;
     });
+  }
+
+  checkAuth() {
+    return this.auth0.userHasRole(['SVP of Technology']);
   }
 
   openAddSkillDialog(event: Event) {

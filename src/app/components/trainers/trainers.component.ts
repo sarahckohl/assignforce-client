@@ -8,6 +8,7 @@ import { TrainerControllerService } from '../../services/api/trainer-controller/
 import { Router } from '@angular/router';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { Curriculum } from '../../model/Curriculum';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-trainers',
@@ -27,10 +28,13 @@ export class TrainersComponent implements OnInit {
 
   canLoad = true;
 
-  constructor(public dialog: MatDialog, 
+  constructor(
+    public dialog: MatDialog,
     private trainerService: TrainerControllerService,
     private curriculumService: CurriculumControllerService,
-    private router: Router) {}
+    private router: Router,
+    public auth0: AuthService
+  ) {}
 
   ngOnInit() {
     this.isManager = true;
@@ -51,7 +55,7 @@ export class TrainersComponent implements OnInit {
     this.curriculumService
       .findAll()
       .toPromise()
-      .then(curricula => this.curricula = curricula);
+      .then(curricula => (this.curricula = curricula));
   }
 
   showCalendar() {}
@@ -82,7 +86,7 @@ export class TrainersComponent implements OnInit {
       width: '450px',
       data: {
         trainer: trainer,
-        curricula: this.curricula.slice(0,3)
+        curricula: this.curricula.slice(0, 3)
       }
     });
 
