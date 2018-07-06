@@ -1334,55 +1334,21 @@
       "name": ".NET",
       "isActive": 1,
       "isCore": 1,
-      "skills": [
-        46,
-        58,
-        59,
-        60,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66
-      ]
+      "skills": [46, 58, 59, 60, 61, 62, 63, 64, 65, 66]
     },
     {
       "id": 1,
       "name": "Java",
       "isActive": 1,
       "isCore": 1,
-      "skills": [
-        1,
-        2,
-        3,
-        4,
-        25,
-        48,
-        49,
-        50,
-        51,
-        52,
-        54,
-        55,
-        56,
-        57
-      ]
+      "skills": [1, 2, 3, 4, 25, 48, 49, 50, 51, 52, 54, 55, 56, 57]
     },
     {
       "id": 3,
       "name": "SDET",
       "isActive": 1,
       "isCore": 1,
-      "skills": [
-        47,
-        68,
-        69,
-        5,
-        70,
-        71,
-        72
-      ]
+      "skills": [47, 68, 69, 5, 70, 71, 72]
     },
     {
       "id": 105,
@@ -1403,93 +1369,63 @@
       "name": "Capital One",
       "isActive": 1,
       "isCore": 0,
-      "skills": [
-        4,
-        3,
-        55,
-        56
-      ]
+      "skills": [4, 3, 55, 56]
     },
     {
       "id": 64,
       "name": "Testing",
       "isActive": 0,
       "isCore": 0,
-      "skills": [
-        47,
-        50,
-        51
-      ]
+      "skills": [47, 50, 51]
     },
     {
       "id": 65,
       "name": "Testing2",
       "isActive": 0,
       "isCore": 0,
-      "skills": [
-        4,
-        47,
-        50,
-        51
-      ]
+      "skills": [4, 47, 50, 51]
     },
     {
       "id": 24,
       "name": "name",
       "isActive": 0,
       "isCore": 0,
-      "skills": [
-        4,
-        1,
-        47,
-        50,
-        51
-      ]
+      "skills": [4, 1, 47, 50, 51]
     },
     {
       "id": 5,
       "name": "Big Data",
       "isActive": 0,
       "isCore": 0,
-      "skills": [
-        27
-      ]
+      "skills": [27]
     },
     {
       "id": 6,
       "name": "Dynamics CRM",
       "isActive": 1,
       "isCore": 0,
-      "skills": [
-        28
-      ]
+      "skills": [28]
     },
     {
       "id": 7,
       "name": "PEGA",
       "isActive": 1,
       "isCore": 0,
-      "skills": [
-        30
-      ]
+      "skills": [30]
     },
     {
       "id": 8,
       "name": "Oracle Fusion",
       "isActive": 1,
       "isCore": 0,
-      "skills": [
-        29
-      ]
+      "skills": [29]
     },
     {
       "id": 9,
       "name": "GO",
       "isActive": 1,
       "isCore": 0,
-      "skills": [
-        31
-      ]
+      "skills": [31]
     },
     {
       "id": 10,
@@ -1827,24 +1763,7 @@
       "active": true,
       "resume": null,
       "id": 1,
-      "skills": [
-        4,
-        1,
-        2,
-        3,
-        50,
-        51,
-        25,
-        48,
-        49,
-        52,
-        53,
-        54,
-        55,
-        56,
-        57,
-        26
-      ],
+      "skills": [4, 1, 2, 3, 50, 51, 25, 48, 49, 52, 53, 54, 55, 56, 57, 26],
       "preferredLocation": 4
     },
     {
@@ -1862,7 +1781,7 @@
       "lastName": "Kirkbride",
       "active": false,
       "resume": null,
-      "email": "",
+      "email": "joe.kirkbride@revature.com",
       "skills": []
     },
     {
