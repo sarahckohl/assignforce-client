@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Batch;
 import com.revature.assignforce.service.BatchService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/batch")
 public class BatchController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class BatchController {
 	}
 
 	// findOne
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Batch> getById(@PathVariable int id) {
 		Optional<Batch> b = batchService.findById(id);
 		if (!b.isPresent())
@@ -49,7 +50,7 @@ public class BatchController {
 	}
 
 	// update
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Batch> update(@PathVariable int id, @RequestBody Batch a) {
 		a = batchService.update(a);
 		if (a == null)
@@ -58,7 +59,7 @@ public class BatchController {
 	}
 
 	// delete
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Batch> delete(@PathVariable int id) {
 		batchService.delete(id);
 		return new ResponseEntity<Batch>(HttpStatus.CREATED);

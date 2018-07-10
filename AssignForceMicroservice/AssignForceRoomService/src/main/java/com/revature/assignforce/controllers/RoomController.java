@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Room;
 import com.revature.assignforce.service.RoomService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/room")
 public class RoomController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class RoomController {
 		}
 
 		// findOne
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Room> getById(@PathVariable int id) {
 			Optional<Room> r = roomService.findById(id);
 			if (!r.isPresent())
@@ -49,7 +50,7 @@ public class RoomController {
 		}
 
 		// update
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Room> update(@PathVariable int id, @RequestBody Room r) {
 			r = roomService.update(r);
 			if (r == null)
@@ -58,7 +59,7 @@ public class RoomController {
 		}
 
 		//delete
-		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Room> delete(@PathVariable int id) {
 			roomService.delete(id);
 			return new ResponseEntity<Room>(HttpStatus.CREATED);

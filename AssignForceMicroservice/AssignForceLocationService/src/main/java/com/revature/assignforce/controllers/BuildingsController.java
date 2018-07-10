@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Buildings;
 import com.revature.assignforce.service.BuildingsService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/building")
 public class BuildingsController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class BuildingsController {
 		}
 
 		// findOne
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Buildings> getById(@PathVariable int id) {
 			Optional<Buildings> a = buildingService.findById(id);
 			if (!a.isPresent())
@@ -49,7 +50,7 @@ public class BuildingsController {
 		}
 
 		// update
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Buildings> update(@PathVariable int id, @RequestBody Buildings a) {
 			a = buildingService.update(a);
 			if (a == null)
@@ -58,7 +59,7 @@ public class BuildingsController {
 		}
 
 		//delete
-		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Buildings> delete(@PathVariable int id) {
 			buildingService.delete(id);
 			return new ResponseEntity<Buildings>(HttpStatus.CREATED);

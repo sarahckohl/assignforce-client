@@ -3,11 +3,17 @@ package com.revature.assignforce.beans;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -42,7 +48,11 @@ public class Batch {
 	@Column(name="Cotrainer_Id")
 	private int cotrainer;
 	
-	private Set<Integer> Skills;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="Batch_Skills",
+			joinColumns=@JoinColumn(name="Batch_ID"),
+			inverseJoinColumns=@JoinColumn(name="Skill_ID"))
+	private Set<SkillIdHolder> Skills;
 	
 	@Column(name="Address_Id")
 	private int address;
@@ -58,10 +68,9 @@ public class Batch {
 		super();
 	}
 
-	
 
 	public Batch(int id, String name, Date startDate, Date endDate, int curriculum, int trainer, int cotrainer,
-			Set<Integer> skills, int address, int building, int room) {
+			Set<SkillIdHolder> skills, int address, int building, int room) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -75,7 +84,6 @@ public class Batch {
 		this.building = building;
 		this.room = room;
 	}
-
 
 
 	public int getId() {
@@ -148,12 +156,12 @@ public class Batch {
 	}
 
 
-	public Set<Integer> getSkills() {
+	public Set<SkillIdHolder> getSkills() {
 		return Skills;
 	}
 
 
-	public void setSkills(Set<Integer> skills) {
+	public void setSkills(Set<SkillIdHolder> skills) {
 		Skills = skills;
 	}
 

@@ -3,11 +3,16 @@ package com.revature.assignforce.beans;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,25 +32,28 @@ public class Focus {
 	@Column(name="Focus_Name")
 	private String name;
 	
+	@Column(name="isActive")
 	private Boolean isActive;
 	
-	private Set<Integer> skills;
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="Focus_SKILLS",
+	joinColumns=@JoinColumn(name="Focus_ID"),
+	inverseJoinColumns=@JoinColumn(name="SKILL_ID"))
+	private Set<SkillIdHolder> skills;
 	
 	
 	public Focus() {
 		super();
 	}
 
-	
 
-	public Focus(int id, String name, Boolean isActive, Set<Integer> skills) {
+	public Focus(int id, String name, Boolean isActive, Set<SkillIdHolder> skills) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.isActive = isActive;
 		this.skills = skills;
 	}
-
 
 
 	public int getId() {
@@ -78,12 +86,12 @@ public class Focus {
 	}
 
 
-	public Set<Integer> getSkills() {
+	public Set<SkillIdHolder> getSkills() {
 		return skills;
 	}
 
 
-	public void setSkills(Set<Integer> skills) {
+	public void setSkills(Set<SkillIdHolder> skills) {
 		this.skills = skills;
 	}
 

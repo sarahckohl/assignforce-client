@@ -32,17 +32,26 @@ public class Trainer {
 	@Column(name="Lastname")
 	private String lastname;
 	
+	@Column(name="isActive")
 	private Boolean isActive;
 	
 	@Column(name="preferredLocation")
 	private int preferredLocation;
 	
-	private Set<Integer> unavailabilities;
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="Trainer_Unavailabilities",
+	joinColumns=@JoinColumn(name="Trainer_ID"),
+	inverseJoinColumns=@JoinColumn(name="Unavailability_Id"))
+	private Set<UnavailabilityIdHolder> unavailabilities;
 	
 	@Column(name="email")
 	private int email;
 	
-	private Set<Integer> skills;
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="Trainer_Skills",
+	joinColumns=@JoinColumn(name="Trainer_ID"),
+	inverseJoinColumns=@JoinColumn(name="Skills_Id"))
+	private Set<SkillIdHolder> skills;
 	
 	@Column(name="Address_Id")
 	private int address;
@@ -61,7 +70,8 @@ public class Trainer {
 	}
 
 	public Trainer(int id, String firstname, String lastname, Boolean isActive, int preferredLocation,
-			Set<Integer> unavailabilities, int email, Set<Integer> skills, int address, Set<Cert> certs) {
+			Set<UnavailabilityIdHolder> unavailabilities, int email, Set<SkillIdHolder> skills, int address,
+			Set<Cert> certs) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -115,11 +125,11 @@ public class Trainer {
 		this.preferredLocation = preferredLocation;
 	}
 
-	public Set<Integer> getUnavailabilities() {
+	public Set<UnavailabilityIdHolder> getUnavailabilities() {
 		return unavailabilities;
 	}
 
-	public void setUnavailabilities(Set<Integer> unavailabilities) {
+	public void setUnavailabilities(Set<UnavailabilityIdHolder> unavailabilities) {
 		this.unavailabilities = unavailabilities;
 	}
 
@@ -131,11 +141,11 @@ public class Trainer {
 		this.email = email;
 	}
 
-	public Set<Integer> getSkills() {
+	public Set<SkillIdHolder> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(Set<Integer> skills) {
+	public void setSkills(Set<SkillIdHolder> skills) {
 		this.skills = skills;
 	}
 

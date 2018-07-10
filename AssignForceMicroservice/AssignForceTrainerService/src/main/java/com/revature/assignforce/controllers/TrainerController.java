@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Trainer;
 import com.revature.assignforce.service.TrainerService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/trainer")
 public class TrainerController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class TrainerController {
 	}
 
 	// findOne
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> getById(@PathVariable int id) {
 		Optional<Trainer> t = trainerService.findById(id);
 		if (!t.isPresent())
@@ -40,7 +41,7 @@ public class TrainerController {
 	}
 
 	// findby email
-	@RequestMapping(value = "/{email}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{email}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> getByEmail(@PathVariable String email) {
 		Optional<Trainer> t = trainerService.findByEmail(email);
 		if (!t.isPresent())
@@ -58,7 +59,7 @@ public class TrainerController {
 	}
 
 	// update
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> update(@PathVariable int id, @RequestBody Trainer t) {
 		t = trainerService.update(t);
 		if (t == null)
@@ -67,7 +68,7 @@ public class TrainerController {
 	}
 
 	// delete
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trainer> delete(@PathVariable int id) {
 		trainerService.delete(id);
 		return new ResponseEntity<Trainer>(HttpStatus.CREATED);

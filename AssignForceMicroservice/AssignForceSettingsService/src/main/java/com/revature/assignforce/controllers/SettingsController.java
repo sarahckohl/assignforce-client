@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Settings;
 import com.revature.assignforce.service.SettingsService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/setting")
 public class SettingsController {
 
 	@Autowired
 	SettingsService settingService;
 
 		// findOne
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Settings> getById(@PathVariable int id) {
 			Optional<Settings> s = settingService.findById(id);
 			if (!s.isPresent())
@@ -34,7 +35,7 @@ public class SettingsController {
 		}
 
 		// update
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Settings> update(@PathVariable int id, @RequestBody Settings s) {
 			s = settingService.update(s);
 			if (s == null)

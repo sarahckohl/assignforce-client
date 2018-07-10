@@ -32,24 +32,34 @@ public class Curriculum {
 	@Column(name="CURR_ID")
 	private int currId;
 	
-	
+	@Column(name="name")
 	private String name;
 	
+	@Column(name="isActive")
 	private Boolean isActive;
 	
+	@Column(name="isCore")
 	private Boolean isCore;
-	
-	private Set<Integer> skillIDs;
 	
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name="CURR_SKILLS",
 	joinColumns=@JoinColumn(name="CURR_ID"),
 	inverseJoinColumns=@JoinColumn(name="SKILL_ID"))
-	private Set<Skills> CURR_skills;
+	private Set<SkillIdHolder> skillIDs;
 
 
 	public Curriculum() {
 		super();
+	}
+
+
+	public Curriculum(int currId, String name, Boolean isActive, Boolean isCore, Set<SkillIdHolder> skillIDs) {
+		super();
+		this.currId = currId;
+		this.name = name;
+		this.isActive = isActive;
+		this.isCore = isCore;
+		this.skillIDs = skillIDs;
 	}
 
 
@@ -93,25 +103,15 @@ public class Curriculum {
 	}
 
 
-	public Set<Integer> getSkillIDs() {
+	public Set<SkillIdHolder> getSkillIDs() {
 		return skillIDs;
 	}
 
 
-	public void setSkillIDs(Set<Integer> skillIDs) {
+	public void setSkillIDs(Set<SkillIdHolder> skillIDs) {
 		this.skillIDs = skillIDs;
 	}
 
-
-	public Set<Skills> getCURR_skills() {
-		return CURR_skills;
-	}
-
-
-	public void setCURR_skills(Set<Skills> cURR_skills) {
-		CURR_skills = cURR_skills;
-	}
-
-
+	
 	
 }

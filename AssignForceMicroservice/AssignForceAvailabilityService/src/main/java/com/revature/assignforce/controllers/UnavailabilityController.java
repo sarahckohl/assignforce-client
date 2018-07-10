@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Unavailability;
 import com.revature.assignforce.service.UnavailabilityService;
 
+@CrossOrigin
 @RestController
 public class UnavailabilityController {
 	
@@ -30,7 +32,7 @@ public class UnavailabilityController {
 		}
 
 		// findOne
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Unavailability> getById(@PathVariable int id) {
 			Unavailability b = unavailabilityService.getById(id);
 			if (b != null)
@@ -48,7 +50,7 @@ public class UnavailabilityController {
 		}
 
 		// update
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Unavailability> update(@PathVariable int id, @RequestBody Unavailability a) {
 			a = unavailabilityService.update(a);
 			if (a == null)
@@ -57,7 +59,7 @@ public class UnavailabilityController {
 		}
 
 		// delete
-		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Unavailability> delete(@PathVariable int id) {
 			unavailabilityService.delete(id);
 			return new ResponseEntity<Unavailability>(HttpStatus.CREATED);

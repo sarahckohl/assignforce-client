@@ -3,11 +3,16 @@ package com.revature.assignforce.beans;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,9 +32,14 @@ public class Room {
 	@Column(name="Room_Name")
 	private String roomName;
 	
+	@Column(name="Building_ID")
 	private int building;
 	
-	private Set<Integer> unavailabilities;
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="Room_Unavailabilities",
+	joinColumns=@JoinColumn(name="Room_ID"),
+	inverseJoinColumns=@JoinColumn(name="Unavailability_Id"))
+	private Set<UnavailabilityIdHolder> unavailabilities;
 	
 	
 	public Room() {
@@ -37,7 +47,7 @@ public class Room {
 	}
 
 
-	public Room(int id, String roomName, int building, Set<Integer> unavailabilities) {
+	public Room(int id, String roomName, int building, Set<UnavailabilityIdHolder> unavailabilities) {
 		super();
 		this.id = id;
 		this.roomName = roomName;
@@ -76,15 +86,15 @@ public class Room {
 	}
 
 
-	public Set<Integer> getUnavailabilities() {
+	public Set<UnavailabilityIdHolder> getUnavailabilities() {
 		return unavailabilities;
 	}
 
 
-	public void setUnavailabilities(Set<Integer> unavailabilities) {
+	public void setUnavailabilities(Set<UnavailabilityIdHolder> unavailabilities) {
 		this.unavailabilities = unavailabilities;
 	}
 
-	
+
 	
 }

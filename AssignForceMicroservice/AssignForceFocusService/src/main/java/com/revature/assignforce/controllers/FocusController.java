@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.assignforce.beans.Focus;
 import com.revature.assignforce.service.FocusService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/focus")
 public class FocusController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class FocusController {
 		}
 
 		// findOne
-		@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Focus> getById(@PathVariable int id) {
 			Optional<Focus> f = focusService.findById(id);
 			if (!f.isPresent())
@@ -49,7 +50,7 @@ public class FocusController {
 		}
 
 		// update
-		@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Focus> update(@PathVariable int id, @RequestBody Focus f) {
 			f = focusService.update(f);
 			if (f == null)
@@ -58,7 +59,7 @@ public class FocusController {
 		}
 
 		//delete
-		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Focus> delete(@PathVariable int id) {
 			focusService.delete(id);
 			return new ResponseEntity<Focus>(HttpStatus.CREATED);
