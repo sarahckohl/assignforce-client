@@ -1,5 +1,6 @@
 package com.revature.assignforce.beans;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,37 +26,52 @@ public class Trainer {
 	@Column(name="TRAINER_ID")
 	private int id;
 
-	private String prefLocation;
-	private String fName;
-	private String lName;
-	private int unavailible;
+	@Column(name="Firstname")
+	private String firstname;
+	
+	@Column(name="Lastname")
+	private String lastname;
+	
+	private Boolean isActive;
+	
+	@Column(name="preferredLocation")
+	private int preferredLocation;
+	
+	private Set<Integer> unavailabilities;
+	
+	@Column(name="email")
+	private int email;
+	
+	private Set<Integer> skills;
+	
+	@Column(name="Address_Id")
+	private int address;
 
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name="CERT_TRAINERS",
 			joinColumns=@JoinColumn(name="TRAINER_ID"),
 			inverseJoinColumns=@JoinColumn(name="CERT_ID"))
 	private Set<Cert> certs;
-
+	
+	//To add: resume/ resume id in bitbucket
+	
 	public Trainer() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Trainer(int id, String prefLocation, String fName, String lName, int unavailible, Set<Cert> certs) {
+	public Trainer(int id, String firstname, String lastname, Boolean isActive, int preferredLocation,
+			Set<Integer> unavailabilities, int email, Set<Integer> skills, int address, Set<Cert> certs) {
 		super();
 		this.id = id;
-		this.prefLocation = prefLocation;
-		this.fName = fName;
-		this.lName = lName;
-		this.unavailible = unavailible;
-		this.certs = certs;
-	}
-
-	public Trainer(String prefLocation, String fName, String lName, int unavailible, Set<Cert> certs) {
-		super();
-		this.prefLocation = prefLocation;
-		this.fName = fName;
-		this.lName = lName;
-		this.unavailible = unavailible;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.isActive = isActive;
+		this.preferredLocation = preferredLocation;
+		this.unavailabilities = unavailabilities;
+		this.email = email;
+		this.skills = skills;
+		this.address = address;
 		this.certs = certs;
 	}
 
@@ -67,36 +83,68 @@ public class Trainer {
 		this.id = id;
 	}
 
-	public String getPrefLocation() {
-		return prefLocation;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setPrefLocation(String prefLocation) {
-		this.prefLocation = prefLocation;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getfName() {
-		return fName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getlName() {
-		return lName;
+	public Boolean getIsActive() {
+		return isActive;
 	}
 
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
-	public int getUnavailible() {
-		return unavailible;
+	public int getPreferredLocation() {
+		return preferredLocation;
 	}
 
-	public void setUnavailible(int unavailible) {
-		this.unavailible = unavailible;
+	public void setPreferredLocation(int preferredLocation) {
+		this.preferredLocation = preferredLocation;
+	}
+
+	public Set<Integer> getUnavailabilities() {
+		return unavailabilities;
+	}
+
+	public void setUnavailabilities(Set<Integer> unavailabilities) {
+		this.unavailabilities = unavailabilities;
+	}
+
+	public int getEmail() {
+		return email;
+	}
+
+	public void setEmail(int email) {
+		this.email = email;
+	}
+
+	public Set<Integer> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(Set<Integer> skills) {
+		this.skills = skills;
+	}
+
+	public int getAddress() {
+		return address;
+	}
+
+	public void setAddress(int address) {
+		this.address = address;
 	}
 
 	public Set<Cert> getCerts() {
@@ -106,9 +154,6 @@ public class Trainer {
 	public void setCerts(Set<Cert> certs) {
 		this.certs = certs;
 	}
+
 	
-	
-
-
-
 }
