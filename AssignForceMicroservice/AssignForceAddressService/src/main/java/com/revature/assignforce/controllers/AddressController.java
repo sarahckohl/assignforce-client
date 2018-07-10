@@ -18,7 +18,6 @@ import com.revature.assignforce.beans.Address;
 import com.revature.assignforce.service.AddressService;
 
 @RestController
-@RequestMapping("/address")
 public class AddressController {
 
 	@Autowired
@@ -31,7 +30,7 @@ public class AddressController {
 	}
 
 	// findOne
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Address> getById(@PathVariable int id) {
 		Optional<Address> a = addressService.findById(id);
 		if (!a.isPresent())
@@ -49,7 +48,7 @@ public class AddressController {
 	}
 
 	// update
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Address> update(@PathVariable int id, @RequestBody Address a) {
 		a = addressService.update(a);
 		if (a == null)
@@ -58,7 +57,7 @@ public class AddressController {
 	}
 
 	//delete
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Address> delete(@PathVariable int id) {
 		addressService.delete(id);
 		return new ResponseEntity<Address>(HttpStatus.CREATED);
