@@ -27,6 +27,11 @@ public class TrainerServiceImpl implements TrainerService {
 	public Optional<Trainer> findById(int id) {
 		return trainerRepo.findById(id);
 	}
+	
+	@Override
+	public Optional<Trainer> findByEmail(String email) {
+		return trainerRepo.findByEmail(email);
+	}
 
 	@Override
 	public Trainer update(Trainer t) {
@@ -42,5 +47,7 @@ public class TrainerServiceImpl implements TrainerService {
 	public void delete(int id) {
 		trainerRepo.deleteById(id);
 	}
+
+	
 
 }

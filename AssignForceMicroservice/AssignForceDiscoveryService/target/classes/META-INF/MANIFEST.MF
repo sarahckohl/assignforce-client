@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: AssignForceDiscoveryService
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: thorgrimfelblade
+Built-By: green
 Implementation-Vendor-Id: com.assignforce
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_151
 Implementation-URL: http://projects.spring.io/spring-boot/AssignForceD
  iscoveryService/
 Created-By: Maven Integration for Eclipse
