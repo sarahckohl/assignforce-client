@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   name: 'prod',
-  baseUrl: 'https://assignforce.cfapps.io',
+  baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:4200',
 
   appRoutes: {
     login: 'login',
@@ -29,13 +29,13 @@ export const environment = {
     domain: 'revature.auth0.com',
     responseType: 'token id_token',
     audience: 'hydra-gateway',
-    redirectUri: 'https://assignforce.cfapps.io/callback',
+    redirectUri: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:4200/callback',
     scope: 'openid profile'
   },
 
   apiUrls: {
     addressController: {
-      baseUrl: 'https://af-data.cfapps.io/addresses',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/address-service',
       create: '',
       update: '/',
       findAll: '',
@@ -44,7 +44,7 @@ export const environment = {
     },
 
     batchController: {
-      baseUrl: 'https://af-data.cfapps.io/batches',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/batch-service',
       create: '',
       update: '/',
       findAll: '',
@@ -53,7 +53,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: 'https://af-data.cfapps.io/buildings',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/building-service',
       create: '',
       update: '/',
       findAll: '',
@@ -62,7 +62,7 @@ export const environment = {
     },
 
     locationController: {
-      baseUrl: 'https://af-data.cfapps.io/locations',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/location-service',
       create: '',
       update: '/',
       findAll: '',
@@ -71,7 +71,7 @@ export const environment = {
     },
 
     roomController: {
-      baseUrl: 'https://af-data.cfapps.io/rooms',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/room-service',
       create: '',
       update: '/',
       findAll: '',
@@ -80,7 +80,7 @@ export const environment = {
     },
 
     curriculumController: {
-      baseUrl: 'https://af-data.cfapps.io/curricula',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/curr-service',
       create: '',
       update: '/',
       findAll: '',
@@ -89,7 +89,7 @@ export const environment = {
     },
 
     focusController: {
-      baseUrl: 'https://af-data.cfapps.io/curricula',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/focus-service',
       create: '',
       update: '/',
       findAll: '',
@@ -98,7 +98,7 @@ export const environment = {
     },
 
     skillController: {
-      baseUrl: 'https://af-data.cfapps.io/skills',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/skillsserver',
       create: '',
       update: '/',
       findAll: '',
@@ -107,7 +107,7 @@ export const environment = {
     },
 
     trainerController: {
-      baseUrl: 'https://af-data.cfapps.io/trainers',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/trainer-service',
       create: '',
       update: '/',
       findAll: '',
@@ -116,7 +116,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: 'https://af-data.cfapps.io/settings',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/settings-service',
       create: '',
       update: '/',
       findAll: '',
@@ -125,7 +125,7 @@ export const environment = {
     },
 
     unavailableController: {
-      baseUrl: 'https://af-data.cfapps.io/unavailables',
+      baseUrl: 'https://ec2-35-173-212-152.compute-1.amazonaws.com:8765/unavailabilityserver',
       create: '',
       update: '/',
       findAll: '',
