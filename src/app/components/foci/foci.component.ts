@@ -7,6 +7,7 @@ import { FocusControllerService } from '../../services/api/focus-controller/focu
 import { Focus } from '../../model/Focus';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { Skill } from '../../model/Skill';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-foci',
@@ -14,9 +15,12 @@ import { Skill } from '../../model/Skill';
   styleUrls: ['./foci.component.css']
 })
 export class FociComponent implements OnInit {
-  constructor(private dialog: MatDialog, 
+  constructor(
+    private dialog: MatDialog,
     private focusControllerService: FocusControllerService,
-    private skillService: SkillControllerService) {}
+    private skillService: SkillControllerService,
+    public auth0: AuthService
+  ) {}
 
   //The array of focuses to be displayed in the list
   focusData: Focus[] = [];
@@ -33,7 +37,7 @@ export class FociComponent implements OnInit {
     this.skillService
       .findAll()
       .toPromise()
-      .then(data => this.skills = data)
+      .then(data => (this.skills = data));
   }
 
   focusSkills(curriculum: Focus): Skill[] {

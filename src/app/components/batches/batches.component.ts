@@ -20,6 +20,7 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 export enum BatchMode {
   Create = 1,
@@ -67,14 +68,14 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
   //  COLUMNS FOR THE ALL BATCHES TAB
   batchColumns = [
     'Checkbox',
-    'Name',
-    'Curriculum',
-    'Trainer/Co-Trainer',
-    'Location',
-    'Building',
-    'Room',
-    'StartDate',
-    'EndDate',
+    'name',
+    'curriculum',
+    'trainers',
+    'location',
+    'building',
+    'room',
+    'startDate',
+    'endDate',
     'Icons'
   ];
 
@@ -109,6 +110,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
       .toPromise()
       .then(response => {
         this.curriculums = response;
+        this.curriculums;
         this.firstHeader = 'Create New Batch';
         this.isLoading = false;
       })
@@ -202,11 +204,13 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
       if (this.batchMode === BatchMode.Create) {
         this.batchModel.name = this.createBatchName(curriculum, null, startDate);
         if (startDate) {
-          this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate);
+          if (!this.endDateIsSet()) {
+            this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate);
+          }
           this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, this.batchModel.endDate);
         }
-      } else if(this.batchMode === BatchMode.Edit) {
-        if(startDate) {
+      } else if (this.batchMode === BatchMode.Edit) {
+        if (startDate) {
           this.batchModel.name = this.createBatchName(curriculum, null, startDate);
           this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, endDate);
         }
@@ -229,15 +233,17 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     }
 
     // Checking if Building has been selected, if so, populate rooms
-      if (this.batchModel.building && this.batchModel.building !== this.selectedBuilding) {
-        this.selectedBuilding = this.batchModel.building;
-        this.buildingRooms = this.rooms.filter(rm => rm.building === this.selectedBuilding.id);
-      }
+    if (this.batchModel.building && this.batchModel.building !== this.selectedBuilding) {
+      this.selectedBuilding = this.batchModel.building;
+      this.buildingRooms = this.rooms.filter(rm => rm.building === this.selectedBuilding.id);
+    }
 
     // Checking if Curriculum has been selected, if so, populate focuses and skills
-    if (this.batchModel.curriculum && 
+    if (
+      this.batchModel.curriculum &&
       this.batchModel.curriculum !== this.selectedCurriculum &&
-      this.batchMode !== BatchMode.Edit) {
+      this.batchMode !== BatchMode.Edit
+    ) {
       this.selectedCurriculum = this.batchModel.curriculum;
       this.batchModel.skills = <any>this.selectSkills(this.batchModel.curriculum);
       this.sortTrainers();
@@ -256,18 +262,17 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     const curr = this.curriculums.find(c => c.id === this.selectedCurriculum);
     let skillsMapping = 0;
     let skillsMatch = [];
-    this.trainers
-      .forEach(trainer => {
-        if (!trainer.active) {
-          return;
-        }
-        skillsMatch = trainer.skills.filter(tSkill => curr.skills.findIndex(cSkill => tSkill === cSkill) >= 0);
-        skillsMapping = Math.floor(skillsMatch.length / curr.skills.length * 100);
-        const t = <any>Object.assign({}, trainer);
-        t.skillsMapping = skillsMapping;
-        this.sortedTrainers.push(t);
-      })
-    this.sortedTrainers.sort((a,b) => b.skillsMapping - a.skillsMapping);
+    this.trainers.forEach(trainer => {
+      if (!trainer.active) {
+        return;
+      }
+      skillsMatch = trainer.skills.filter(tSkill => curr.skills.findIndex(cSkill => tSkill === cSkill) >= 0);
+      skillsMapping = Math.floor((skillsMatch.length / curr.skills.length) * 100);
+      const t = <any>Object.assign({}, trainer);
+      t.skillsMapping = skillsMapping;
+      this.sortedTrainers.push(t);
+    });
+    this.sortedTrainers.sort((a, b) => b.skillsMapping - a.skillsMapping);
     console.log(this.sortedTrainers);
     return null;
   }
@@ -350,9 +355,7 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
 
   selectSkills(currId: number): number[] {
     const curriculum = this.curriculums.find((c: Curriculum) => c.id === currId);
-    return this.skills
-      .filter(skill => curriculum.skills.includes(skill.id))
-      .map(skill => skill.id);
+    return this.skills.filter(skill => curriculum.skills.includes(skill.id)).map(skill => skill.id);
   }
 
   // -------------------------------------------- End auto generate methods -----------------------------------------
@@ -375,5 +378,10 @@ export class BatchesComponent implements OnInit, AfterViewInit, DoCheck {
     this.batchService.remove(batch.id);
     location.reload();
   }
+
+  endDateIsSet(): boolean {
+    return this.batchModel.endDate ? true : false;
+  }
+
   // ---------------------------------------- End Methods for All Batches Panel -------------------------------------
 }

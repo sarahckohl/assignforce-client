@@ -1,6 +1,6 @@
 <mat-tab-group (selectChange)="selectTab($event)" [(selectedIndex)]="selectedTab">
     <span *ngFor="let d of tabs">
-        <mat-tab  *ngIf="auth0.userHasRole(d.roles)" label={{d.label}}>
+        <mat-tab  *ngIf="this.auth0.userHasRole(d.roles)" label={{d.label}}>
         </mat-tab>
     </span>
 </mat-tab-group>

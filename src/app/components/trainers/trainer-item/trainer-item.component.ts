@@ -5,6 +5,7 @@ import { Trainer } from '../../../model/Trainer';
 import { Skill } from '../../../model/Skill';
 import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
 import { SkillControllerService } from '../../../services/api/skill-controller/skill-controller.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-trainer-item',
@@ -16,15 +17,18 @@ export class TrainerItemComponent implements OnInit {
   isManager: boolean;
   allSkills: Skill[] = [];
 
-  constructor(private trainerService: TrainerControllerService,
-    private skillsService: SkillControllerService) {}
+  constructor(
+    private trainerService: TrainerControllerService,
+    private skillsService: SkillControllerService,
+    public auth0: AuthService
+  ) {}
 
   ngOnInit() {
-    this.isManager = true;
+    this.isManager = this.auth0.userHasRole(['SVP of Technology']);
     this.skillsService
       .findAll()
       .toPromise()
-      .then(response => this.allSkills = response)
+      .then(response => (this.allSkills = response));
   }
 
   removeTrainer(trainer: Trainer) {
@@ -58,18 +62,16 @@ export class TrainerItemComponent implements OnInit {
   }
 
   listSkills() {
-
-    if(!this.trainer.skills || this.trainer.skills.length === 0) {
+    if (!this.trainer.skills || this.trainer.skills.length === 0) {
       return 'None';
     }
 
-    const skillsArray = this.allSkills
-      .filter(aSkill =>{
-        if(this.trainer.skills){
-          return this.trainer.skills.findIndex(tSkill => aSkill.id === tSkill) >= 0;
-        }
-        return false;
-      });
-      return skillsArray.map(skill => skill.name).join(', ');
+    const skillsArray = this.allSkills.filter(aSkill => {
+      if (this.trainer.skills) {
+        return this.trainer.skills.findIndex(tSkill => aSkill.id === tSkill) >= 0;
+      }
+      return false;
+    });
+    return skillsArray.map(skill => skill.name).join(', ');
   }
 }

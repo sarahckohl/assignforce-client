@@ -12,4 +12,5 @@ public interface TrainerService {
 	Trainer update(Trainer t);
 	Trainer create(Trainer t);
 	void delete(int id);
+	Optional<Trainer> findByEmail(String email);
 }

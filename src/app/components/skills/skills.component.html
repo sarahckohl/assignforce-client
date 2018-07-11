@@ -3,7 +3,7 @@
   <mat-toolbar class="md-toolbar" layout="columns">
     <span class="mat-expansion-panel-header-title">Skills</span>
     <span class="md-toolbar-spacer"></span>
-    <button mat-icon-button *ngIf="editable && auth0.userHasRole(['Trainer'])" (click)="updateSkills()">
+    <button mat-icon-button *ngIf="editable && this.auth0.userHasRole(['SVP of Technology'])" (click)="updateSkills()">
       <mat-icon matTooltip="Save" class="mat-icon" *ngIf="!lockSkills">save</mat-icon>
       <mat-icon matTooltip="Edit" class="mat-icon" *ngIf="lockSkills">edit</mat-icon>
     </button>
