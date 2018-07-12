@@ -1,0 +1,9 @@
+---
+applications:
+- name: assignforce
+  memory: 1024M
+  command: null
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack
+  path: dist
+
+
