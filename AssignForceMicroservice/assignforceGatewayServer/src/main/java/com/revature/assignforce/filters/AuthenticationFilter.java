@@ -47,6 +47,10 @@ public class AuthenticationFilter extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 
+		if (request.getMethod().equals("OPTIONS")) {
+			return null;
+		}
+		
 		String token = request.getHeader(HEADER_STRING);
         System.out.println(token);
         
@@ -59,7 +63,7 @@ public class AuthenticationFilter extends ZuulFilter {
         	
         	boolean requireSVP = true;
         	
-        	if (request.getMethod().equals("GET") || request.getMethod().equals("OPTIONS")) {
+        	if (request.getMethod().equals("GET")) {
         		requireSVP = false;
         	} else if (request.getRequestURL().toString().contains(TRAINER_EDITABLE)) {
         		requireSVP = false;
