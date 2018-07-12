@@ -184,11 +184,14 @@ export class LocationsComponent implements OnInit {
     this.locationService
       .findAll()
       .toPromise()
-      .then((locations: Address[]) => (this.locations = locations));
+      .then((locations: Address[]) => {
+        this.locations = locations;
+      });
     this.buildingService
       .findAll()
       .toPromise()
-      .then((buildings: Building[]) => (this.buildings = buildings));
+      .then((buildings: Building[]) => (this.buildings = buildings))
+      .catch(err => console.log(err));
     this.roomService
       .findAll()
       .toPromise()

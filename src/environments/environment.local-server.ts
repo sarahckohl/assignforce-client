@@ -34,8 +34,10 @@ export const environment = {
   },
 
   apiUrls: {
+    //baseTargetUrl: 'https://192.168.61.162:8765',
+
     addressController: {
-      baseUrl: 'http://localhost:3000/addresses',
+      baseUrl: 'https://192.168.61.162:8765/address-service',
       create: '',
       update: '/',
       findAll: '',
@@ -44,7 +46,7 @@ export const environment = {
     },
 
     batchController: {
-      baseUrl: 'http://localhost:3000/batches',
+      baseUrl: 'https://192.168.61.162:8765/batch-service',
       create: '',
       update: '/',
       findAll: '',
@@ -53,7 +55,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: 'http://localhost:3000/buildings',
+      baseUrl: 'https://192.168.61.162:8765/building-service',
       create: '',
       update: '/',
       findAll: '',
@@ -62,7 +64,7 @@ export const environment = {
     },
 
     locationController: {
-      baseUrl: 'http://localhost:3000/addresses',
+      baseUrl: 'https://192.168.61.162:8765/location-service',
       create: '',
       update: '/',
       findAll: '',
@@ -71,7 +73,7 @@ export const environment = {
     },
 
     roomController: {
-      baseUrl: 'http://localhost:3000/rooms',
+      baseUrl: 'https://192.168.61.162:8765/room-service',
       create: '',
       update: '/',
       findAll: '',
@@ -80,7 +82,7 @@ export const environment = {
     },
 
     curriculumController: {
-      baseUrl: 'http://localhost:3000/curricula',
+      baseUrl: 'https://192.168.61.162:8765/curr-service',
       create: '',
       update: '/',
       findAll: '',
@@ -89,7 +91,7 @@ export const environment = {
     },
 
     focusController: {
-      baseUrl: 'http://localhost:3000/curricula',
+      baseUrl: 'https://192.168.61.162:8765/focus-service',
       create: '',
       update: '/',
       findAll: '',
@@ -98,7 +100,7 @@ export const environment = {
     },
 
     skillController: {
-      baseUrl: 'http://localhost:3000/skills',
+      baseUrl: 'https://192.168.61.162:8765/skillserver',
       create: '',
       update: '/',
       findAll: '',
@@ -107,7 +109,7 @@ export const environment = {
     },
 
     trainerController: {
-      baseUrl: 'http://localhost:3000/trainers',
+      baseUrl: 'https://192.168.61.162:8765/trainer-service',
       create: '',
       update: '/',
       findAll: '',
@@ -116,7 +118,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: 'http://localhost:3000/settings',
+      baseUrl: 'https://192.168.61.162:8765/setting-service',
       create: '',
       update: '/',
       findAll: '',
@@ -125,7 +127,7 @@ export const environment = {
     },
 
     unavailableController: {
-      baseUrl: 'http://localhost:3000/unavailables',
+      baseUrl: 'https://192.168.61.162:8765/unavailabilityserver',
       create: '',
       update: '/',
       findAll: '',

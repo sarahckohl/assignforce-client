@@ -18,6 +18,7 @@ export class AddressControllerService implements Service {
     return this.http.put<Address>(this.addressController.baseUrl + this.addressController.update + address.id, address);
   }
   public findAll(): Observable<Address[]> {
+    console.log(this.addressController.baseUrl + this.addressController.findAll);
     return this.http.get<Address[]>(this.addressController.baseUrl + this.addressController.findAll);
   }
   public remove(id: number): Observable<Address> {
