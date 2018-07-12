@@ -45,7 +45,7 @@ public class Trainer {
 	private Set<UnavailabilityIdHolder> unavailabilities;
 	
 	@Column(name="email")
-	private int email;
+	private String email;
 	
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name="Trainer_Skills",
@@ -70,7 +70,7 @@ public class Trainer {
 	}
 
 	public Trainer(int id, String firstname, String lastname, Boolean isActive, int preferredLocation,
-			Set<UnavailabilityIdHolder> unavailabilities, int email, Set<SkillIdHolder> skills, int address,
+			Set<UnavailabilityIdHolder> unavailabilities, String email, Set<SkillIdHolder> skills, int address,
 			Set<Cert> certs) {
 		super();
 		this.id = id;
@@ -133,11 +133,11 @@ public class Trainer {
 		this.unavailabilities = unavailabilities;
 	}
 
-	public int getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(int email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 

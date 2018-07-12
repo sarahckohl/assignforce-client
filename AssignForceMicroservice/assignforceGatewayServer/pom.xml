@@ -79,7 +79,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>
-						com.rev.Application</mainClass>
+						com.revature.assignforce.GatewayServerApplication</mainClass>
 					<addResources>true</addResources>
 				</configuration>
 				<executions>
