@@ -67,10 +67,10 @@ public class AuthenticationFilter extends ZuulFilter {
         	
         	if (!authenticate(token, requireSVP)) {
         		forbidden(ctx, "Unauthorized");
-        	} else {
-        		forbidden(ctx, "Authorized"); // TODO remove me        		
         	}
-        }
+        } else {
+			forbidden(ctx, "No Authorization"); 		
+		}
 		
 		return null;
 	}
