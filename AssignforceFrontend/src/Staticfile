@@ -1,3 +1,0 @@
-# pushstate is required by the CF staticfile buildpack to route all
-# paths to the root path (which is required when using Angular router).
-pushstate: enabled
